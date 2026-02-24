@@ -1,6 +1,5 @@
 import Header from "@/presentation/components/organisms/landing-page/Header";
 import HeroSection from "@/presentation/components/organisms/landing-page/HeroSection";
-import TestimonialsCarousel from "@/presentation/components/organisms/landing-page/TestimonialsCarousel";
 import CourseCards from "@/presentation/components/organisms/landing-page/CourseCards";
 import WrittenTestimonials from "@/presentation/components/organisms/landing-page/WrittenTestimonials";
 import FAQSection from "@/presentation/components/organisms/landing-page/FAQSection";
@@ -18,7 +17,6 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <TestimonialsCarousel />
         <CourseCards />
         <WrittenTestimonials />
         <FAQSection />

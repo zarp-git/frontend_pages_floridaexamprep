@@ -93,19 +93,14 @@ export default function FAQSection() {
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left Side - Guarantee Badge */}
           <div className="w-full lg:w-[554px] flex flex-col gap-8">
-            <div className="relative w-64 h-64 px-10 py-12 rounded-tl-xl rounded-tr-xl rounded-bl-[638px] rounded-br-[638px] shadow-2xl border-[3px] border-zinc-500 flex flex-col justify-center items-start gap-5 bg-gradient-to-br from-blue-900 to-blue-950">
-              <p className="text-white text-3xl font-semibold font-clash-display">
-                EXCLUSIVE
-              </p>
-              <div className="flex flex-col gap-4">
-                <Image
-                  src="/images/logo/logo-white.svg"
-                  alt="Florida Exam Prep"
-                  width={176}
-                  height={80}
-                  className="brightness-0 invert"
-                />
-              </div>
+            <div className="relative w-64 h-64">
+              <Image
+                src="/images/exclusive.svg"
+                alt="Exclusive Guarantee"
+                width={256}
+                height={256}
+                className="w-full h-full"
+              />
             </div>
 
             <div className="flex flex-col gap-3">
@@ -127,11 +122,11 @@ export default function FAQSection() {
               </p>
             </div>
 
-            <button className="h-12 px-6 py-4 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
-              <span className="text-white text-base font-medium font-rubik uppercase">
+            <button className="w-100 h-12 px-4 py-3 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg inline-flex justify-center items-center gap-4 hover:opacity-90 transition-opacity">
+              <span className="text-white text-base font-medium font-rubik uppercase whitespace-nowrap">
                 Get Prepared For The Exam Now
               </span>
-              <ArrowUpRight className="w-5 h-5 text-white" />
+              <ArrowUpRight className="w-5 h-5 text-white flex-shrink-0" />
             </button>
           </div>
 
