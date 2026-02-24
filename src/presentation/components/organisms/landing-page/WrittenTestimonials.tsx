@@ -10,6 +10,7 @@ interface Testimonial {
   examType: string;
   avatar: string;
   image?: string;
+  video?: string;
   rating: number;
   text?: string;
 }
@@ -18,14 +19,13 @@ const TESTIMONIALS: Testimonial[][] = [
   // Row 1
   [
     {
-      id: "1",
-      type: "written",
-      studentName: "Kevin Lopez",
+      id: "video-1",
+      type: "video",
+      studentName: "Student Video",
       examType: "Business & Finance Exam",
-      avatar: "/images/testimonials/avatars/kevin-lopez.jpg",
-      image: "/images/testimonials/screenshots/floridaexamprep_testimonial_kevinlopez.jpg",
+      avatar: "/images/testimonials/avatars/default-avatar.jpg",
+      video: "/images/videostudant/videostudant.mp4",
       rating: 5,
-      text: "PASSED THE BUSINESS AND FINANCE EXAM! Thank you Cruz for this course because it has helped me tremendously!",
     },
     {
       id: "2",
@@ -94,14 +94,23 @@ const TESTIMONIALS: Testimonial[][] = [
       text: "Passed!! If you're struggling with studying or feel like quitting... don't. I stepped away for almost two months because of personal issues. Came back, finished the remaining chapters, and passed. Grateful for Cruz's help and his CRAM course!",
     },
     {
-      id: "8",
+      id: "1",
       type: "written",
-      studentName: "Joel Kennedy",
+      studentName: "Kevin Lopez",
       examType: "Business & Finance Exam",
-      avatar: "/images/testimonials/avatars/joel-kennedy.jpg",
-      image: "/images/testimonials/screenshots/floridaexamprep_testimonial_joelkennedy.jpg",
+      avatar: "/images/testimonials/avatars/kevin-lopez.jpg",
+      image: "/images/testimonials/screenshots/floridaexamprep_testimonial_kevinlopez.jpg",
       rating: 5,
-      text: "Just got home from Jacksonville! Thank you to Cruz for the course. It works! I utilized every portion of the course, the reviews I listened to while driving and the Test simulations is where I put all my book time.",
+      text: "PASSED THE BUSINESS AND FINANCE EXAM! Thank you Cruz for this course because it has helped me tremendously!",
+    },
+    {
+      id: "video-2",
+      type: "video",
+      studentName: "Student Video",
+      examType: "Business & Finance Exam",
+      avatar: "/images/testimonials/avatars/default-avatar.jpg",
+      video: "/images/videostudant/videostudanttwo.mp4",
+      rating: 5,
     },
   ],
 ];
@@ -145,10 +154,15 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   if (testimonial.type === "video") {
     return (
       <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[500px]">
-        <div className="relative flex-1 bg-gradient-to-br from-neutral-500 via-zinc-600 to-zinc-800">
-          <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-            <Play className="w-6 h-6 text-gray-800 ml-1" />
-          </button>
+        <div className="relative flex-1">
+          <video
+            className="w-full h-full object-cover"
+            controls
+            preload="metadata"
+          >
+            <source src={testimonial.video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     );
