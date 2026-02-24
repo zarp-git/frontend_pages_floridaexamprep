@@ -229,9 +229,13 @@ export default function LandingFooter() {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <div className="w-10 h-10 relative rounded-lg overflow-hidden bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 flex items-center justify-center">
-                    <Instagram className="w-6 h-6 text-white" />
-                  </div>
+                  <Image
+                    src="/images/brands/instagram-icon.svg"
+                    alt="Instagram"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
                 </Link>
                 
                 {/* Facebook */}
@@ -241,9 +245,13 @@ export default function LandingFooter() {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <div className="w-10 h-10 relative rounded-lg overflow-hidden bg-blue-600 flex items-center justify-center">
-                    <Facebook className="w-6 h-6 text-white fill-current" />
-                  </div>
+                  <Image
+                    src="/images/brands/facebook-icon.svg"
+                    alt="Facebook"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
                 </Link>
                 
                 {/* YouTube */}
@@ -253,9 +261,13 @@ export default function LandingFooter() {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  <div className="w-10 h-10 relative rounded-lg overflow-hidden bg-red-600 flex items-center justify-center">
-                    <Youtube className="w-6 h-6 text-white fill-current" />
-                  </div>
+                  <Image
+                    src="/images/brands/youtubeicon.png"
+                    alt="YouTube"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
                 </Link>
               </div>
             </div>
@@ -264,7 +276,7 @@ export default function LandingFooter() {
       </div>
 
       {/* Copyright Bar */}
-      <div className="w-full px-4 md:px-28 py-8 bg-black border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="w-full px-4 md:px-28 py-8 bg-black border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
         <p className="text-gray-400 text-base font-normal font-rubik leading-5">
           FLORIDA EXAM PREP © Copyright 2026 - All Rights Reserved.
         </p>

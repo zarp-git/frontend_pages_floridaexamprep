@@ -3,6 +3,7 @@ import HeroSection from "@/presentation/components/organisms/landing-page/HeroSe
 import CourseCards from "@/presentation/components/organisms/landing-page/CourseCards";
 import WrittenTestimonials from "@/presentation/components/organisms/landing-page/WrittenTestimonials";
 import PillarsSection from "@/presentation/components/organisms/landing-page/PillarsSection";
+import PlatformSection from "@/presentation/components/organisms/landing-page/PlatformSection";
 import FAQSection from "@/presentation/components/organisms/landing-page/FAQSection";
 import LandingFooter from "@/presentation/components/organisms/landing-page/LandingFooter";
 
@@ -21,6 +22,7 @@ export default function Home() {
         <CourseCards />
         <WrittenTestimonials />
         <PillarsSection />
+        <PlatformSection />
         <FAQSection />
       </main>
       <LandingFooter />
