@@ -157,11 +157,11 @@ function CourseCard({ course }: { course: Course }) {
 
 export default function CourseCards() {
   return (
-    <section className="w-full px-4 md:px-28 py-20 bg-gradient-to-br from-sky-500 to-blue-700/0 backdrop-blur-sm overflow-hidden">
+    <section className="w-full px-4 md:px-28 py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
       <div className="max-w-[1440px] mx-auto flex flex-col justify-center items-center gap-8">
         {/* Heading */}
         <div className="flex flex-col justify-center items-center gap-5">
-          <div className="px-4 py-1.5 bg-white/20 rounded-full border border-gray-700 backdrop-blur-sm">
+          <div className="px-4 py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
             <span className="text-white text-base font-medium font-rubik leading-8">
               DON'T TRY IT ALONE
             </span>

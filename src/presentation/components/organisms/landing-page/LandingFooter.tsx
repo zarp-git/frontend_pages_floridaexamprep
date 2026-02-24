@@ -78,25 +78,25 @@ export default function LandingFooter() {
                     <h3 className="text-gray-800 text-xl font-medium font-rubik uppercase leading-7">
                       some of our couses
                     </h3>
-                    <div className="w-10 h-0.5 bg-secondary rounded-lg" />
+                    <div className="w-10 h-0.5 bg-[#FF6200] rounded-lg" />
                   </div>
                   <div className="flex gap-8">
                     <div className="flex flex-col gap-0">
                       <Link
                         href="/courses/business-finance"
-                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                        className="text-gray-500 text-base font-medium font-poppins underline leading-8 hover:text-[#0866FF] transition-colors"
                       >
                         Business And Finance
                       </Link>
                       <Link
                         href="/courses/contract-admin"
-                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                        className="text-gray-500 text-base font-medium font-poppins underline leading-8 hover:text-[#0866FF] transition-colors"
                       >
                         Contract Adminstration
                       </Link>
                       <Link
                         href="/courses/complete-prep"
-                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                        className="text-gray-500 text-base font-medium font-poppins underline leading-8 hover:text-[#0866FF] transition-colors"
                       >
                         Complete Exam Prep
                       </Link>
@@ -112,12 +112,12 @@ export default function LandingFooter() {
                         <h3 className="text-gray-800 text-xl font-medium font-rubik leading-7">
                           CONTACT US NOW
                         </h3>
-                        <div className="w-10 h-0.5 bg-secondary rounded-lg" />
+                        <div className="w-10 h-0.5 bg-[#FF6200] rounded-lg" />
                       </div>
                     </div>
                     <div className="w-56 flex flex-col gap-2.5">
                       <div className="flex items-center gap-2.5">
-                        <Clock className="w-5 h-5 text-secondary" />
+                        <Clock className="w-5 h-5 text-[#FF6200]" />
                         <p className="text-gray-700 text-xs font-rubik">
                           <span className="font-medium">FROM MON TO SAT </span>
                           <span className="font-bold">: </span>
@@ -127,7 +127,7 @@ export default function LandingFooter() {
                       <div className="pb-[0.80px]">
                         <Link
                           href="tel:+14436956218"
-                          className="text-neutral-600 text-2xl font-semibold font-poppins leading-5 hover:text-blue-600"
+                          className="text-neutral-800 text-2xl font-semibold font-poppins leading-5 hover:text-[#0866FF] transition-colors"
                         >
                           + 1 443 695-6218
                         </Link>
@@ -139,14 +139,14 @@ export default function LandingFooter() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-start gap-4">
-                <button className="px-4 py-3 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
+                <button className="px-4 py-3 bg-[#002770] rounded-lg flex items-center gap-4 hover:bg-[#00091C] transition-colors">
                   <span className="text-center text-white text-base font-medium font-rubik uppercase">
                     get THAT APPROVAL now
                   </span>
                   <ArrowUpRight className="w-5 h-5 text-white" />
                 </button>
-                <button className="px-4 py-3 bg-white rounded-lg border-2 border-blue-950 flex items-center gap-4 hover:bg-blue-50 transition-colors">
-                  <span className="text-center text-blue-700 text-sm font-medium font-rubik uppercase">
+                <button className="px-4 py-3 bg-white rounded-lg border-2 border-[#0866FF] flex items-center gap-4 hover:bg-blue-50 transition-colors">
+                  <span className="text-center text-[#0866FF] text-sm font-medium font-rubik uppercase">
                     already enrolled in other course?
                   </span>
                 </button>

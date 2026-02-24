@@ -31,7 +31,7 @@ const BENEFITS: Benefit[] = [
 
 export default function PlatformSection() {
   return (
-    <section className="w-full px-4 md:px-28 py-20 bg-gradient-to-br from-sky-500 to-blue-700/0">
+    <section className="w-full px-4 md:px-28 py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C]">
       <div className="max-w-[1440px] mx-auto flex flex-col justify-center items-center gap-8">
         <div className="w-full flex flex-col md:flex-row justify-center items-center gap-8">
           {/* Left Content */}
@@ -40,7 +40,7 @@ export default function PlatformSection() {
             <div className="w-full flex flex-col justify-start items-start gap-5">
               <h2 className="w-full text-white text-3xl font-extrabold font-red-hat-display uppercase leading-10">
                 STOP STUDYING ALONE. ENROLL TODAY & GUARANTEE THESE{" "}
-                <span className="text-sky-500">EXCLUSIVE</span> BENEFITS
+                <span className="text-sky-400">EXCLUSIVE</span> BENEFITS
               </h2>
               <p className="w-full text-white text-xl font-medium font-rubik leading-8">
                 When you enroll, you get:

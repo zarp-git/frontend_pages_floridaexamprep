@@ -95,7 +95,7 @@ export default function FAQSection() {
           <div className="w-full lg:w-[554px] flex flex-col gap-8">
             <div className="relative w-64 h-64">
               <Image
-                src="/images/exclusive.svg"
+                src="/images/svg/exclusive.svg"
                 alt="Exclusive Guarantee"
                 width={256}
                 height={256}
