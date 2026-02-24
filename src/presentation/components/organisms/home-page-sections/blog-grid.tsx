@@ -1,0 +1,83 @@
+import { getPosts } from "@/server/services/blog-posts/get-posts";
+import { IPagination, IPost } from "@/types/post";
+import ClientPagination from "@/presentation/components/atoms/ui/client-pagination";
+import BlogCard from "@/presentation/components/atoms/ui/blog-card";
+import { Container } from "@/presentation/components/atoms/ui/container";
+
+export default async function BlogGrid({
+  searchParams,
+}: {
+  searchParams?: any;
+}) {
+  const sp =
+    typeof searchParams?.then === "function"
+      ? await searchParams
+      : searchParams;
+  const currentPage = Number(sp?.page) || 1;
+  const limit = 9;
+
+  const data = await getPosts(currentPage, limit);
+
+  // Verificação adicional para garantir que data e data.posts existam
+  if (!data || !data.posts) {
+    return (
+      <section
+        className="w-full pt-20 bg-black  min-h-screen"
+        style={{
+          background:
+            "radial-gradient(37.55% 29.18% at 113.44% 43.98%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(54.06% 49.74% at 40.94% 68.84%, rgba(41, 8, 134, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(68.5% 61.39% at 55.21% -19.94%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(49.46% 42.97% at -9.9% 105.52%, #B00D23 0%, rgba(0, 0, 0, 0.00) 100%), #05060B",
+        }}
+      >
+        <Container section={true}>
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-white md:mb-12 mb-8">
+            AllBrick Pavers Blog
+          </h2>
+          <p className="text-center text-white">
+            No articles found. Please try again later.
+          </p>
+        </Container>
+      </section>
+    );
+  }
+
+  return (
+    <section
+      className="w-full pt-20 bg-black"
+      style={{
+        background:
+          "radial-gradient(37.55% 29.18% at 113.44% 43.98%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(54.06% 49.74% at 40.94% 68.84%, rgba(41, 8, 134, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(68.5% 61.39% at 55.21% -19.94%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(49.46% 42.97% at -9.9% 105.52%, #B00D23 0%, rgba(0, 0, 0, 0.00) 100%), #05060B",
+      }}
+    >
+      <Container section={true}>
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-white md:mb-12 mb-8">
+          AllBrick Pavers Blog
+        </h2>
+        <div className="relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {data.posts.length > 0 ? (
+              data.posts.map((post) => {
+                const parsedUrl = new URL(post.link);
+                const path =
+                  parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+
+                return <BlogCard key={post.id} post={post} uri={path} />;
+              })
+            ) : (
+              <p className="col-span-3 text-center text-white">
+                No articles published at this time.
+              </p>
+            )}
+          </div>
+          {data.posts.length > 0 && (
+            <div className="mt-12">
+              <ClientPagination
+                currentPage={data.pagination.current_page}
+                totalPages={data.pagination.total_pages}
+              />
+            </div>
+          )}
+        </div>
+      </Container>
+    </section>
+  );
+}
