@@ -34,9 +34,8 @@ export default function RootLayout({
       <body
         className={`${rubik.variable} ${hankenGrotesk.variable} antialiased`}
       >
-        <Header />
+        {/* Header e Footer removidos - agora cada página controla seus próprios */}
         {children}
-        <Footer />
         <LeadCollectModal />
         <ContactModal />
         <MaintenanceModal />

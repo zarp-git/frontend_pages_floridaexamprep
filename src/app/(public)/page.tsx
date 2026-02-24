@@ -1,28 +1,29 @@
-import IntroSection from "@/presentation/components/organisms/home-page-sections/IntroSection";
-import DifferentialsSection from "@/presentation/components/organisms/home-page-sections/DifferentialsSection";
-import GalleryComparison from "@/presentation/components/organisms/home-page-sections/GalleryComparison";
-import HeroCarousel from "@/presentation/components/organisms/home-page-sections/HeroCarousel";
-import FeedbackSection from "@/presentation/components/organisms/home-page-sections/FeedbackSection";
-import FaqSection from "@/presentation/components/organisms/home-page-sections/FaqSection";
-import AboutSection from "@/presentation/components/organisms/home-page-sections/AboutSection";
-import { PaversVsConcreteSection } from "@/presentation/components/organisms/home-page-sections/PaversVsConcreteSection";
-import { InstallationTrustSection } from "@/presentation/components/organisms/home-page-sections/InstallationTrustSection";
-import { PaverServicesSection } from "@/presentation/components/organisms/home-page-sections/PaverServicesSection";
-import { CtaSection } from "@/presentation/components/organisms/home-page-sections/CtaSection";
+import Header from "@/presentation/components/organisms/landing-page/Header";
+import HeroSection from "@/presentation/components/organisms/landing-page/HeroSection";
+import TestimonialsCarousel from "@/presentation/components/organisms/landing-page/TestimonialsCarousel";
+import CourseCards from "@/presentation/components/organisms/landing-page/CourseCards";
+import WrittenTestimonials from "@/presentation/components/organisms/landing-page/WrittenTestimonials";
+import FAQSection from "@/presentation/components/organisms/landing-page/FAQSection";
+import LandingFooter from "@/presentation/components/organisms/landing-page/LandingFooter";
+
+export const metadata = {
+  title: "Florida Exam Prep - Pass Your Contractor Exam First Try",
+  description:
+    "Get approved in your Florida State Contractor Exam on the first try. Expert-guided courses, practice tests, and personal coaching guarantee.",
+};
 
 export default function Home() {
   return (
-    <main>
-      <HeroCarousel />
-      <IntroSection />
-      <AboutSection />
-      <DifferentialsSection />
-      <PaverServicesSection />
-      <FeedbackSection />
-      <PaversVsConcreteSection />
-      <InstallationTrustSection />
-      <CtaSection />
-      <FaqSection />
-    </main>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <HeroSection />
+        <TestimonialsCarousel />
+        <CourseCards />
+        <WrittenTestimonials />
+        <FAQSection />
+      </main>
+      <LandingFooter />
+    </div>
   );
 }
