@@ -15,13 +15,13 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "Programs",
-    href: "/programs",
+    label: "Courses",
+    href: "/courses",
     hasDropdown: true,
     dropdownItems: [
-      { label: "Business & Finance", href: "/programs/business-finance" },
-      { label: "Contract Administration", href: "/programs/contract-admin" },
-      { label: "Complete Exam Prep", href: "/programs/complete-prep" },
+      { label: "Business & Finance", href: "/courses/business-finance" },
+      { label: "Contract Administration", href: "/courses/contract-admin" },
+      { label: "Complete Exam Prep", href: "/courses/complete-prep" },
     ],
   },
   {
@@ -105,9 +105,9 @@ export default function Header() {
         </div>
 
         {/* CTA Button */}
-        <button className="hidden md:flex h-10 px-4 py-3 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg items-center gap-4 hover:opacity-90 transition-opacity">
+        <button className="hidden md:flex h-10 px-4 py-3 bg-[#00091C] rounded-lg items-center gap-4 hover:bg-[#00276F] transition-colors">
           <span className="text-white text-sm font-medium font-rubik uppercase">
-            Get That Approval Now
+            get THAT +90 GRADE now
           </span>
         </button>
 

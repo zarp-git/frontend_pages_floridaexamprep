@@ -170,9 +170,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
   return (
     <div className="flex-1 px-3 pt-3 pb-6 bg-gray-50 rounded-2xl border border-gray-200 flex flex-col gap-4">
-      {/* Image */}
+      {/* Image - Much larger for rows with video */}
       {testimonial.image && (
-        <div className="relative h-48 w-full rounded-lg border border-gray-200 overflow-hidden">
+        <div className="relative h-[350px] w-full rounded-lg border border-gray-200 overflow-hidden">
           <Image
             src={testimonial.image}
             alt={`Testimonial from ${testimonial.studentName}`}
