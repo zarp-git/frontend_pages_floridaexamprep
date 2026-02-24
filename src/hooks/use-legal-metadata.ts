@@ -11,7 +11,7 @@ export const useLegalMetadata = (config: LegalPageMetadata): Metadata => {
       description: config.description,
       type: "website",
       locale: "en_US",
-      siteName: "AllBrick Pavers",
+      siteName: "Florida Exam Prep",
     },
     twitter: {
       card: "summary",

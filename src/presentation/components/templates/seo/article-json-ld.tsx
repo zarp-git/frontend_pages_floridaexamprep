@@ -3,28 +3,28 @@
 import { JsonLd } from "./json-ld";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://allbrickpavers.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://floridaexamprep.com";
 
 export const ArticleJsonLd = () => {
   const articleData = {
 		"@context": "https://schema.org",
 		"@type": "Article",
 		headline:
-			"AllBrick Pavers: Expert Paver Installation and Outdoor Living in Central Florida",
+			"Florida Exam Prep: Expert Exam Preparation Services in Florida",
 		description:
-			"Discover how AllBrick Pavers transforms outdoor spaces across Central Florida with professional paver installation, repair, and maintenance services. Serving Winter Haven, Lakeland, and surrounding areas.",
+			"Discover how Florida Exam Prep transforms exam preparation across Florida with professional study materials, tutoring, and practice tests. Serving Winter Haven, Lakeland, and surrounding areas.",
 		image: [
 			`${SITE_URL}/images/sections-images/patio-pavers-1-after-1.webp`,
 			`${SITE_URL}/images/sections-images/driveway-pavers-2-after.webp`,
 		],
 		author: {
 			"@type": "Organization",
-			name: "AllBrick Pavers",
+			name: "Florida Exam Prep",
 			url: SITE_URL,
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "AllBrick Pavers",
+			name: "Florida Exam Prep",
 			logo: {
 				"@type": "ImageObject",
 				url: `${SITE_URL}/images/svg/logo.svg`,
@@ -37,18 +37,17 @@ export const ArticleJsonLd = () => {
 			"@id": SITE_URL,
 		},
 		keywords: [
-			"allbrick pavers",
-			"paver installation central florida",
-			"driveway pavers",
-			"patio pavers",
-			"pool deck pavers",
-			"paver repair",
-			"paver maintenance",
-			"winter haven pavers",
-			"lakeland pavers",
-			"outdoor living florida",
+			"florida exam prep",
+			"exam preparation florida",
+			"study materials",
+			"practice tests",
+			"exam tutoring",
+			"test preparation",
+			"winter haven exam prep",
+			"lakeland exam prep",
+			"florida education",
 		],
-		articleSection: "Home Improvement",
+		articleSection: "Education",
 		wordCount: 2000,
 		inLanguage: "en-US",
 	};
@@ -60,14 +59,14 @@ export const ArticleJsonLd = () => {
 export const LocalBusinessJsonLd = () => {
   const localBusinessData = {
 		"@context": "https://schema.org",
-		"@type": "HomeAndConstructionBusiness",
+		"@type": "EducationalOrganization",
 		"@id": `${SITE_URL}/#business`,
-		name: "AllBrick Pavers",
+		name: "Florida Exam Prep",
 		description:
-			"Family-owned paver installation, repair, and maintenance company serving Central Florida homeowners. Specializing in driveways, patios, pool decks, walkways, and fire pits with quality craftsmanship since 2018.",
+			"Professional exam preparation services serving Florida students and professionals. Specializing in study materials, practice tests, tutoring, and comprehensive exam preparation since 2018.",
 		url: SITE_URL,
 		telephone: "+1-407-818-7876",
-		email: "allbrickpaving@gmail.com",
+		email: "contact@floridaexamprep.com",
 		address: {
 			"@type": "PostalAddress",
 			streetAddress: "99 6th St SW Ste 109",
@@ -82,7 +81,7 @@ export const LocalBusinessJsonLd = () => {
 			longitude: "-81.7329",
 		},
 		openingHours: "Mo-Sa 09:00-17:00",
-		priceRange: "$$",
+		priceRange: "$",
 		paymentAccepted: "Credit Card, Debit Card, Cash, Check",
 		currenciesAccepted: "USD",
 		areaServed: [
@@ -95,33 +94,33 @@ export const LocalBusinessJsonLd = () => {
 		],
 		hasOfferCatalog: {
 			"@type": "OfferCatalog",
-			name: "Paver Services",
+			name: "Exam Prep Services",
 			itemListElement: [
 				{
 					"@type": "Offer",
 					itemOffered: {
 						"@type": "Service",
-						name: "Paver Installation",
+						name: "Exam Preparation",
 						description:
-							"Professional paver installation for driveways, patios, pool decks, walkways, and fire pits using high-quality materials.",
+							"Professional exam preparation services with comprehensive study materials and expert guidance.",
 					},
 				},
 				{
 					"@type": "Offer",
 					itemOffered: {
 						"@type": "Service",
-						name: "Paver Repair",
+						name: "Tutoring Services",
 						description:
-							"Expert repair services for sunken, cracked, or damaged pavers to restore your outdoor surfaces.",
+							"Expert tutoring services to help you prepare for your exams with personalized instruction.",
 					},
 				},
 				{
 					"@type": "Offer",
 					itemOffered: {
 						"@type": "Service",
-						name: "Paver Maintenance",
+						name: "Practice Tests",
 						description:
-							"Comprehensive paver maintenance plans including cleaning, sealing, and ongoing care to keep your outdoor space looking its best.",
+							"Comprehensive practice tests and study materials to ensure you're fully prepared for exam day.",
 					},
 				},
 			],
@@ -136,16 +135,16 @@ export const WebSiteJsonLd = () => {
   const webSiteData = {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "AllBrick Pavers",
-		alternateName: "AllBrick Pavers",
+		name: "Florida Exam Prep",
+		alternateName: "Florida Exam Prep",
 		url: SITE_URL,
 		description:
-			"Transform your outdoor space with AllBrick Pavers. Professional paver installation, repair, and maintenance services in Central Florida. Serving Winter Haven, Lakeland, Davenport, and surrounding areas since 2018.",
+			"Transform your career with Florida Exam Prep. Professional exam preparation services in Florida. Serving Winter Haven, Lakeland, Davenport, and surrounding areas since 2018.",
 		inLanguage: "en-US",
 		copyrightYear: 2025,
 		copyrightHolder: {
 			"@type": "Organization",
-			name: "AllBrick Pavers",
+			name: "Florida Exam Prep",
 		},
 		potentialAction: {
 			"@type": "SearchAction",
@@ -157,7 +156,7 @@ export const WebSiteJsonLd = () => {
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "AllBrick Pavers",
+			name: "Florida Exam Prep",
 			logo: {
 				"@type": "ImageObject",
 				url: `${SITE_URL}/images/svg/logo.svg`,

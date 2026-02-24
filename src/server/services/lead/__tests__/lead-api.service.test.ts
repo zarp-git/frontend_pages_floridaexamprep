@@ -13,7 +13,7 @@ describe("LeadApiService", () => {
   beforeEach(() => {
     // Set environment variables for testing
     process.env.ZARP_API_ENDPOINT_URL = "https://api.zarpstudio.com"
-    process.env.NEXT_PUBLIC_TENANT_KEY = "abp_secret_2026_fl_pavers_secure"
+    process.env.NEXT_PUBLIC_TENANT_KEY = "fep_secret_2026_fl_exam_prep_secure"
     
     service = new LeadApiService()
   })

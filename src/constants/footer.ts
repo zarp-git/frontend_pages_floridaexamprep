@@ -1,7 +1,7 @@
 export const FOOTER_COMPANY_INFO = {
-  name: "AllBrick Pavers",
+  name: "Florida Exam Prep",
   tagline:
-    "Transforming ordinary outdoor spaces into stunning landscapes that last a lifetime. Serving Central Florida homeowners since 2018.",
+    "Transforming exam preparation into success stories. Serving Florida students and professionals since 2018.",
   address: {
     label: "WINTER HAVEN OFFICE",
     street: "99 6th St SW Ste 109, Winter Haven FL 33880",
@@ -31,13 +31,13 @@ export const FOOTER_COMPANY_LINKS = [
 ] as const;
 
 export const FOOTER_SERVICES = [
-  { label: "Pavers Installation", href: "/services/installation" },
-  { label: "Pavers Repair", href: "/services/repair" },
-  { label: "Pavers Maintenance Plans", href: "/services/maintenance" },
-  { label: "Patio Pavers", href: "/services/patio" },
-  { label: "Pool Decks Pavers", href: "/services/pool-decks" },
-  { label: "Driveway Pavers", href: "/services/driveway" },
-  { label: "Firepit Pavers", href: "/services/firepit" },
+  { label: "Exam Preparation", href: "/services/preparation" },
+  { label: "Study Materials", href: "/services/materials" },
+  { label: "Practice Tests", href: "/services/practice-tests" },
+  { label: "Tutoring Services", href: "/services/tutoring" },
+  { label: "Online Courses", href: "/services/online-courses" },
+  { label: "Group Classes", href: "/services/group-classes" },
+  { label: "Private Sessions", href: "/services/private-sessions" },
 ] as const;
 
 export const FOOTER_LEGAL_LINKS = [

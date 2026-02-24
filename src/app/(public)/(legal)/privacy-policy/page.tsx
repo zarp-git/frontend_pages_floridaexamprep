@@ -72,7 +72,7 @@ export default function Page() {
           is committed to protecting the privacy and security of our
           customers&apos; personal information. This Privacy Policy describes
           how we collect, use, disclose, and safeguard your information when you
-          visit our website <strong>allbrickpavers.com</strong> (the
+          visit our website <strong>floridaexamprep.com</strong> (the
           &quot;Site&quot;) or use our paver installation, repair, and
           maintenance services.
         </p>

@@ -61,17 +61,17 @@ export const FAQJsonLd = ({ faq }: FAQJsonLdProps) => {
 
 // Componente para dados da organização
 export const OrganizationJsonLd = () => {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://allbrickpavers.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://floridaexamprep.com";
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "AllBrick Pavers",
-    "description": "Professional paver installation, repair, and maintenance services in Central Florida.",
+    "name": "Florida Exam Prep",
+    "description": "Professional exam preparation services in Florida.",
     "url": siteUrl,
     "logo": `${siteUrl}/images/svg/logo.svg`,
     "sameAs": [
-      "https://www.instagram.com/allbrickpavers/",
-      "https://www.facebook.com/p/AllBrick-Pavers-61552914309792/"
+      "https://www.instagram.com/floridaexamprep/",
+      "https://www.facebook.com/floridaexamprep/"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -94,22 +94,22 @@ export const OrganizationJsonLd = () => {
 
 // Componente para produto/serviço
 export const ProductJsonLd = () => {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://allbrickpavers.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://floridaexamprep.com";
   const productData = {
 		"@context": "https://schema.org",
 		"@type": "Service",
-		name: "AllBrick Pavers | Professional Paver Services",
+		name: "Florida Exam Prep | Professional Exam Preparation Services",
 		description:
-			"Expert paver installation, repair, and maintenance services in Central Florida. Driveways, patios, pool decks, walkways, and fire pits.",
+			"Expert exam preparation services in Florida.",
 		url: siteUrl,
-		serviceType: "Home Improvement",
+		serviceType: "Education",
 		areaServed: {
 			"@type": "State",
 			name: "Florida",
 		},
 		provider: {
 			"@type": "LocalBusiness",
-			name: "AllBrick Pavers",
+			name: "Florida Exam Prep",
 		},
 		aggregateRating: {
 			"@type": "AggregateRating",
@@ -120,15 +120,12 @@ export const ProductJsonLd = () => {
 		},
 		hasOfferCatalog: {
 			"@type": "OfferCatalog",
-			name: "Paver Services",
+			name: "Exam Prep Services",
 			itemListElement: [
-				"Paver Installation",
-				"Paver Repair",
-				"Paver Maintenance",
-				"Patio Pavers",
-				"Driveway Pavers",
-				"Pool Deck Pavers",
-				"Firepit Pavers",
+				"Exam Preparation",
+				"Study Materials",
+				"Practice Tests",
+				"Tutoring Services",
 			],
 		},
 	};
@@ -157,7 +154,7 @@ export const ReviewJsonLd = () => {
   const reviewData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "AllBrick Pavers - Professional Paver Services",
+    "name": "Florida Exam Prep - Professional Exam Preparation Services",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -177,7 +174,7 @@ export const ReviewJsonLd = () => {
           "ratingValue": "5",
           "bestRating": "5"
         },
-        "reviewBody": "AllBrick Pavers did an amazing job on our driveway. Professional, on time, and the results exceeded our expectations!"
+        "reviewBody": "Florida Exam Prep did an amazing job helping me prepare. Professional, on time, and the results exceeded my expectations!"
       },
       {
         "@type": "Review",
@@ -190,7 +187,7 @@ export const ReviewJsonLd = () => {
           "ratingValue": "5",
           "bestRating": "5"
         },
-        "reviewBody": "Great craftsmanship on our pool deck. The team was very professional and the quality is outstanding."
+        "reviewBody": "Great study materials and support. The team was very professional and the quality is outstanding."
       }
     ]
   };

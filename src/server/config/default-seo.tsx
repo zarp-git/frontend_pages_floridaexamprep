@@ -1,31 +1,31 @@
 export default {
-	title: "Professional Paver Services in Central Florida | AllBrick Pavers",
-	blog_title: "Blog | AllBrick Pavers",
+	title: "Professional Exam Preparation Services in Florida | Florida Exam Prep",
+	blog_title: "Blog | Florida Exam Prep",
 	description:
-		"AllBrick Pavers provides expert paver installation, repair, and maintenance services in Central Florida. Transform your outdoor space with quality craftsmanship.",
-	keywords: "AllBrick Pavers, paver installation, paver repair, paver maintenance, Central Florida pavers, driveway pavers, patio pavers, pool deck pavers",
+		"Florida Exam Prep provides expert exam preparation services in Florida. Transform your career with quality study materials and support.",
+	keywords: "Florida Exam Prep, exam preparation, study materials, Florida exams, test prep, exam tutoring",
 	openGraph: {
 		type: "website",
 		locale: "en_US",
 		url: process.env.NEXT_PUBLIC_SITE_URL,
-		title: "Professional Paver Services in Central Florida | AllBrick Pavers",
+		title: "Professional Exam Preparation Services in Florida | Florida Exam Prep",
 		description:
-			"Transform your outdoor space with AllBrick Pavers. Expert paver installation, repair, and maintenance in Winter Haven, Lakeland, and Central Florida.",
-		siteName: "AllBrick Pavers",
+			"Transform your career with Florida Exam Prep. Expert exam preparation services in Florida.",
+		siteName: "Florida Exam Prep",
 		images: [
 			{
 				url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/hero/hero-main.webp`,
 				width: 1200,
 				height: 630,
-				alt: "AllBrick Pavers - Professional Paver Services in Central Florida",
+				alt: "Florida Exam Prep - Professional Exam Preparation Services in Florida",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "AllBrick Pavers | Professional Paver Services in Central Florida",
+		title: "Florida Exam Prep | Professional Exam Preparation Services in Florida",
 		description:
-			"Transform your outdoor space with AllBrick Pavers. Expert paver installation, repair, and maintenance in Winter Haven, Lakeland, and Central Florida.",
+			"Transform your career with Florida Exam Prep. Expert exam preparation services in Florida.",
 		images: [
 			`${process.env.NEXT_PUBLIC_SITE_URL}/images/hero/hero-main.webp`,
 		],

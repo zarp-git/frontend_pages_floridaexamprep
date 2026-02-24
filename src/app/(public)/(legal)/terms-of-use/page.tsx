@@ -74,8 +74,8 @@ export default function Page() {
       <section id="acceptance" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
         <p className="text-muted-foreground leading-relaxed mb-4">
-          Welcome to AllBrick Pavers. By accessing and using our website at{" "}
-          <strong>allbrickpavers.com</strong> (the &quot;Site&quot;), you agree
+          Welcome to Florida Exam Prep. By accessing and using our website at{" "}
+          <strong>floridaexamprep.com</strong> (the &quot;Site&quot;), you agree
           to be bound by these Terms of Use (&quot;Terms&quot;). If you do not
           agree with any part of these Terms, you must not use the Site.
         </p>

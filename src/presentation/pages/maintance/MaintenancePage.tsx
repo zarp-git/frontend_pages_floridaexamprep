@@ -38,7 +38,7 @@ export default function MaintenancePage() {
 
           {/* Description */}
           <p className="text-lg text-gray-600 mb-8 font-rubik leading-relaxed">
-            Ourr website is currently undergoing scheduled maintenance to bring
+            Our website is currently undergoing scheduled maintenance to bring
             you an even better experience. We appreciate your patience and will
             be back online shortly. Please check back soon.
           </p>

@@ -66,7 +66,7 @@ export default function LegalLayout({
               </div>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              {config?.description || "Legal document for AllBrick Pavers"}
+              {config?.description || "Legal document for Florida Exam Prep"}
             </p>
           </div>
 
