@@ -96,16 +96,16 @@ function CheckIcon() {
 
 function CourseCard({ course }: { course: Course }) {
   return (
-    <div className="flex-1 p-px bg-zinc-100 rounded-lg border border-gray-300 flex flex-col overflow-hidden">
+    <div className="flex-1 min-w-full sm:min-w-[320px] lg:min-w-0 p-px bg-zinc-100 rounded-lg border border-gray-300 flex flex-col overflow-hidden">
       {/* Image */}
-      <div className="relative h-60 min-h-48 w-full">
+      <div className="relative h-48 sm:h-56 md:h-60 w-full">
         <Image
           src={course.image}
           alt={course.title}
           fill
           className="object-cover"
         />
-        <div className={`absolute top-[18px] left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}>
+        <div className={`absolute top-3 sm:top-[18px] left-3 sm:left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}>
           <span className="text-white text-xs font-medium font-rubik leading-4">
             {course.badge}
           </span>
@@ -113,16 +113,16 @@ function CourseCard({ course }: { course: Course }) {
       </div>
 
       {/* Content */}
-      <div className="flex-1 px-4 pt-3.5 pb-4 flex flex-col justify-between">
-        <div className="flex flex-col gap-3">
+      <div className="flex-1 px-3 sm:px-4 pt-3 sm:pt-3.5 pb-3 sm:pb-4 flex flex-col justify-between gap-3">
+        <div className="flex flex-col gap-2 sm:gap-3">
           {/* Title */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-gray-800 text-lg font-extrabold font-red-hat-display uppercase leading-6">
+          <div className="flex flex-col gap-1.5 sm:gap-2">
+            <h3 className="text-gray-800 text-base sm:text-lg font-extrabold font-red-hat-display uppercase leading-tight">
               {course.title}
             </h3>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3 h-3 text-gray-600" />
-              <p className="text-gray-600 text-sm font-medium font-rubik leading-5">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <MapPin className="w-3 h-3 text-gray-600 flex-shrink-0" />
+              <p className="text-gray-600 text-xs sm:text-sm font-medium font-rubik leading-tight">
                 {course.subtitle}
               </p>
             </div>
@@ -133,10 +133,12 @@ function CourseCard({ course }: { course: Course }) {
             {course.features.map((feature, index) => (
               <div
                 key={index}
-                className="flex items-center gap-1.5 pt-[0.80px] pb-[2.40px]"
+                className="flex items-start gap-1.5 pt-[0.80px] pb-[2.40px]"
               >
-                <CheckIcon />
-                <span className="flex-1 text-emerald-900 text-sm font-medium font-rubik leading-4">
+                <div className="flex-shrink-0 mt-0.5">
+                  <CheckIcon />
+                </div>
+                <span className="flex-1 text-emerald-900 text-xs sm:text-sm font-medium font-rubik leading-snug">
                   {feature.text}
                 </span>
               </div>
@@ -150,7 +152,7 @@ function CourseCard({ course }: { course: Course }) {
           size="lg"
           icon={<ArrowRight className="w-5 h-5" />}
           iconPosition="right"
-          className="w-full mt-4"
+          className="w-full mt-2 sm:mt-4"
         >
           get approved now
         </PrimaryButton>
@@ -161,27 +163,27 @@ function CourseCard({ course }: { course: Course }) {
 
 export default function CourseCards() {
   return (
-    <section className="w-full px-4 md:px-28 py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
-      <div className="max-w-[1440px] mx-auto flex flex-col justify-center items-center gap-8">
+    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* Heading */}
-        <div className="flex flex-col justify-center items-center gap-5">
-          <div className="px-4 py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
-            <span className="text-white text-base font-medium font-rubik leading-8">
+        <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
+          <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
+            <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed">
               DON'T TRY IT ALONE
             </span>
           </div>
-          <h2 className="text-center text-white text-3xl font-bold font-red-hat-display uppercase leading-8">
+          <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat-display uppercase leading-tight">
             WE WALKED THROUGH ALL STEPS AND WE COMPILED
-            <br />
+            <br className="hidden sm:block" />
             EVERYTHING RIGHT HAND TO YOU GET THAT +90 GRADE
           </h2>
-          <p className="text-center text-white text-xl font-normal font-rubik leading-8">
+          <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
             We WILL HELP You Get APPROVED IN THE Exam TODAY
           </p>
         </div>
 
         {/* Course Cards */}
-        <div className="w-full flex flex-col lg:flex-row items-start gap-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {COURSES.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}

@@ -155,7 +155,7 @@ function BlueCheckmark() {
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   if (testimonial.type === "video") {
     return (
-      <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[500px]">
+      <div className="flex-1 min-w-full lg:min-w-0 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
         <div className="relative flex-1">
           <PandaVideoPlayer
             src={testimonial.video!}
@@ -169,10 +169,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   }
 
   return (
-    <div className="flex-1 px-3 pt-3 pb-6 bg-gray-50 rounded-2xl border border-gray-200 flex flex-col gap-4">
+    <div className="flex-1 min-w-full lg:min-w-0 px-3 pt-3 pb-4 sm:pb-6 bg-gray-50 rounded-2xl border border-gray-200 flex flex-col gap-3 sm:gap-4">
       {/* Image - Much larger for rows with video */}
       {testimonial.image && (
-        <div className="relative h-[350px] w-full rounded-lg border border-gray-200 overflow-hidden">
+        <div className="relative h-64 sm:h-80 md:h-[350px] w-full rounded-lg border border-gray-200 overflow-hidden">
           <Image
             src={testimonial.image}
             alt={`Testimonial from ${testimonial.studentName}`}
@@ -183,21 +183,21 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       )}
 
       {/* Profile */}
-      <div className="flex flex-col gap-3.5">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-2 sm:gap-3.5">
+        <div className="flex items-center gap-3 sm:gap-4">
           <Image
             src={testimonial.avatar}
             alt={testimonial.studentName}
-            width={64}
-            height={64}
-            className="rounded-full"
+            width={48}
+            height={48}
+            className="rounded-full w-12 h-12 sm:w-16 sm:h-16"
           />
           <BlueCheckmark />
-          <div className="flex-1 flex flex-col gap-1">
-            <p className="text-black text-base font-normal font-rubik capitalize">
+          <div className="flex-1 flex flex-col gap-0.5 sm:gap-1">
+            <p className="text-black text-sm sm:text-base font-normal font-rubik capitalize">
               {testimonial.studentName}
             </p>
-            <p className="text-gray-400 text-sm font-normal font-rubik capitalize">
+            <p className="text-gray-400 text-xs sm:text-sm font-normal font-rubik capitalize">
               {testimonial.examType}
             </p>
           </div>
@@ -207,7 +207,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
       {/* Text */}
       {testimonial.text && (
-        <p className="text-neutral-600 text-base font-normal font-rubik capitalize leading-6">
+        <p className="text-neutral-600 text-sm sm:text-base font-normal font-rubik capitalize leading-relaxed">
           {testimonial.text}
         </p>
       )}
@@ -217,27 +217,27 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 export default function WrittenTestimonials() {
   return (
-    <section className="w-full px-4 md:px-28 py-20 bg-white">
-      <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-8">
+    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-6 sm:gap-8">
         {/* Heading */}
-        <div className="flex flex-col items-center gap-3">
-          <div className="px-4 py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
-            <span className="text-white text-xl font-medium font-rubik leading-8">
+        <div className="flex flex-col items-center gap-2 sm:gap-3 px-2">
+          <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+            <span className="text-white text-base sm:text-lg md:text-xl font-medium font-rubik leading-relaxed">
               DON'T TRY IT ALONE
             </span>
           </div>
-          <h2 className="text-gray-800 text-3xl font-semibold font-clash-display uppercase leading-10">
+          <h2 className="text-gray-800 text-xl sm:text-2xl md:text-3xl font-semibold font-clash-display uppercase leading-tight text-center">
             What Our Students Are Talking About Us
           </h2>
-          <p className="text-center text-gray-500 text-xl font-normal font-rubik capitalize leading-8">
+          <p className="text-center text-gray-500 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
             Real Student Feedback From Our Community
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="w-full flex flex-col gap-6">
+        <div className="w-full flex flex-col gap-4 sm:gap-6">
           {TESTIMONIALS.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex flex-col md:flex-row gap-8">
+            <div key={rowIndex} className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
               {row.map((testimonial) => (
                 <TestimonialCard key={testimonial.id} testimonial={testimonial} />
               ))}
@@ -246,12 +246,13 @@ export default function WrittenTestimonials() {
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
           <PrimaryButton 
             variant="blue-solid" 
             size="lg"
             icon={<ArrowUpRight className="w-5 h-5" />}
             iconPosition="right"
+            className="w-full sm:w-auto"
           >
             Get That +90 Grade Now
           </PrimaryButton>
@@ -260,6 +261,7 @@ export default function WrittenTestimonials() {
             size="lg"
             icon={<MoreHorizontal className="w-5 h-5" />}
             iconPosition="right"
+            className="w-full sm:w-auto"
           >
             Load More
           </PrimaryButton>

@@ -49,13 +49,13 @@ const PILLARS: Pillar[] = [
 
 function PillarIcon({ icon }: { icon: string }) {
   return (
-    <div className="w-24 h-20 relative flex-shrink-0">
+    <div className="w-16 h-14 sm:w-20 sm:h-16 md:w-24 md:h-20 relative flex-shrink-0">
       <Image
         src={icon}
         alt="Pillar icon"
         width={96}
         height={80}
-        className="w-full h-full"
+        className="w-full h-full object-contain"
       />
     </div>
   );
@@ -63,13 +63,13 @@ function PillarIcon({ icon }: { icon: string }) {
 
 function DiplomaIcon() {
   return (
-    <div className="w-24 h-20 relative flex-shrink-0">
+    <div className="w-16 h-14 sm:w-20 sm:h-16 md:w-24 md:h-20 relative flex-shrink-0">
       <Image
         src="/images/svg/VectorIcon.svg"
         alt="Diploma icon"
         width={96}
         height={80}
-        className="w-full h-full"
+        className="w-full h-full object-contain"
       />
     </div>
   );
@@ -77,31 +77,31 @@ function DiplomaIcon() {
 
 export default function PillarsSection() {
   return (
-    <section className="w-full px-4 md:px-56 py-20 bg-white overflow-hidden">
-      <div className="max-w-[1440px] mx-auto flex flex-col justify-center items-center gap-6">
+    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 xl:px-56 py-12 sm:py-16 md:py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* Heading */}
-        <div className="flex flex-col justify-start items-center gap-3">
-          <h2 className="text-center text-sky-950 text-3xl font-bold font-red-hat-display uppercase leading-[52.80px]">
+        <div className="flex flex-col justify-start items-center gap-3 sm:gap-4 px-2">
+          <h2 className="text-center text-sky-950 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat-display uppercase leading-tight">
             THE 5 PILLARS THAT TURN CANDIDATES INTO LICENSED CONTRACTORS:
           </h2>
-          <p className="text-center text-neutral-800 text-xl font-normal font-rubik leading-6">
+          <p className="text-center text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl font-normal font-rubik leading-relaxed max-w-4xl">
             Most contractors fail not because they lack skill — but because they had no plan. They
             studied hard. They showed up on exam day. And still walked out without a passing score.
-            <br />
+            <br className="hidden sm:block" />
             You won't.
           </p>
         </div>
 
         {/* Pillars List */}
-        <div className="w-full flex flex-col justify-start items-center gap-4">
+        <div className="w-full flex flex-col justify-start items-center gap-4 sm:gap-6">
           {PILLARS.map((pillar) => (
-            <div key={pillar.number} className="w-full pt-4 flex justify-start items-start gap-8">
+            <div key={pillar.number} className="w-full pt-3 sm:pt-4 flex justify-start items-start gap-3 sm:gap-6 md:gap-8">
               <PillarIcon icon={pillar.icon} />
-              <div className="flex-1 flex flex-col justify-start items-start">
-                <h3 className="text-neutral-800 text-base font-bold font-rubik leading-6">
+              <div className="flex-1 flex flex-col justify-start items-start gap-1 sm:gap-2">
+                <h3 className="text-neutral-800 text-sm sm:text-base font-bold font-rubik leading-tight">
                   {pillar.title}
                 </h3>
-                <p className="text-neutral-800 text-2xl font-normal font-rubik leading-8">
+                <p className="text-neutral-800 text-base sm:text-lg md:text-xl lg:text-2xl font-normal font-rubik leading-relaxed">
                   {pillar.description}
                 </p>
               </div>
@@ -109,13 +109,13 @@ export default function PillarsSection() {
           ))}
 
           {/* Final Item - Your Approval */}
-          <div className="w-full pt-4 flex justify-start items-start gap-8">
+          <div className="w-full pt-3 sm:pt-4 flex justify-start items-start gap-3 sm:gap-6 md:gap-8">
             <DiplomaIcon />
-            <div className="flex-1 flex flex-col justify-start items-start">
-              <h3 className="text-neutral-800 text-base font-bold font-rubik leading-6">
+            <div className="flex-1 flex flex-col justify-start items-start gap-1 sm:gap-2">
+              <h3 className="text-neutral-800 text-sm sm:text-base font-bold font-rubik leading-tight">
                 YOUR APPROVAL
               </h3>
-              <p className="text-neutral-800 text-2xl font-normal font-rubik leading-8">
+              <p className="text-neutral-800 text-base sm:text-lg md:text-xl lg:text-2xl font-normal font-rubik leading-relaxed">
                 You've seen what holds most people back. You know what it takes to pass. Now it's
                 time to decide: keep guessing, or follow the proven path.
               </p>
@@ -129,6 +129,7 @@ export default function PillarsSection() {
           size="lg"
           icon={<ArrowUpRight className="w-5 h-5" />}
           iconPosition="right"
+          className="w-full sm:w-auto mt-2 sm:mt-4"
         >
           get THAT +90 GRADE now
         </PrimaryButton>
