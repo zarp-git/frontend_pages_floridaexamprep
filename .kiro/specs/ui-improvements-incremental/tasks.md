@@ -177,8 +177,8 @@ Ordem de implementação: PrimaryButton → PandaVideoPlayer → GradientText �
 - [ ] 4. Checkpoint - Validar PandaVideoPlayer
   - Ensure all tests pass, ask the user if questions arise.
 
-- [-] 5. Implementar GradientText
-  - [-] 5.1 Criar componente GradientText
+- [x] 5. Implementar GradientText
+  - [x] 5.1 Criar componente GradientText
     - Criar arquivo src/presentation/components/atoms/GradientText.tsx
     - Definir interface GradientTextProps (as, children, className)
     - Implementar componente polimórfico usando createElement
@@ -208,32 +208,32 @@ Ordem de implementação: PrimaryButton → PandaVideoPlayer → GradientText �
 - [ ] 6. Checkpoint - Validar GradientText
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Atualizar GlobalStyles para Tailwind v4
-  - [ ] 7.1 Configurar imports do Tailwind v4
+- [-] 7. Atualizar GlobalStyles para Tailwind v4
+  - [-] 7.1 Configurar imports do Tailwind v4
     - Abrir src/app/globals.css
     - Substituir imports antigos por @import "tailwindcss"
     - Adicionar @import "tw-animate-css" se necessário
     - Remover imports de layers antigos (@tailwind base, components, utilities)
     - _Requirements: 4.1_
   
-  - [ ] 7.2 Configurar @source directives
+  - [-] 7.2 Configurar @source directives
     - Adicionar @source "../presentation/**/*.{ts,tsx}" para componentes
     - Adicionar @source "./**/*.{ts,tsx}" para app directory
     - Configurar paths corretos para scanning de classes
     - _Requirements: 4.2_
   
-  - [ ] 7.3 Definir custom variant para dark mode
+  - [-] 7.3 Definir custom variant para dark mode
     - Adicionar @custom-variant dark (&:is(.dark *))
     - Testar que variant funciona com classes dark:
     - _Requirements: 4.3_
   
-  - [ ] 7.4 Configurar theme tokens com @theme inline
+  - [-] 7.4 Configurar theme tokens com @theme inline
     - Criar bloco @theme inline
     - Mapear CSS custom properties para utilities do Tailwind
     - Incluir colors, fonts, border-radius, e tokens de componentes
     - _Requirements: 4.4_
   
-  - [ ] 7.5 Definir CSS custom properties para light theme
+  - [-] 7.5 Definir CSS custom properties para light theme
     - Criar seletor :root
     - Definir todas as variáveis de cor usando oklch
     - Incluir cores de brand (primary, secondary)
@@ -241,48 +241,48 @@ Ordem de implementação: PrimaryButton → PandaVideoPlayer → GradientText �
     - Incluir cores de componentes (card, popover, border, input, ring)
     - _Requirements: 4.5, 4.6_
   
-  - [ ] 7.6 Definir CSS custom properties para dark theme
+  - [-] 7.6 Definir CSS custom properties para dark theme
     - Criar seletor .dark
     - Definir versões dark de todas as variáveis do :root
     - Garantir que cada propriedade em :root tem correspondente em .dark
     - Ajustar valores oklch para melhor contraste em dark mode
     - _Requirements: 4.7, 4.13_
   
-  - [ ] 7.7 Definir utility classes customizadas
+  - [-] 7.7 Definir utility classes customizadas
     - Criar classe .container com max-width e padding responsivo
     - Criar classe .font-clash-display para fonte customizada
     - Adicionar outras utilities necessárias
     - _Requirements: 4.8_
   
-  - [ ] 7.8 Estilizar scrollbar customizada
+  - [-] 7.8 Estilizar scrollbar customizada
     - Definir estilos para ::-webkit-scrollbar
     - Definir estilos para ::-webkit-scrollbar-track
     - Definir estilos para ::-webkit-scrollbar-thumb
     - Adicionar suporte a dark mode na scrollbar
     - _Requirements: 4.9_
   
-  - [ ] 7.9 Definir headings responsivos
+  - [-] 7.9 Definir headings responsivos
     - Criar classes .h1 através .h7 com tamanhos responsivos
     - Usar clamp() para fluid typography
     - Definir line-height e font-weight apropriados
     - Garantir acessibilidade com tamanhos mínimos legíveis
     - _Requirements: 4.10_
   
-  - [ ] 7.10 Definir estilos para .post-content
+  - [-] 7.10 Definir estilos para .post-content
     - Criar seletor .post-content com estilos para conteúdo de blog
     - Estilizar headings, paragraphs, lists, links dentro de .post-content
     - Adicionar espaçamento vertical adequado
     - Garantir legibilidade com line-height apropriado
     - _Requirements: 4.11_
   
-  - [ ] 7.11 Adicionar animação shine otimizada
+  - [-] 7.11 Adicionar animação shine otimizada
     - Criar @keyframes shine usando transform e opacity
     - Garantir GPU acceleration (translateX ao invés de left/right)
     - Definir duração e timing function apropriados
     - Adicionar classe utility .animate-shine
     - _Requirements: 4.12_
   
-  - [ ] 7.12 Adicionar suporte a prefers-reduced-motion
+  - [-] 7.12 Adicionar suporte a prefers-reduced-motion
     - Criar media query @media (prefers-reduced-motion: reduce)
     - Desabilitar ou reduzir animações para usuários com preferência
     - Aplicar a todas as animações (shine, button-shake, glow)
