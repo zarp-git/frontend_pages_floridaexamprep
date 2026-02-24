@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 
 interface CourseFeature {
@@ -12,6 +13,7 @@ interface Course {
   badgeColor: string;
   title: string;
   subtitle: string;
+  image: string;
   features: CourseFeature[];
 }
 
@@ -22,6 +24,7 @@ const COURSES: Course[] = [
     badgeColor: "bg-white/20",
     title: "Business and Finance Course",
     subtitle: "For All Division 1 and Division 2 Contractors",
+    image: "/images/courses/business-finance.png",
     features: [
       { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
       { text: "The Most important content in the Builder's Guide to Accounting" },
@@ -38,6 +41,7 @@ const COURSES: Course[] = [
     badgeColor: "bg-white/20",
     title: "CONTRACT ADMINISTRATION & PROJECT MANAGEMENT COURSE",
     subtitle: "For Residencial, Building and General Contractors",
+    image: "/images/courses/contract-administration.png",
     features: [
       { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
       { text: "The Most important content in the Builder's Guide to Accounting" },
@@ -54,6 +58,7 @@ const COURSES: Course[] = [
     badgeColor: "bg-amber-500/20",
     title: "Complete Exam Prep Package",
     subtitle: "For Residencial, Building and General Contractors",
+    image: "/images/courses/complete-exam-prep.png",
     features: [
       { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
       { text: "The Most important content in the Builder's Guide to Accounting" },
@@ -91,8 +96,14 @@ function CheckIcon() {
 function CourseCard({ course }: { course: Course }) {
   return (
     <div className="flex-1 p-px bg-zinc-100 rounded-lg border border-gray-300 flex flex-col overflow-hidden">
-      {/* Image Placeholder */}
-      <div className="relative h-48 min-h-48 w-full bg-gradient-to-br from-neutral-500 via-zinc-600 to-zinc-800">
+      {/* Image */}
+      <div className="relative h-60 min-h-48 w-full">
+        <Image
+          src={course.image}
+          alt={course.title}
+          fill
+          className="object-cover"
+        />
         <div className={`absolute top-[18px] left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}>
           <span className="text-white text-xs font-medium font-rubik leading-4">
             {course.badge}

@@ -41,7 +41,7 @@ export default function LandingFooter() {
               <div className="w-full max-w-96 flex flex-col gap-6">
                 {/* Logo */}
                 <Image
-                  src="/images/logo/logo-main.svg"
+                  src="/images/logo/logofooter.svg"
                   alt="Florida Exam Prep"
                   width={192}
                   height={80}
@@ -80,25 +80,27 @@ export default function LandingFooter() {
                     </h3>
                     <div className="w-10 h-0.5 bg-secondary rounded-lg" />
                   </div>
-                  <div className="flex flex-col gap-0">
-                    <Link
-                      href="/courses/business-finance"
-                      className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
-                    >
-                      Business And Finance
-                    </Link>
-                    <Link
-                      href="/courses/contract-admin"
-                      className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
-                    >
-                      Contract Adminstration
-                    </Link>
-                    <Link
-                      href="/courses/complete-prep"
-                      className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
-                    >
-                      Complete Exam Prep
-                    </Link>
+                  <div className="flex gap-8">
+                    <div className="flex flex-col gap-0">
+                      <Link
+                        href="/courses/business-finance"
+                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                      >
+                        Business And Finance
+                      </Link>
+                      <Link
+                        href="/courses/contract-admin"
+                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                      >
+                        Contract Adminstration
+                      </Link>
+                      <Link
+                        href="/courses/complete-prep"
+                        className="text-gray-600 text-base font-medium font-poppins underline leading-8 hover:text-gray-900"
+                      >
+                        Complete Exam Prep
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
@@ -122,12 +124,14 @@ export default function LandingFooter() {
                           <span className="font-normal">9AM - 5PM</span>
                         </p>
                       </div>
-                      <Link
-                        href="tel:+14436956218"
-                        className="text-neutral-600 text-2xl font-semibold font-poppins leading-5 hover:text-blue-600"
-                      >
-                        + 1 443 695-6218
-                      </Link>
+                      <div className="pb-[0.80px]">
+                        <Link
+                          href="tel:+14436956218"
+                          className="text-neutral-600 text-2xl font-semibold font-poppins leading-5 hover:text-blue-600"
+                        >
+                          + 1 443 695-6218
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -135,7 +139,7 @@ export default function LandingFooter() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-start gap-4">
-                <button className="px-4 py-3 bg-accent-1 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
+                <button className="px-4 py-3 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
                   <span className="text-center text-white text-base font-medium font-rubik uppercase">
                     get THAT APPROVAL now
                   </span>
