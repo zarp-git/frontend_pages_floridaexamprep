@@ -1,6 +1,8 @@
 "use client";
 
-import { ArrowUpRight, ChevronDown, Play } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
 
 export default function HeroSection() {
   return (
@@ -53,16 +55,12 @@ export default function HeroSection() {
 
             {/* Video */}
             <div className="w-full max-w-[895px] relative flex flex-col justify-center items-start">
-              <div className="relative w-full h-[504px] bg-gray-900 rounded-[30px] overflow-hidden">
-                <video
-                  className="w-full h-full object-cover"
-                  controls
-                  preload="metadata"
-                >
-                  <source src="/images/hero/hero-video-thumbnail.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <PandaVideoPlayer
+                src="/images/hero/hero-video-thumbnail.mp4"
+                className="w-full h-[504px] rounded-[30px]"
+                controls
+                muted
+              />
             </div>
 
             {/* Description */}
@@ -72,12 +70,14 @@ export default function HeroSection() {
           </div>
 
           {/* CTA Button */}
-          <button className="h-12 px-6 py-4 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg inline-flex justify-start items-center gap-4 hover:opacity-90 transition-opacity">
-            <span className="text-center text-white text-base font-medium font-rubik uppercase">
-              get THAT +90 GRADE now
-            </span>
-            <ArrowUpRight className="w-5 h-5 text-white" />
-          </button>
+          <PrimaryButton 
+            variant="blue" 
+            size="lg"
+            icon={<ArrowUpRight className="w-5 h-5" />}
+            iconPosition="right"
+          >
+            get THAT +90 GRADE now
+          </PrimaryButton>
         </div>
 
         {/* See More */}

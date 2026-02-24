@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Clock, ArrowUpRight, Instagram, Facebook, Youtube } from "lucide-react";
+import { MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 const COMPANY_LINKS = [
   { label: "About us", href: "/about" },
@@ -139,17 +140,20 @@ export default function LandingFooter() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-start gap-4">
-                <button className="px-4 py-3 bg-[#002770] rounded-lg flex items-center gap-4 hover:bg-[#00091C] transition-colors">
-                  <span className="text-center text-white text-base font-medium font-rubik uppercase">
-                    get THAT APPROVAL now
-                  </span>
-                  <ArrowUpRight className="w-5 h-5 text-white" />
-                </button>
-                <button className="px-4 py-3 bg-white rounded-lg border-2 border-[#0866FF] flex items-center gap-4 hover:bg-blue-50 transition-colors">
-                  <span className="text-center text-[#0866FF] text-sm font-medium font-rubik uppercase">
-                    already enrolled in other course?
-                  </span>
-                </button>
+                <PrimaryButton 
+                  variant="blue-solid" 
+                  size="lg"
+                  icon={<ArrowUpRight className="w-5 h-5" />}
+                  iconPosition="right"
+                >
+                  get THAT APPROVAL now
+                </PrimaryButton>
+                <PrimaryButton 
+                  variant="outline" 
+                  size="lg"
+                >
+                  already enrolled in other course?
+                </PrimaryButton>
               </div>
             </div>
           </div>

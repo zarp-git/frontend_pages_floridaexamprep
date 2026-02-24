@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Play, ArrowUpRight, MoreHorizontal } from "lucide-react";
+import { ArrowUpRight, MoreHorizontal } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
 
 interface Testimonial {
   id: string;
@@ -155,14 +157,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     return (
       <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[500px]">
         <div className="relative flex-1">
-          <video
-            className="w-full h-full object-cover"
+          <PandaVideoPlayer
+            src={testimonial.video!}
+            className="w-full h-full"
             controls
-            preload="metadata"
-          >
-            <source src={testimonial.video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            muted
+          />
         </div>
       </div>
     );
@@ -247,18 +247,22 @@ export default function WrittenTestimonials() {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4">
-          <button className="h-12 px-8 py-4 bg-blue-950 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
-            <span className="text-white text-base font-medium font-rubik uppercase">
-              Get That +90 Grade Now
-            </span>
-            <ArrowUpRight className="w-5 h-5 text-white" />
-          </button>
-          <button className="h-12 px-8 py-4 rounded-lg border-2 border-blue-950 flex items-center gap-4 hover:bg-blue-50 transition-colors">
-            <span className="text-blue-950 text-base font-medium font-rubik uppercase">
-              Load More
-            </span>
-            <MoreHorizontal className="w-5 h-5 text-blue-950" />
-          </button>
+          <PrimaryButton 
+            variant="blue-solid" 
+            size="lg"
+            icon={<ArrowUpRight className="w-5 h-5" />}
+            iconPosition="right"
+          >
+            Get That +90 Grade Now
+          </PrimaryButton>
+          <PrimaryButton 
+            variant="outline" 
+            size="lg"
+            icon={<MoreHorizontal className="w-5 h-5" />}
+            iconPosition="right"
+          >
+            Load More
+          </PrimaryButton>
         </div>
       </div>
     </section>

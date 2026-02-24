@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, Laptop, Video, Compass, MonitorCheck, FileStack } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 interface Benefit {
   icon: React.ReactNode;
@@ -60,12 +61,14 @@ export default function PlatformSection() {
             </div>
 
             {/* CTA Button */}
-            <button className="h-12 px-6 py-4 bg-gradient-to-br from-orange-600 to-amber-800 rounded-lg inline-flex justify-start items-center gap-4 hover:opacity-90 transition-opacity">
-              <span className="text-center text-white text-base font-medium font-rubik uppercase">
-                get THAT +90 GRADE now
-              </span>
-              <ArrowUpRight className="w-5 h-5 text-white" />
-            </button>
+            <PrimaryButton 
+              variant="orange" 
+              size="lg"
+              icon={<ArrowUpRight className="w-5 h-5" />}
+              iconPosition="right"
+            >
+              get THAT +90 GRADE now
+            </PrimaryButton>
           </div>
 
           {/* Right Image */}

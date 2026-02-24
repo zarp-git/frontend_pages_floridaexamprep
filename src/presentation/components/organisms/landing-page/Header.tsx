@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 interface NavItem {
   label: string;
@@ -105,11 +106,13 @@ export default function Header() {
         </div>
 
         {/* CTA Button */}
-        <button className="hidden md:flex h-10 px-4 py-3 bg-[#00091C] rounded-lg items-center gap-4 hover:bg-[#00276F] transition-colors">
-          <span className="text-white text-sm font-medium font-rubik uppercase">
-            get THAT +90 GRADE now
-          </span>
-        </button>
+        <PrimaryButton 
+          variant="blue-solid" 
+          size="sm"
+          className="hidden md:flex"
+        >
+          get THAT +90 GRADE now
+        </PrimaryButton>
 
         {/* Mobile Menu Button */}
         <button className="lg:hidden p-2">

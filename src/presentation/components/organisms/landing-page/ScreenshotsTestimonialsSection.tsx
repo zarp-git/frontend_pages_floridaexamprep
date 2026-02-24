@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 const TESTIMONIAL_IMAGES = [
   "/images/social/imagewhatsone.png",
@@ -119,12 +120,14 @@ export default function ScreenshotsTestimonialsSection() {
       </div>
 
       {/* CTA Button */}
-      <button className="h-12 px-6 py-4 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg inline-flex justify-start items-center gap-4 hover:opacity-90 transition-opacity">
-        <span className="text-center text-white text-base font-medium font-rubik uppercase">
-          get THAT +90 GRADE now
-        </span>
-        <ArrowUpRight className="w-5 h-5 text-white" />
-      </button>
+      <PrimaryButton 
+        variant="blue" 
+        size="lg"
+        icon={<ArrowUpRight className="w-5 h-5" />}
+        iconPosition="right"
+      >
+        get THAT +90 GRADE now
+      </PrimaryButton>
     </section>
   );
 }

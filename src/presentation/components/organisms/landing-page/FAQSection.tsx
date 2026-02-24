@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 interface FAQItem {
   question: string;
@@ -122,12 +123,15 @@ export default function FAQSection() {
               </p>
             </div>
 
-            <button className="w-100 h-12 px-4 py-3 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg inline-flex justify-center items-center gap-4 hover:opacity-90 transition-opacity">
-              <span className="text-white text-base font-medium font-rubik uppercase whitespace-nowrap">
-                Get Prepared For The Exam Now
-              </span>
-              <ArrowUpRight className="w-5 h-5 text-white flex-shrink-0" />
-            </button>
+            <PrimaryButton 
+              variant="blue" 
+              size="lg"
+              icon={<ArrowUpRight className="w-5 h-5" />}
+              iconPosition="right"
+              className="w-full"
+            >
+              Get Prepared For The Exam Now
+            </PrimaryButton>
           </div>
 
           {/* Right Side - FAQ */}

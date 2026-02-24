@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 interface Pillar {
   number: string;
@@ -123,12 +124,14 @@ export default function PillarsSection() {
         </div>
 
         {/* CTA Button */}
-        <button className="h-12 px-8 py-4 bg-blue-950 rounded-lg inline-flex justify-start items-center gap-4 hover:opacity-90 transition-opacity">
-          <span className="text-center text-white text-base font-medium font-rubik uppercase">
-            get THAT +90 GRADE now
-          </span>
-          <ArrowUpRight className="w-5 h-5 text-white" />
-        </button>
+        <PrimaryButton 
+          variant="blue-solid" 
+          size="lg"
+          icon={<ArrowUpRight className="w-5 h-5" />}
+          iconPosition="right"
+        >
+          get THAT +90 GRADE now
+        </PrimaryButton>
       </div>
     </section>
   );

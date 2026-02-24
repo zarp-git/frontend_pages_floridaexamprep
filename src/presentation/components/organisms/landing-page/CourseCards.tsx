@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 interface CourseFeature {
   text: string;
@@ -144,12 +145,15 @@ function CourseCard({ course }: { course: Course }) {
         </div>
 
         {/* CTA Button */}
-        <button className="w-full h-12 px-8 py-4 bg-blue-600 rounded-lg flex items-center justify-center gap-4 hover:bg-blue-700 transition-colors mt-4">
-          <span className="text-center text-white text-base font-medium font-rubik uppercase">
-            get approved now
-          </span>
-          <ArrowRight className="w-5 h-5 text-white" />
-        </button>
+        <PrimaryButton 
+          variant="blue" 
+          size="lg"
+          icon={<ArrowRight className="w-5 h-5" />}
+          iconPosition="right"
+          className="w-full mt-4"
+        >
+          get approved now
+        </PrimaryButton>
       </div>
     </div>
   );

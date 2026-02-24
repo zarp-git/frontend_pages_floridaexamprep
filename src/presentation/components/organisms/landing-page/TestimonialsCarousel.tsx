@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 const TESTIMONIAL_SCREENSHOTS = [
   "/images/testimonials/screenshots/screenshot-1.jpg",
@@ -103,12 +104,14 @@ export default function TestimonialsCarousel() {
         </div>
 
         {/* CTA Button */}
-        <button className="h-12 px-6 py-4 bg-gradient-to-br from-blue-700 to-blue-950 rounded-lg flex items-center gap-4 hover:opacity-90 transition-opacity">
-          <span className="text-white text-base font-medium font-rubik uppercase">
-            Get That +90 Grade Now
-          </span>
-          <ArrowUpRight className="w-5 h-5 text-white" />
-        </button>
+        <PrimaryButton 
+          variant="blue" 
+          size="lg"
+          icon={<ArrowUpRight className="w-5 h-5" />}
+          iconPosition="right"
+        >
+          Get That +90 Grade Now
+        </PrimaryButton>
       </div>
     </section>
   );

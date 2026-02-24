@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react"
 
 export interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "outline-solid" | "white"
+  variant?: "default" | "outline" | "outline-solid" | "white" | "blue" | "blue-solid" | "orange"
   size?: "default" | "sm" | "lg"
   icon?: ReactNode
   iconPosition?: "left" | "right"
@@ -29,10 +29,13 @@ const SHINE_CLASSES = [
 ].join(" ")
 
 const VARIANT_CLASSES = {
-  default: "bg-linear-to-r from-[hsl(var(--primary-gradient-from))] to-[hsl(var(--primary-gradient-to))] text-primary-foreground hover:from-[hsl(var(--primary-gradient-hover-from))] hover:to-[hsl(var(--primary-gradient-hover-to))]",
+  default: "bg-gradient-to-br from-[#bb0711] to-[#3f4adf] text-white hover:from-[#a00610] hover:to-[#3540c0]",
   outline: "border-2 border-primary text-primary bg-transparent hover:bg-primary dark:border-primary dark:text-primary bg-background hover:text-white",
   "outline-solid": "border-2 border-primary text-primary bg-transparent hover:bg-primary/10 dark:border-primary dark:text-primary",
-  white: "bg-background text-primary border border-input hover:bg-accent dark:bg-background dark:text-primary"
+  white: "bg-background text-primary border border-input hover:bg-accent dark:bg-background dark:text-primary",
+  blue: "bg-gradient-to-br from-blue-700 to-blue-950 text-white hover:from-blue-600 hover:to-blue-900",
+  "blue-solid": "bg-blue-950 text-white hover:bg-blue-900",
+  orange: "bg-gradient-to-br from-orange-600 to-amber-800 text-white hover:from-orange-500 hover:to-amber-700"
 } as const
 
 const SIZE_CLASSES = {

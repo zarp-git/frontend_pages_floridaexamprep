@@ -64,6 +64,19 @@
   }
 }
 
+/* Utility classes para gradientes */
+@utility gradient-blue {
+  background: linear-gradient(135deg, #1e40af 0%, #172554 100%);
+}
+
+@utility gradient-red-blue {
+  background: linear-gradient(135deg, #bb0711 0%, #3f4adf 100%);
+}
+
+@utility gradient-orange {
+  background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+}
+
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
