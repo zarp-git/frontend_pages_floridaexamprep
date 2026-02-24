@@ -51,7 +51,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/logo/logo-white.svg"
+              src="/images/logo/florida-logo-header.svg"
               alt="Florida Exam Prep Logo"
               width={120}
               height={48}
