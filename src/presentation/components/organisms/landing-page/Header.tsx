@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
+import Navigation from "./Navigation";
+import MobileMenu from "./MobileMenu";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
   label: string;
@@ -22,8 +25,8 @@ const NAV_ITEMS: NavItem[] = [
     hasDropdown: true,
     dropdownItems: [
       { label: "Business & Finance", href: "/courses/business-finance" },
-      { label: "Contract Administration", href: "/courses/contract-admin" },
-      { label: "Complete Exam Prep", href: "/courses/complete-prep" },
+      { label: "Contract Administration", href: "/courses/contract-administration" },
+      { label: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
     ],
   },
   {
@@ -43,95 +46,82 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export default function Header() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="h-20 px-4 md:px-28 py-4 bg-stone-50 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200">
-      <div className="h-full flex justify-between items-center max-w-[1440px] mx-auto">
-        {/* Logo and Navigation */}
-        <div className="flex items-center gap-10">
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b",
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-md py-2 border-gray-200"
+            : "bg-white/90 backdrop-blur-sm py-3 border-gray-100"
+        )}
+      >
+        <div className="px-4 md:px-28 flex items-center justify-between h-[64px] md:h-[72px] max-w-[1440px] mx-auto">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/images/logo/florida-logo-header.svg"
-              alt="Florida Exam Prep Logo"
-              width={120}
-              height={48}
-              priority
-              className="h-12 w-auto"
-            />
-          </Link>
+          <div className="flex items-center shrink-0">
+            <Link href="/" className="flex-shrink-0 transition-transform duration-200 hover:scale-105">
+              <Image
+                src="/images/logo/florida-logo-header.svg"
+                alt="Florida Exam Prep Logo"
+                width={140}
+                height={56}
+                priority
+                className="h-14 w-auto"
+              />
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-4">
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() =>
-                  item.hasDropdown && setOpenDropdown(item.label)
-                }
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`flex items-center gap-1 text-base font-rubik transition-colors ${
-                    item.label === "Home"
-                      ? "font-semibold text-gray-900"
-                      : "font-normal text-gray-700 hover:text-gray-900"
-                  }`}
-                >
-                  {item.label}
-                  {item.hasDropdown && (
-                    <ChevronDown className="w-3 h-3 text-gray-800" />
-                  )}
-                </Link>
+          <Navigation className="hidden lg:flex" navItems={NAV_ITEMS} />
 
-                {/* Dropdown Menu */}
-                {item.hasDropdown && openDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                    {item.dropdownItems?.map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.label}
-                        href={dropdownItem.href}
-                        className="block px-4 py-2 text-sm font-rubik text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-                      >
-                        {dropdownItem.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
+          {/* Right: CTA + Mobile Toggle */}
+          <div className="flex items-center gap-3">
+            {/* Desktop CTA */}
+            <PrimaryButton
+              variant="blue-solid"
+              size="sm"
+              className="hidden md:flex shadow-sm hover:shadow-md transition-shadow"
+            >
+              {CTA_TEXT}
+            </PrimaryButton>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* CTA Button */}
-        <PrimaryButton
-          variant="blue-solid"
-          size="sm"
-          className="hidden md:flex"
-        >
-          {CTA_TEXT}
-        </PrimaryButton>
+      {/* Spacer to prevent content jump */}
+      <div className="h-[82px] md:h-[90px]" />
 
-        {/* Mobile Menu Button */}
-        <button className="lg:hidden p-2">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-      </div>
-    </header>
+      {/* Mobile Menu */}
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        navItems={NAV_ITEMS}
+      />
+    </>
   );
 }
