@@ -42,20 +42,18 @@ export default function HeroSection() {
                 <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
                   Exam on the
                 </span>
-                <span className="relative inline-block text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide px-2">
-                  <span className="relative z-10">First Try</span>
+                <span className="relative inline-flex items-center justify-center text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
+                  <span className="relative z-10 px-4">First Try</span>
                   {/* Circle marker PNG - positioned absolutely behind text */}
-                  <span className="absolute inset-0 flex items-center justify-center -z-10">
-                    <Image
-                      src="/images/hero/circle-marker.png"
-                      alt=""
-                      width={200}
-                      height={80}
-                      className="w-auto h-full max-h-[120%] object-contain"
-                      aria-hidden="true"
-                      priority
-                    />
-                  </span>
+                  <Image
+                    src="/images/hero/circle-marker.png"
+                    alt=""
+                    width={240}
+                    height={100}
+                    className="absolute inset-0 w-full h-auto object-contain z-0"
+                    aria-hidden="true"
+                    priority
+                  />
                 </span>
               </div>
             </div>
@@ -65,20 +63,18 @@ export default function HeroSection() {
               <span className="text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight">
                 Or I&apos;ll Coach You Personally
               </span>
-              <span className="relative inline-block text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight px-1">
-                <span className="relative z-10">Until You Do</span>
+              <span className="relative inline-flex items-center justify-center text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight">
+                <span className="relative z-10 px-2">Until You Do</span>
                 {/* Line marker PNG - positioned at bottom */}
-                <span className="absolute bottom-0 left-0 right-0 flex items-end justify-center -z-10 h-3 sm:h-4">
-                  <Image
-                    src="/images/hero/line-marker.png"
-                    alt=""
-                    width={160}
-                    height={20}
-                    className="w-full h-auto object-contain"
-                    aria-hidden="true"
-                    priority
-                  />
-                </span>
+                <Image
+                  src="/images/hero/line-marker.png"
+                  alt=""
+                  width={180}
+                  height={24}
+                  className="absolute bottom-[-12px] left-0 right-0 w-full h-auto object-contain z-0"
+                  aria-hidden="true"
+                  priority
+                />
               </span>
             </div>
 
