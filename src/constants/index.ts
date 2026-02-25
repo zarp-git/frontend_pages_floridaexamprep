@@ -29,5 +29,8 @@ export const CONTACT = {
 	hours: "Mon-Sat: 9:00 AM - 5:00 PM",
 } as const;
 
+// CTA (Call to Action) — Single Source of Truth for all landing-page sections
+export const CTA_TEXT = "GET THAT APPROVAL RIGHT WAY" as const;
+
 // Consent & privacy
 export const CONSENT_STORAGE_KEY = "fep_consent_choice_v1" as const;

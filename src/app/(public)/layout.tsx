@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rubik, Hanken_Grotesk } from "next/font/google";
+import { Rubik, Red_Hat_Display } from "next/font/google";
 import "@/app/globals.css";
 import Header from "@/presentation/components/organisms/common/header/Header";
 import Footer from "@/presentation/components/organisms/common/footer/Footer";
@@ -12,16 +12,17 @@ const rubik = Rubik({
   subsets: ["latin"],
 });
 
-const hankenGrotesk = Hanken_Grotesk({
-  variable: "--font-hanken",
+const redHatDisplay = Red_Hat_Display({
+  variable: "--font-red-hat",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Allbrick Pavers - Central Florida Pavers Installation",
-  description: "Explore expert paver installation, sealing, and maintenance services in Lakeland, Davenport, and Central Florida. Trusted, local, and competitively priced.",
+export const metadata = {
+  title: "Florida Exam Prep - Pass Your Contractor Exam First Try",
+  description:
+    "Get approved in your Florida State Contractor Exam on the first try. Expert-guided courses, practice tests, and personal coaching guarantee.",
 };
 
 export default function RootLayout({
@@ -32,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${rubik.variable} ${hankenGrotesk.variable} antialiased`}
+        className={`${rubik.variable} ${redHatDisplay.variable} antialiased`}
       >
         {/* Header e Footer removidos - agora cada página controla seus próprios */}
         {children}

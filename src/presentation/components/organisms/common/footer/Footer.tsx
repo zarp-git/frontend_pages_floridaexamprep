@@ -98,7 +98,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                         className="w-5 h-5 text-primary shrink-0"
                         aria-hidden="true"
                       />
-                      <span className="text-gray-700 text-lg font-bold font-hanken uppercase leading-4 tracking-tight">
+                      <span className="text-gray-700 text-lg font-bold font-red-hat uppercase leading-4 tracking-tight">
                         {FOOTER_COMPANY_INFO.address.label}
                       </span>
                     </div>
@@ -117,7 +117,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                 {/* Contact Us */}
                 <div className="flex flex-col justify-between gap-6">
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-800 text-lg font-bold font-hanken uppercase leading-4 tracking-tight">
+                    <h3 className="text-gray-800 text-lg font-bold font-red-hat uppercase leading-4 tracking-tight">
                       CONTACT US NOW
                     </h3>
                     <div className="w-10 h-0.5 bg-primary rounded-lg" />
@@ -155,7 +155,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
                 {/* Serving Central Florida · Map */}
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
-                    <h3 className="text-gray-800 text-lg font-bold font-hanken uppercase leading-4 tracking-tight">
+                    <h3 className="text-gray-800 text-lg font-bold font-red-hat uppercase leading-4 tracking-tight">
                       Serving Central Florida
                     </h3>
                     <div className="w-10 h-0.5 bg-primary rounded-lg" />
@@ -197,7 +197,7 @@ export default function Footer({ variant = "default" }: FooterProps) {
             {/* Find Us On */}
             <div className="w-full lg:w-60 flex flex-col gap-8">
               <div className="flex flex-col gap-2">
-                <h3 className="text-gray-800 text-lg font-bold font-hanken uppercase leading-4 tracking-tight">
+                <h3 className="text-gray-800 text-lg font-bold font-red-hat uppercase leading-4 tracking-tight">
                   FIND US ON
                 </h3>
                 <div className="w-10 h-0.5 bg-primary rounded-lg" />
@@ -331,7 +331,7 @@ function FooterLinkColumn({ title, links, onLinkClick }: FooterLinkColumnProps) 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h3 className="text-gray-800 text-lg font-bold font-hanken uppercase leading-4 tracking-tight">
+        <h3 className="text-gray-800 text-lg font-bold font-red-hat uppercase leading-4 tracking-tight">
           {title}
         </h3>
         <div className="w-10 h-0.5 bg-primary rounded-lg" />

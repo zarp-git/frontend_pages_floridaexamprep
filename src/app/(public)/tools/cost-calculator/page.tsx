@@ -212,7 +212,7 @@ export default function CostCalculatorPage() {
           <p className="text-sm font-rubik uppercase tracking-[3px] text-primary font-medium mb-2">
             Professional Estimation Tool
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold font-hanken text-gray-900 uppercase">
+          <h1 className="text-3xl md:text-4xl font-bold font-red-hat text-gray-900 uppercase">
             Paver Cost Calculator
           </h1>
           <p className="text-gray-500 font-rubik mt-2 max-w-xl mx-auto">
@@ -266,7 +266,7 @@ export default function CostCalculatorPage() {
                   step={50}
                   value={sqft}
                   onChange={(e) => setSqft(Number(e.target.value) || minSqft)}
-                  className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-2xl font-bold font-hanken text-gray-900 focus:border-primary focus:ring-0 outline-none transition-all"
+                  className="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-2xl font-bold font-red-hat text-gray-900 focus:border-primary focus:ring-0 outline-none transition-all"
                 />
                 <span className="text-gray-400 font-rubik font-medium text-sm shrink-0">
                   sq ft
@@ -292,7 +292,7 @@ export default function CostCalculatorPage() {
               <label className="text-xs font-bold uppercase tracking-widest text-gray-400 font-rubik block mb-3">
                 Price per sq ft
               </label>
-              <p className="text-3xl font-bold font-hanken text-secondary">
+              <p className="text-3xl font-bold font-red-hat text-secondary">
                 {fmtDec(results.pricePerSf)}
                 <span className="text-base font-normal text-gray-400"> /sf</span>
               </p>
@@ -311,7 +311,7 @@ export default function CostCalculatorPage() {
                     Total Estimate
                   </span>
                 </div>
-                <p className="text-5xl md:text-6xl font-black font-hanken tracking-tight mt-2 mb-6">
+                <p className="text-5xl md:text-6xl font-black font-red-hat tracking-tight mt-2 mb-6">
                   {fmt(results.quote)}
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -372,7 +372,7 @@ export default function CostCalculatorPage() {
                 <p className="text-xs font-bold uppercase tracking-widest text-primary/70 font-rubik">
                   Work Schedule
                 </p>
-                <p className="text-xl font-bold font-hanken text-gray-900">
+                <p className="text-xl font-bold font-red-hat text-gray-900">
                   {results.installDays} Install Day{results.installDays > 1 ? "s" : ""}
                   {type === "driveway" && (
                     <span className="text-sm font-normal text-gray-500 ml-1">
@@ -392,7 +392,7 @@ export default function CostCalculatorPage() {
                 <p className="text-xs font-bold uppercase tracking-widest text-emerald-600/70 font-rubik">
                   Net Profit / Day
                 </p>
-                <p className="text-xl font-bold font-hanken text-emerald-700">
+                <p className="text-xl font-bold font-red-hat text-emerald-700">
                   {fmt(results.netProfitPerDay)}
                 </p>
                 <p className="text-[11px] text-gray-400 font-rubik uppercase">
@@ -415,7 +415,7 @@ export default function CostCalculatorPage() {
               </div>
               <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
                 <span className="text-sm font-bold font-rubik text-gray-600 uppercase">Total Internal Cost</span>
-                <span className="text-lg font-bold font-hanken text-gray-900">{fmt(results.internalCost)}</span>
+                <span className="text-lg font-bold font-red-hat text-gray-900">{fmt(results.internalCost)}</span>
               </div>
             </div>
           </div>
@@ -447,7 +447,7 @@ function ResultCard({
           {label}
         </p>
       </div>
-      <p className="text-2xl font-bold font-hanken text-gray-900">{value}</p>
+      <p className="text-2xl font-bold font-red-hat text-gray-900">{value}</p>
       <p className="text-xs text-gray-400 font-rubik mt-1">{sub}</p>
     </div>
   );
@@ -457,7 +457,7 @@ function BreakdownItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center">
       <p className="text-xs text-gray-400 font-rubik mb-1">{label}</p>
-      <p className="text-sm font-bold font-hanken text-gray-700">{value}</p>
+      <p className="text-sm font-bold font-red-hat text-gray-700">{value}</p>
     </div>
   );
 }

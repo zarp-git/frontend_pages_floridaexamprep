@@ -93,7 +93,7 @@ function GalleryHero() {
           Our Work Speaks for Itself
         </p>
 
-        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-hanken uppercase leading-tight max-w-3xl">
+        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat uppercase leading-tight max-w-3xl">
           Project Gallery
         </h1>
 
@@ -220,7 +220,7 @@ function GalleryCard({
 
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-        <h3 className="text-white text-base font-semibold font-hanken uppercase leading-tight mb-1">
+        <h3 className="text-white text-base font-semibold font-red-hat uppercase leading-tight mb-1">
           {item.title}
         </h3>
         {item.location && (
@@ -323,7 +323,7 @@ function Lightbox({ items, currentIndex, onClose, onChange }: LightboxProps) {
 
         {/* Caption */}
         <div className="text-center">
-          <h3 className="text-white text-lg font-semibold font-hanken uppercase">
+          <h3 className="text-white text-lg font-semibold font-red-hat uppercase">
             {current.title}
           </h3>
           {current.location && (

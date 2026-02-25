@@ -62,7 +62,7 @@ export function PaverServicesSection() {
       <div className="section-container flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* ── Heading ── */}
         <div className="flex flex-col justify-start items-center gap-2.5 text-center">
-          <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-hanken uppercase leading-tight tracking-wide">
+          <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-red-hat uppercase leading-tight tracking-wide">
             Paver Services Designed for{" "}
             <CyclingText
               items={CITIES}
@@ -112,7 +112,7 @@ function ServiceCard({ title, description, image }: ServiceItem) {
 
       {/* Text Overlay */}
       <div className="absolute bottom-0 left-0 right-0 px-3 sm:px-4 pt-5 sm:pt-7 pb-3 sm:pb-4 bg-neutral-700/90 backdrop-blur-xs flex flex-col justify-start items-start gap-1.5 sm:gap-2.5">
-        <h3 className="text-white text-lg sm:text-xl md:text-2xl font-medium font-hanken capitalize leading-6">
+        <h3 className="text-white text-lg sm:text-xl md:text-2xl font-medium font-red-hat capitalize leading-6">
           {title}
         </h3>
         <p className="text-white text-sm md:text-base font-normal font-rubik leading-6">

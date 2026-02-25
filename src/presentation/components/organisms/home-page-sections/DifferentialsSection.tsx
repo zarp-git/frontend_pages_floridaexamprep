@@ -322,7 +322,7 @@ export default function DifferentialsSection() {
 
       {/* ── Heading ── */}
       <div className="section-container text-center mb-6 lg:mb-8">
-        <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-hanken uppercase leading-tight tracking-wide mb-4">
+        <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-red-hat uppercase leading-tight tracking-wide mb-4">
           The AllBrick Pavers Difference
         </h2>
         <p className="text-gray-600 text-base font-normal font-rubik leading-6 max-w-2xl mx-auto">
@@ -384,7 +384,7 @@ function ComparisonCard({
           className="object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/40 to-transparent" />
-        <h3 className="absolute top-5 left-5 text-white text-base lg:text-lg font-bold font-hanken leading-6 tracking-wide uppercase">
+        <h3 className="absolute top-5 left-5 text-white text-base lg:text-lg font-bold font-red-hat leading-6 tracking-wide uppercase">
           {title}
         </h3>
       </div>
@@ -408,7 +408,7 @@ function ComparisonCard({
                 <RiCloseLine className="size-5 text-red-500" />
               )}
             </div>
-            <h4 className="text-gray-900 text-xs sm:text-sm lg:text-base font-medium font-hanken leading-5 tracking-tight text-center">
+            <h4 className="text-gray-900 text-xs sm:text-sm lg:text-base font-medium font-red-hat leading-5 tracking-tight text-center">
               {feature.title}
             </h4>
             <p className="text-gray-600 text-[11px] sm:text-xs lg:text-sm font-normal font-rubik leading-4 sm:leading-5 text-center">

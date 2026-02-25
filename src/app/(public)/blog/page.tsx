@@ -168,13 +168,13 @@ export default function BlogPage() {
           {/* Heading */}
           <div className="flex justify-center items-start gap-3 animate-fade-in">
             <h1 className="text-center">
-              <span className="text-blue-950 text-3xl font-semibold font-clash-display leading-8">
+              <span className="text-blue-950 text-3xl font-semibold font-red-hat leading-8">
                 EVERYTHING A{" "}
               </span>
-              <span className="text-[#FF6200] text-3xl font-semibold font-clash-display leading-8">
+              <span className="text-[#FF6200] text-3xl font-semibold font-red-hat leading-8">
                 FUTURE CONTRACTOR{" "}
               </span>
-              <span className="text-blue-950 text-3xl font-semibold font-clash-display leading-8">
+              <span className="text-blue-950 text-3xl font-semibold font-red-hat leading-8">
                 NEEDS TO KNOW
               </span>
             </h1>

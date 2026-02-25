@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 const TESTIMONIAL_IMAGES = [
   "/images/social/imagewhatsone.png",
@@ -17,11 +18,15 @@ export default function ScreenshotsTestimonialsSection() {
   const [startIndex, setStartIndex] = useState(0);
 
   const handlePrevious = () => {
-    setStartIndex((prev) => (prev === 0 ? TESTIMONIAL_IMAGES.length - 1 : prev - 1));
+    setStartIndex((prev) =>
+      prev === 0 ? TESTIMONIAL_IMAGES.length - 1 : prev - 1,
+    );
   };
 
   const handleNext = () => {
-    setStartIndex((prev) => (prev === TESTIMONIAL_IMAGES.length - 1 ? 0 : prev + 1));
+    setStartIndex((prev) =>
+      prev === TESTIMONIAL_IMAGES.length - 1 ? 0 : prev + 1,
+    );
   };
 
   // Get 5 images starting from startIndex (with wrapping)
@@ -45,9 +50,17 @@ export default function ScreenshotsTestimonialsSection() {
         { width: 220, height: 360, rotation: 0, scale: 1, zIndex: 3 }, // Center
         { width: 180, height: 300, rotation: 6, scale: 0.85, zIndex: 1 },
       ];
-      return mobileStyles[position] || { width: 0, height: 0, rotation: 0, scale: 0, zIndex: 0 };
+      return (
+        mobileStyles[position] || {
+          width: 0,
+          height: 0,
+          rotation: 0,
+          scale: 0,
+          zIndex: 0,
+        }
+      );
     }
-    
+
     // Desktop: show all 5 images
     const styles = [
       { width: 200, height: 340, rotation: -8, scale: 0.85, zIndex: 1 },
@@ -70,7 +83,7 @@ export default function ScreenshotsTestimonialsSection() {
 
       {/* Heading */}
       <div className="flex flex-col justify-start items-center gap-2 sm:gap-3 px-4">
-        <h2 className="w-full max-w-4xl text-center text-gray-800 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat-display uppercase leading-tight">
+        <h2 className="w-full max-w-4xl text-center text-gray-800 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
           TESTIMONIALS FROM LICENSED PROFESSIONALS
         </h2>
         <p className="text-center text-gray-800 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
@@ -154,20 +167,20 @@ export default function ScreenshotsTestimonialsSection() {
 
         {/* Left Gradient Overlay */}
         <div className="absolute left-0 top-0 w-32 sm:w-48 md:w-80 h-full bg-gradient-to-r from-zinc-100 via-zinc-100/50 to-transparent pointer-events-none z-10" />
-        
+
         {/* Right Gradient Overlay */}
         <div className="absolute right-0 top-0 w-32 sm:w-48 md:w-80 h-full bg-gradient-to-l from-zinc-100 via-zinc-100/50 to-transparent pointer-events-none z-10" />
       </div>
 
       {/* CTA Button */}
-      <PrimaryButton 
-        variant="blue" 
+      <PrimaryButton
+        variant="blue"
         size="lg"
         icon={<ArrowUpRight className="w-5 h-5" />}
         iconPosition="right"
         className="w-full sm:w-auto mx-4"
       >
-        get THAT +90 GRADE now
+        {CTA_TEXT}
       </PrimaryButton>
     </section>
   );

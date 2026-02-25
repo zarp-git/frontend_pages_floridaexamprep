@@ -95,7 +95,7 @@ export default function FeedbackSection() {
     >
       {/* ── Heading ── */}
       <div className="section-container text-center mb-8 sm:mb-10 lg:mb-12">
-        <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-hanken uppercase leading-tight tracking-wide">
+        <h2 className="text-gray-800 text-2xl md:text-3xl font-black font-red-hat uppercase leading-tight tracking-wide">
           What Customers Are Talking About Our Service
         </h2>
       </div>

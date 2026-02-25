@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { CTA_TEXT } from "@/constants";
 
 interface Book {
   title: string;
@@ -35,7 +36,7 @@ export default function BookSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="w-full max-w-[657px] text-white text-3xl font-bold font-red-hat-display uppercase leading-8">
+          <h2 className="w-full max-w-[657px] text-white text-3xl font-bold font-red-hat uppercase leading-8">
             We&apos;ve got you covered.
             <br />
             Here are the essential books you&apos;ll need to pass the exam
@@ -56,7 +57,7 @@ export default function BookSection() {
                 <div className="w-full h-36 px-3.5 pt-3 pb-3.5 flex flex-col justify-between items-center">
                   {/* Book Title */}
                   <div className="w-full flex flex-col justify-start items-start gap-2.5">
-                    <h3 className="w-full text-gray-800 text-base font-extrabold font-red-hat-display leading-5">
+                    <h3 className="w-full text-gray-800 text-base font-extrabold font-red-hat leading-5">
                       {book.title}
                     </h3>
                   </div>
@@ -69,7 +70,7 @@ export default function BookSection() {
                   {/* CTA Button */}
                   <button className="w-full h-11 px-7 py-3.5 bg-[#00276F] rounded-md flex justify-center items-center gap-3.5 hover:bg-[#00091C] transition-colors">
                     <span className="text-center text-white text-sm font-medium font-rubik uppercase">
-                      get access now
+                      {CTA_TEXT}
                     </span>
                     <ArrowRight className="w-4 h-4 text-white" />
                   </button>

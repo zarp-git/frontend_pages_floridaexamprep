@@ -32,7 +32,7 @@ export const MaintenanceModal = () => {
           </div>
 
           {/* Title */}
-          <DialogTitle className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center font-hanken">
+          <DialogTitle className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center font-red-hat">
             Page Under Maintenance
           </DialogTitle>
 

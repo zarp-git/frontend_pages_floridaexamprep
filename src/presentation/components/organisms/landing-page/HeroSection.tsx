@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
 import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
 import Image from "next/image";
@@ -24,20 +25,24 @@ export default function HeroSection() {
             <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 w-full px-2">
               {/* First Line with Cycling Animation */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
-                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide">
+                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
                   You Pass
                 </span>
-                <span className="text-[#FF6200] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-hanken-grotesk leading-tight tracking-wide uppercase">
-                  <CyclingText items={EXAM_TYPES} interval={3000} direction="up" />
+                <span className="text-[#FF6200] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-red-hat leading-tight tracking-wide uppercase">
+                  <CyclingText
+                    items={EXAM_TYPES}
+                    interval={3000}
+                    direction="up"
+                  />
                 </span>
               </div>
 
               {/* Second Line with circle marker */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
-                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide">
+                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
                   Exam on the
                 </span>
-                <span className="relative inline-block text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide px-2">
+                <span className="relative inline-block text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide px-2">
                   <span className="relative z-10">First Try</span>
                   {/* Circle marker PNG - positioned absolutely behind text */}
                   <span className="absolute inset-0 flex items-center justify-center -z-10">
@@ -57,10 +62,10 @@ export default function HeroSection() {
 
             {/* Subtitle with line marker */}
             <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 text-center px-2">
-              <span className="text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat-display leading-tight tracking-tight">
+              <span className="text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight">
                 Or I&apos;ll Coach You Personally
               </span>
-              <span className="relative inline-block text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat-display leading-tight tracking-tight px-1">
+              <span className="relative inline-block text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight px-1">
                 <span className="relative z-10">Until You Do</span>
                 {/* Line marker PNG - positioned at bottom */}
                 <span className="absolute bottom-0 left-0 right-0 flex items-end justify-center -z-10 h-3 sm:h-4">
@@ -91,19 +96,20 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="w-full max-w-md sm:max-w-lg text-center text-gray-600 text-sm sm:text-base font-normal font-rubik leading-6 px-4">
-              I help future contractors pass their Florida State Exams first try so you never have to worry about it again!
+              I help future contractors pass their Florida State Exams first try
+              so you never have to worry about it again!
             </p>
           </div>
 
           {/* CTA Button */}
-          <PrimaryButton 
-            variant="blue" 
+          <PrimaryButton
+            variant="blue"
             size="lg"
             icon={<ArrowUpRight className="w-5 h-5" />}
             iconPosition="right"
             className="w-full sm:w-auto"
           >
-            get THAT +90 GRADE now
+            {CTA_TEXT}
           </PrimaryButton>
         </div>
 

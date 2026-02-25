@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 const TESTIMONIAL_SCREENSHOTS = [
   "/images/testimonials/screenshots/screenshot-1.jpg",
@@ -18,13 +19,13 @@ export default function TestimonialsCarousel() {
 
   const handlePrevious = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? TESTIMONIAL_SCREENSHOTS.length - 1 : prev - 1
+      prev === 0 ? TESTIMONIAL_SCREENSHOTS.length - 1 : prev - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev === TESTIMONIAL_SCREENSHOTS.length - 1 ? 0 : prev + 1
+      prev === TESTIMONIAL_SCREENSHOTS.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -104,13 +105,13 @@ export default function TestimonialsCarousel() {
         </div>
 
         {/* CTA Button */}
-        <PrimaryButton 
-          variant="blue" 
+        <PrimaryButton
+          variant="blue"
           size="lg"
           icon={<ArrowUpRight className="w-5 h-5" />}
           iconPosition="right"
         >
-          Get That +90 Grade Now
+          {CTA_TEXT}
         </PrimaryButton>
       </div>
     </section>

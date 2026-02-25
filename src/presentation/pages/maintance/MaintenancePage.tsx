@@ -32,7 +32,7 @@ export default function MaintenancePage() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-hanken">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-red-hat">
             We&apos;ll Be Right Back!
           </h1>
 

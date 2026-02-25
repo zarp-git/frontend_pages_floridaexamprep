@@ -80,7 +80,7 @@ function LocationHero({ location }: { location: LocationData }) {
           {location.heroSubtitle}
         </p>
 
-        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-hanken uppercase leading-tight max-w-4xl">
+        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat uppercase leading-tight max-w-4xl">
           {location.heroHeading}
         </h1>
 
@@ -175,7 +175,7 @@ function ServiceBlock({
 
       {/* Text */}
       <div className="w-full lg:w-1/2 flex flex-col gap-4 lg:gap-6">
-        <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-hanken leading-tight uppercase">
+        <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-red-hat leading-tight uppercase">
           {block.heading}
         </h2>
 
@@ -230,7 +230,7 @@ function LocationAboutSection({ location }: { location: LocationData }) {
             </span>
           </div>
 
-          <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-hanken uppercase leading-tight">
+          <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-red-hat uppercase leading-tight">
             {location.about.heading}
           </h2>
 
@@ -261,7 +261,7 @@ function LocationFaqSection({ location }: { location: LocationData }) {
           {/* Left: heading + locations navigation */}
           <div className="w-full lg:w-5/12 flex flex-col gap-8">
             <div className="flex flex-col gap-3">
-              <h2 className="text-2xl lg:text-3xl font-bold font-hanken text-gray-800 uppercase">
+              <h2 className="text-2xl lg:text-3xl font-bold font-red-hat text-gray-800 uppercase">
                 Common Questions From {location.title} Homeowners
               </h2>
               <p className="text-gray-600 text-base font-rubik leading-7">
@@ -343,7 +343,7 @@ function LocationServedAreasSection({
       <div className="section-container">
         {/* Heading */}
         <div className="text-center mb-10">
-          <h2 className="text-2xl lg:text-3xl font-bold font-hanken text-gray-800 uppercase mb-3">
+          <h2 className="text-2xl lg:text-3xl font-bold font-red-hat text-gray-800 uppercase mb-3">
             Proudly Serving {cityName} & Surrounding Areas
           </h2>
           <p className="text-gray-600 text-base font-rubik leading-7 max-w-2xl mx-auto">
@@ -367,7 +367,7 @@ function LocationServedAreasSection({
 function ServedAreaCard({ area }: { area: LocationServedArea }) {
   return (
     <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-      <h3 className="text-gray-900 text-lg font-semibold font-hanken uppercase mb-4">
+      <h3 className="text-gray-900 text-lg font-semibold font-red-hat uppercase mb-4">
         {area.title}
       </h3>
       <div className="flex flex-wrap gap-2">
@@ -406,7 +406,7 @@ function LocationCta({ cityName }: { cityName: string }) {
 
           {/* Content */}
           <div className="relative z-10 px-8 md:px-16 py-16 md:py-20 flex flex-col items-center text-center gap-6">
-            <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold font-hanken uppercase leading-tight max-w-3xl">
+            <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat uppercase leading-tight max-w-3xl">
               Let&apos;s Start Your Project in {cityName}
             </h2>
 

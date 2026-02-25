@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 interface CourseFeature {
   text: string;
@@ -27,8 +28,12 @@ const COURSES: Course[] = [
     subtitle: "For All Division 1 and Division 2 Contractors",
     image: "/images/courses/business-finance.png",
     features: [
-      { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
-      { text: "The Most important content in the Builder's Guide to Accounting" },
+      {
+        text: "Full breakdown of every chapter in the Florida Contractor's Manual",
+      },
+      {
+        text: "The Most important content in the Builder's Guide to Accounting",
+      },
       { text: "Step-by-Step guidance on the AIA documents" },
       { text: "A clear study plan" },
       { text: "20+ practice quizzes and a timed exam simulator" },
@@ -44,8 +49,12 @@ const COURSES: Course[] = [
     subtitle: "For Residencial, Building and General Contractors",
     image: "/images/courses/contract-administration.png",
     features: [
-      { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
-      { text: "The Most important content in the Builder's Guide to Accounting" },
+      {
+        text: "Full breakdown of every chapter in the Florida Contractor's Manual",
+      },
+      {
+        text: "The Most important content in the Builder's Guide to Accounting",
+      },
       { text: "Step-by-Step guidance on the AIA documents" },
       { text: "A clear study plan" },
       { text: "20+ practice quizzes and a timed exam simulator" },
@@ -61,8 +70,12 @@ const COURSES: Course[] = [
     subtitle: "For Residencial, Building and General Contractors",
     image: "/images/courses/complete-exam-prep.png",
     features: [
-      { text: "Full breakdown of every chapter in the Florida Contractor's Manual" },
-      { text: "The Most important content in the Builder's Guide to Accounting" },
+      {
+        text: "Full breakdown of every chapter in the Florida Contractor's Manual",
+      },
+      {
+        text: "The Most important content in the Builder's Guide to Accounting",
+      },
       { text: "Step-by-Step guidance on the AIA documents" },
       { text: "A clear study plan" },
       { text: "20+ practice quizzes and a timed exam simulator" },
@@ -77,11 +90,7 @@ function CheckIcon() {
     <div className="relative w-5 h-5 flex-shrink-0 rounded-full overflow-hidden">
       <div className="absolute inset-0 bg-emerald-300" />
       <div className="absolute inset-[3.75px] bg-emerald-500 rounded-full" />
-      <svg
-        className="absolute inset-0 w-5 h-5"
-        viewBox="0 0 20 20"
-        fill="none"
-      >
+      <svg className="absolute inset-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
         <path
           d="M7.5 10.5L9.5 12.5L12.5 8.5"
           stroke="white"
@@ -105,7 +114,9 @@ function CourseCard({ course }: { course: Course }) {
           fill
           className="object-cover"
         />
-        <div className={`absolute top-3 sm:top-[18px] left-3 sm:left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}>
+        <div
+          className={`absolute top-3 sm:top-[18px] left-3 sm:left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}
+        >
           <span className="text-white text-xs font-medium font-rubik leading-4">
             {course.badge}
           </span>
@@ -117,7 +128,7 @@ function CourseCard({ course }: { course: Course }) {
         <div className="flex flex-col gap-2 sm:gap-3">
           {/* Title */}
           <div className="flex flex-col gap-1.5 sm:gap-2">
-            <h3 className="text-gray-800 text-base sm:text-lg font-extrabold font-red-hat-display uppercase leading-tight">
+            <h3 className="text-gray-800 text-base sm:text-lg font-extrabold font-red-hat uppercase leading-tight">
               {course.title}
             </h3>
             <div className="flex items-center gap-1.5 sm:gap-2">
@@ -147,14 +158,14 @@ function CourseCard({ course }: { course: Course }) {
         </div>
 
         {/* CTA Button */}
-        <PrimaryButton 
-          variant="blue" 
+        <PrimaryButton
+          variant="blue"
           size="lg"
           icon={<ArrowRight className="w-5 h-5" />}
           iconPosition="right"
           className="w-full mt-2 sm:mt-4"
         >
-          get approved now
+          {CTA_TEXT}
         </PrimaryButton>
       </div>
     </div>
@@ -172,7 +183,7 @@ export default function CourseCards() {
               DON'T TRY IT ALONE
             </span>
           </div>
-          <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat-display uppercase leading-tight">
+          <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
             WE WALKED THROUGH ALL STEPS AND WE COMPILED
             <br className="hidden sm:block" />
             EVERYTHING RIGHT HAND TO YOU GET THAT +90 GRADE

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 const COMPANY_LINKS = [
   { label: "About us", href: "/about" },
@@ -48,12 +49,13 @@ export default function LandingFooter() {
                   height={80}
                   className="h-20 w-auto"
                 />
-                
+
                 {/* Description */}
                 <p className="text-gray-700 text-base font-normal font-rubik leading-6">
-                  I help future contractors pass their Florida State Exams first try so you never have to worry about it again!
+                  I help future contractors pass their Florida State Exams first
+                  try so you never have to worry about it again!
                 </p>
-                
+
                 {/* Address */}
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2.5">
@@ -140,18 +142,15 @@ export default function LandingFooter() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-start gap-4">
-                <PrimaryButton 
-                  variant="blue-solid" 
+                <PrimaryButton
+                  variant="blue-solid"
                   size="lg"
                   icon={<ArrowUpRight className="w-5 h-5" />}
                   iconPosition="right"
                 >
-                  get THAT APPROVAL now
+                  {CTA_TEXT}
                 </PrimaryButton>
-                <PrimaryButton 
-                  variant="outline" 
-                  size="lg"
-                >
+                <PrimaryButton variant="outline" size="lg">
                   already enrolled in other course?
                 </PrimaryButton>
               </div>
@@ -241,7 +240,7 @@ export default function LandingFooter() {
                     className="w-10 h-10"
                   />
                 </Link>
-                
+
                 {/* Facebook */}
                 <Link
                   href="https://www.facebook.com/floridaexamprep/"
@@ -257,7 +256,7 @@ export default function LandingFooter() {
                     className="w-10 h-10"
                   />
                 </Link>
-                
+
                 {/* YouTube */}
                 <Link
                   href="https://www.youtube.com/@floridaexamprep"

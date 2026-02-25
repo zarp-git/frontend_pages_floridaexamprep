@@ -36,7 +36,7 @@ export default function IntroSection() {
             >
               <h2
                 data-layer="DO ANY OF THESE SOUND FAMILIAR?"
-                className="justify-center text-gray-800 text-2xl sm:text-3xl font-extrabold font-hanken uppercase leading-tight tracking-wide"
+                className="justify-center text-gray-800 text-2xl sm:text-3xl font-extrabold font-red-hat uppercase leading-tight tracking-wide"
               >
                 DO ANY OF THESE SOUND FAMILIAR?
               </h2>

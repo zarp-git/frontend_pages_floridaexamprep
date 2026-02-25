@@ -1,6 +1,14 @@
 import Image from "next/image";
-import { ArrowUpRight, Laptop, Video, Compass, MonitorCheck, FileStack } from "lucide-react";
+import {
+  ArrowUpRight,
+  Laptop,
+  Video,
+  Compass,
+  MonitorCheck,
+  FileStack,
+} from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 interface Benefit {
   icon: React.ReactNode;
@@ -39,7 +47,7 @@ export default function PlatformSection() {
           <div className="flex-1 w-full py-1.5 flex flex-col justify-start items-start gap-5 sm:gap-7">
             {/* Heading */}
             <div className="w-full flex flex-col justify-start items-start gap-3 sm:gap-5">
-              <h2 className="w-full text-white text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat-display uppercase leading-tight">
+              <h2 className="w-full text-white text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">
                 STOP STUDYING ALONE. ENROLL TODAY & GUARANTEE THESE{" "}
                 <span className="text-sky-400">EXCLUSIVE</span> BENEFITS
               </h2>
@@ -51,7 +59,10 @@ export default function PlatformSection() {
             {/* Benefits List */}
             <div className="w-full max-w-md flex flex-col justify-start items-start gap-3 sm:gap-4">
               {BENEFITS.map((benefit, index) => (
-                <div key={index} className="w-full flex justify-start items-start sm:items-center gap-2 sm:gap-3">
+                <div
+                  key={index}
+                  className="w-full flex justify-start items-start sm:items-center gap-2 sm:gap-3"
+                >
                   <div className="flex-shrink-0 mt-0.5 sm:mt-0">
                     {benefit.icon}
                   </div>
@@ -63,14 +74,14 @@ export default function PlatformSection() {
             </div>
 
             {/* CTA Button */}
-            <PrimaryButton 
-              variant="orange" 
+            <PrimaryButton
+              variant="orange"
               size="lg"
               icon={<ArrowUpRight className="w-5 h-5" />}
               iconPosition="right"
               className="w-full sm:w-auto"
             >
-              get THAT +90 GRADE now
+              {CTA_TEXT}
             </PrimaryButton>
           </div>
 

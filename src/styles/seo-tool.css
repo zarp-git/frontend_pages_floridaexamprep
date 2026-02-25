@@ -1,6 +1,6 @@
-@import 'tailwindcss/theme' layer(theme);
+@import "tailwindcss/theme" layer(theme);
 
-@import 'tailwindcss/preflight' layer(base);
+@import "tailwindcss/preflight" layer(base);
 
 @source '../*.{js,ts,jsx,tsx,mdx}';
 
@@ -19,7 +19,6 @@
 
 @theme {
   --font-sans: var(--font-rubik);
-  --font-hanken-display: var(--font-hanken-display);
 
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -114,7 +113,7 @@
   }
 
   .cta-button::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;

@@ -40,7 +40,10 @@ const leadFormSchema = z
     contactTime: z.string().min(1, "Please select a preferred contact time"),
   })
   .superRefine((data, ctx) => {
-    if (data.preference === "email" && (!data.email || !z.string().email().safeParse(data.email).success)) {
+    if (
+      data.preference === "email" &&
+      (!data.email || !z.string().email().safeParse(data.email).success)
+    ) {
       ctx.addIssue({
         path: ["email"],
         code: z.ZodIssueCode.custom,
@@ -122,7 +125,10 @@ export const LeadCollectModal = () => {
 
   const handleStep1Continue = async () => {
     setSubmitError(null);
-    const isValid = await trigger(["fullName", preference === "phone" ? "phone" : "email"]);
+    const isValid = await trigger([
+      "fullName",
+      preference === "phone" ? "phone" : "email",
+    ]);
     if (isValid) {
       setCurrentStep(2);
     }
@@ -155,7 +161,8 @@ export const LeadCollectModal = () => {
       const message = `Budget Range: ${budgetLabels[data.budget] || data.budget}\nPreferred Contact Time: ${contactTimeLabels[data.contactTime] || data.contactTime}`;
 
       // If preference is phone and no email, use a placeholder
-      const emailToSend = data.email || (preference === "phone" ? "noemail@placeholder.com" : "");
+      const emailToSend =
+        data.email || (preference === "phone" ? "noemail@placeholder.com" : "");
 
       // Submit to backend
       const result = await submitLeadAction({
@@ -170,14 +177,17 @@ export const LeadCollectModal = () => {
         setCurrentStep(3);
       } else {
         // Show user-friendly error message
-        const errorMessage = result.status === 404 
-          ? "Service temporarily unavailable. Please try again later or call us directly."
-          : "Failed to submit. Please try again.";
+        const errorMessage =
+          result.status === 404
+            ? "Service temporarily unavailable. Please try again later or call us directly."
+            : "Failed to submit. Please try again.";
         setSubmitError(errorMessage);
       }
     } catch (error) {
       console.error("Error submitting lead:", error);
-      setSubmitError("Service temporarily unavailable. Please try again later or call us directly.");
+      setSubmitError(
+        "Service temporarily unavailable. Please try again later or call us directly.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -209,7 +219,7 @@ export const LeadCollectModal = () => {
 
             {/* Heading */}
             {currentStep === 1 && (
-              <h2 className="text-black text-2xl md:text-3xl font-medium font-hanken leading-7 tracking-wide uppercase">
+              <h2 className="text-black text-2xl md:text-3xl font-medium font-red-hat leading-7 tracking-wide uppercase">
                 BOOK YOUR FREE CONSULTATION
               </h2>
             )}
@@ -225,28 +235,29 @@ export const LeadCollectModal = () => {
                   transition={{ duration: 0.25 }}
                   className="w-full flex-1 flex flex-col justify-start items-start gap-6 py-4"
                 >
-                  <h3 className="text-black text-2xl md:text-3xl font-bold font-hanken leading-tight uppercase">
+                  <h3 className="text-black text-2xl md:text-3xl font-bold font-red-hat leading-tight uppercase">
                     SUCCESS! WE WILL BE REACHING OUT YOU SOON...
                   </h3>
-                  
+
                   <p className="text-gray-600 text-base font-rubik leading-6">
-                    One of our consultants will reach out soon to talk about your project. Can't wait? Call us directly now
+                    One of our consultants will reach out soon to talk about
+                    your project. Can't wait? Call us directly now
                   </p>
-                  
+
                   <div className="flex items-center gap-2">
                     <RiTimeLine className="w-5 h-5 text-red-800" />
                     <span className="text-gray-600 text-sm font-rubik uppercase">
                       FROM MON TO SAT : 9AM - 5PM
                     </span>
                   </div>
-                  
-                  <a 
+
+                  <a
                     href="tel:+14078187876"
                     className="text-black text-3xl md:text-4xl font-bold font-rubik hover:text-red-800 transition-colors"
                   >
                     +1 407-818-7876
                   </a>
-                  
+
                   <a
                     href="tel:+14078187876"
                     className="mt-2 w-full md:w-auto h-12 px-8 py-4 bg-red-800 hover:bg-red-900 transition-colors text-white rounded-lg inline-flex justify-center items-center gap-4 text-base font-medium font-rubik uppercase"
@@ -254,7 +265,7 @@ export const LeadCollectModal = () => {
                     CALL US NOW
                     <RiPhoneLine className="size-5" />
                   </a>
-                  
+
                   <div className="text-gray-500 text-xs font-normal font-rubik leading-4 mt-2">
                     By submitting this form, you agree to our{" "}
                     <Link
@@ -483,7 +494,9 @@ export const LeadCollectModal = () => {
                     {/* Error Message */}
                     {submitError && (
                       <div className="w-full p-3 bg-red-50 border border-red-200 rounded-lg">
-                        <p className="text-red-600 text-sm font-rubik">{submitError}</p>
+                        <p className="text-red-600 text-sm font-rubik">
+                          {submitError}
+                        </p>
                       </div>
                     )}
 
@@ -533,21 +546,30 @@ export const LeadCollectModal = () => {
                 ].map(({ step, label }) => {
                   const isActive = currentStep === step;
                   const isCompleted = currentStep > step;
-                  
+
                   return (
-                    <div key={step} className="flex flex-col justify-start items-start gap-1">
+                    <div
+                      key={step}
+                      className="flex flex-col justify-start items-start gap-1"
+                    >
                       <span
                         className={`text-xs md:text-sm font-rubik leading-5 whitespace-nowrap ${
-                          isActive ? "text-black font-medium" : "text-gray-400 font-normal"
+                          isActive
+                            ? "text-black font-medium"
+                            : "text-gray-400 font-normal"
                         }`}
                       >
                         {label}
                       </span>
                       <div
                         className={`h-1.5 rounded-[10px] transition-colors ${
-                          isActive ? "bg-zinc-800" : isCompleted ? "bg-green-500" : "bg-gray-200"
+                          isActive
+                            ? "bg-zinc-800"
+                            : isCompleted
+                              ? "bg-green-500"
+                              : "bg-gray-200"
                         }`}
-                        style={{ width: '100%' }}
+                        style={{ width: "100%" }}
                       />
                     </div>
                   );

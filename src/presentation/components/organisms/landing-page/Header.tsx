@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 interface NavItem {
   label: string;
@@ -106,12 +107,12 @@ export default function Header() {
         </div>
 
         {/* CTA Button */}
-        <PrimaryButton 
-          variant="blue-solid" 
+        <PrimaryButton
+          variant="blue-solid"
           size="sm"
           className="hidden md:flex"
         >
-          get THAT +90 GRADE now
+          {CTA_TEXT}
         </PrimaryButton>
 
         {/* Mobile Menu Button */}

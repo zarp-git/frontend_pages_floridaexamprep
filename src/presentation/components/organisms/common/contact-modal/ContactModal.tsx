@@ -166,7 +166,7 @@ export const ContactModal = () => {
 
             {/* Heading */}
             {!isSuccess && (
-              <h2 className="text-black text-2xl md:text-3xl font-medium font-hanken leading-7 tracking-wide uppercase">
+              <h2 className="text-black text-2xl md:text-3xl font-medium font-red-hat leading-7 tracking-wide uppercase">
                 CONTACT US
               </h2>
             )}
@@ -182,7 +182,7 @@ export const ContactModal = () => {
                   transition={{ duration: 0.25 }}
                   className="w-full flex-1 flex flex-col justify-start items-start gap-6 py-4"
                 >
-                  <h3 className="text-black text-2xl md:text-3xl font-bold font-hanken leading-tight uppercase">
+                  <h3 className="text-black text-2xl md:text-3xl font-bold font-red-hat leading-tight uppercase">
                     SUCCESS! WE WILL BE REACHING OUT TO YOU SOON...
                   </h3>
                   

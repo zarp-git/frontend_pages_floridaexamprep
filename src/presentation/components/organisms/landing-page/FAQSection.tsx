@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 interface FAQItem {
   question: string;
@@ -12,7 +13,8 @@ interface FAQItem {
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: "Why should I invest in this course instead of studying on my own?",
+    question:
+      "Why should I invest in this course instead of studying on my own?",
     answer:
       "Our course provides structured, expert-guided content that covers exactly what you need to pass. We've distilled years of experience into a clear path to success, saving you countless hours of confusion and uncertainty.",
   },
@@ -32,7 +34,8 @@ const FAQ_ITEMS: FAQItem[] = [
       "Absolutely. We teach you exactly how to navigate and use the reference materials efficiently during the exam, which is crucial for success.",
   },
   {
-    question: "What platform is the course on, and how do the practice exams work?",
+    question:
+      "What platform is the course on, and how do the practice exams work?",
     answer:
       "The course is hosted on our dedicated learning platform with video lessons, interactive quizzes, and a timed exam simulator that mimics the real test environment.",
   },
@@ -105,32 +108,32 @@ export default function FAQSection() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-blue-600 text-3xl font-semibold font-clash-display">
+              <h3 className="text-blue-600 text-3xl font-semibold font-red-hat">
                 I'll Coach You Personally Until
                 <br />
                 You Get Approved
               </h3>
               <p className="text-gray-800 text-base font-normal font-rubik leading-6 max-w-[480px]">
-                That's a commitment. Complete the full course — every video, every
-                quiz, every guide — and if you still don't pass, our expert will
-                personally schedule a free one-hour session with you to fix whatever's
-                holding you back.
+                That's a commitment. Complete the full course — every video,
+                every quiz, every guide — and if you still don't pass, our
+                expert will personally schedule a free one-hour session with you
+                to fix whatever's holding you back.
                 <br />
                 <br />
-                No fine print. No loopholes. Just a guarantee backed by someone who's
-                done this hundreds of times and refuses to let you fail twice. Enroll
-                today. Stop gambling with your license.
+                No fine print. No loopholes. Just a guarantee backed by someone
+                who's done this hundreds of times and refuses to let you fail
+                twice. Enroll today. Stop gambling with your license.
               </p>
             </div>
 
-            <PrimaryButton 
-              variant="blue" 
+            <PrimaryButton
+              variant="blue"
               size="lg"
               icon={<ArrowUpRight className="w-5 h-5" />}
               iconPosition="right"
               className="w-full"
             >
-              Get Prepared For The Exam Now
+              {CTA_TEXT}
             </PrimaryButton>
           </div>
 
@@ -140,7 +143,7 @@ export default function FAQSection() {
               <p className="text-gray-800 text-xl font-medium font-rubik uppercase leading-7">
                 Still Got Questions?
               </p>
-              <h2 className="text-gray-800 text-4xl font-semibold font-clash-display uppercase leading-10">
+              <h2 className="text-gray-800 text-4xl font-semibold font-red-hat uppercase leading-10">
                 Frequently Asked Questions
               </h2>
             </div>

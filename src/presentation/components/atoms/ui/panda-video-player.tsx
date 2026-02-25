@@ -65,7 +65,7 @@ export function PandaVideoPlayer({
     };
   }, [onPlay, onPause, onEnded]);
 
-  // Detecta mudanças no estado de fullscreen
+  // Detects changes in the fullscreen state
   useEffect(() => {
     const handleFullscreenChange = () => {
       const isCurrentlyFullscreen = !!(
@@ -106,23 +106,23 @@ export function PandaVideoPlayer({
     try {
       setIsLoading(true);
 
-      // Sempre reinicia o vídeo e ativa o som
+      // Always restart the video and enable sound
       video.currentTime = 0;
       video.muted = false;
       setIsMuted(false);
       setShowMutedIndicator(false);
 
-      // Aguarda o play() ser resolvido antes de continuar
+      // Wait for play() to resolve before continuing
       await video.play();
 
-      // Entra em tela cheia após play bem-sucedido
+      // Enter fullscreen after successful play
       requestFullscreen(video);
     } catch (error) {
-      // Trata erros como AbortError, NotAllowedError, etc.
-      console.warn("Erro ao reproduzir vídeo:", error);
+      // Handle errors like AbortError, NotAllowedError, etc.
+      console.warn("Error playing video:", error);
 
-      // Se falhou, ainda tenta entrar em tela cheia
-      // AbortError acontece quando play() é interrompido por pause()
+      // If it failed, still try to enter fullscreen
+      // AbortError happens when play() is interrupted by pause()
       if (error instanceof Error && error.name !== "AbortError") {
         requestFullscreen(video);
       }
@@ -146,7 +146,7 @@ export function PandaVideoPlayer({
         (element as any).msRequestFullscreen();
       }
     } catch (error) {
-      console.warn("Fullscreen não suportado:", error);
+      console.warn("Fullscreen not supported:", error);
     }
   };
 
@@ -181,7 +181,7 @@ export function PandaVideoPlayer({
         </div>
       )}
 
-      {/* Muted Indicator - Clone do Panda Video */}
+      {/* Muted Indicator - Panda Video Clone */}
       {(showMutedIndicator || !isPlaying) && !isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
           <button
@@ -189,10 +189,10 @@ export function PandaVideoPlayer({
             disabled={isLoading}
             className="panda-muted-indicator-impact-wrapper panda-muted-indicator-item animate-pulse hover:scale-105 transition-transform duration-300 flex flex-col items-center px-6 py-4 bg-black/60 rounded-2xl backdrop-blur-sm border border-white/20 group/button disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
-            {/* Texto Superior */}
-            <span className="text-white text-sm font-medium">Clique aqui</span>
+            {/* Top Text */}
+            <span className="text-white text-sm font-medium">Click here</span>
 
-            {/* Ícone SVG do Volume com Linha - Animado */}
+            {/* Animated SVG Volume Icon with Line */}
             <div className="relative">
               <svg
                 className="w-24 h-16 text-white"
@@ -209,7 +209,7 @@ export function PandaVideoPlayer({
                      transform-origin: center;
                    }
                    
-                   /* Animações das ondas sonoras - Efeito cascata */
+                   /* Sound wave animations - Cascade effect */
                    .wave {
                      animation: wave-pulse 2.5s ease-in-out infinite;
                      transform-origin: center;
@@ -249,7 +249,7 @@ export function PandaVideoPlayer({
                      }
                    }
                    
-                   /* Animação do volume principal - Batimento */
+                   /* Main volume animation - Heartbeat */
                    .volume {
                      animation: volume-heartbeat 2s ease-in-out infinite;
                    }
@@ -272,7 +272,7 @@ export function PandaVideoPlayer({
                      }
                    }
                    
-                   /* Animação da linha diagonal - Piscar intenso */
+                   /* Diagonal line animation - Intense flash */
                    .line {
                      animation: line-flash 1.2s ease-in-out infinite;
                    }
@@ -288,7 +288,7 @@ export function PandaVideoPlayer({
                      }
                    }
                    
-                   /* Efeito hover - Intensifica animações */
+                   /* Hover effect - Intensifies animations */
                    .group\\/button:hover .wave {
                      animation-duration: 1.5s;
                    }
@@ -334,9 +334,9 @@ export function PandaVideoPlayer({
               </svg>
             </div>
 
-            {/* Texto Inferior */}
+            {/* Bottom Text */}
             <span className="text-white text-sm font-medium">
-              para ativar o som
+              to enable sound
             </span>
           </button>
         </div>

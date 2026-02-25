@@ -76,7 +76,7 @@ export default function FaqSection() {
 
           {/* Text Content */}
           <div className="flex flex-col gap-3 text-center md:text-left">
-            <h2 className="text-2xl sm:text-3xl md:text-[28px] lg:text-4xl font-semibold font-hanken text-primary">
+            <h2 className="text-2xl sm:text-3xl md:text-[28px] lg:text-4xl font-semibold font-red-hat text-primary">
               YOUR PAVERS SECURED
             </h2>
             <p className="text-gray-600 text-base font-normal font-rubik leading-6 max-w-md">
@@ -103,7 +103,7 @@ export default function FaqSection() {
 
         {/* Right Column - FAQ Accordion */}
         <div className="w-full md:flex-1 lg:max-w-xl flex flex-col gap-6">
-          <h2 className="text-[24px] sm:text-[28px] lg:text-4xl font-semibold font-hanken text-gray-800 uppercase leading-tight sm:leading-10">
+          <h2 className="text-[24px] sm:text-[28px] lg:text-4xl font-semibold font-red-hat text-gray-800 uppercase leading-tight sm:leading-10">
             FREQUENTLY ASKED QUESTIONS
           </h2>
 

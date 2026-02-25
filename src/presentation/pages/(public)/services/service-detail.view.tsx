@@ -89,7 +89,7 @@ function ServiceHero({ service }: { service: ServiceData }) {
           {service.heroSubtitle}
         </p>
 
-        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-hanken uppercase leading-tight max-w-4xl">
+        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat uppercase leading-tight max-w-4xl">
           {service.title}
         </h1>
 
@@ -252,7 +252,7 @@ function ServiceGallery({
 function ServiceTextContent({ service }: { service: ServiceData }) {
   return (
     <article className="flex flex-col gap-5">
-      <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-hanken leading-tight uppercase">
+      <h2 className="text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold font-red-hat leading-tight uppercase">
         {service.content.heading}
       </h2>
       {service.content.paragraphs.map((p, i) => (
@@ -301,7 +301,7 @@ function StatCard({ stat }: { stat: ServiceStat }) {
           {stat.value}
         </span>
       </div>
-      <span className="text-gray-900 text-sm font-bold font-hanken uppercase leading-tight">
+      <span className="text-gray-900 text-sm font-bold font-red-hat uppercase leading-tight">
         {stat.label}
       </span>
     </div>
@@ -359,7 +359,7 @@ function WhoWeAreCard() {
         <RiTeamLine className="size-7 text-white" />
       </div>
 
-      <h3 className="text-white text-lg font-semibold font-hanken uppercase">
+      <h3 className="text-white text-lg font-semibold font-red-hat uppercase">
         {SERVICE_SIDEBAR_INFO.title}
       </h3>
 
@@ -379,7 +379,7 @@ function ServiceFeaturesSection({ features }: { features: ServiceFeature[] }) {
       <div className="section-container">
         {/* Heading */}
         <div className="text-center mb-10">
-          <h2 className="text-2xl lg:text-3xl font-bold font-hanken text-gray-800 uppercase mb-3">
+          <h2 className="text-2xl lg:text-3xl font-bold font-red-hat text-gray-800 uppercase mb-3">
             Why Choose AllBrick Pavers
           </h2>
           <p className="text-gray-600 text-base font-rubik leading-7 max-w-2xl mx-auto">
@@ -407,7 +407,7 @@ function FeatureCard({ feature }: { feature: ServiceFeature }) {
         <Icon className="size-6 text-primary" />
       </div>
 
-      <h3 className="text-gray-900 text-base font-bold font-hanken uppercase leading-5">
+      <h3 className="text-gray-900 text-base font-bold font-red-hat uppercase leading-5">
         {feature.title}
       </h3>
       <div className="flex flex-col gap-1">
@@ -446,7 +446,7 @@ function ServiceFaqSection({ service }: { service: ServiceData }) {
                   {service.title}
                 </span>
               </div>
-              <h2 className="text-2xl lg:text-3xl font-bold font-hanken text-gray-800 uppercase">
+              <h2 className="text-2xl lg:text-3xl font-bold font-red-hat text-gray-800 uppercase">
                 Frequently Asked Questions
               </h2>
               <p className="text-gray-600 text-base font-rubik leading-7">

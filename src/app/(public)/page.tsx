@@ -9,11 +9,6 @@ import PlatformSection from "@/presentation/components/organisms/landing-page/Pl
 import FAQSection from "@/presentation/components/organisms/landing-page/FAQSection";
 import LandingFooter from "@/presentation/components/organisms/landing-page/LandingFooter";
 
-export const metadata = {
-  title: "Florida Exam Prep - Pass Your Contractor Exam First Try",
-  description:
-    "Get approved in your Florida State Contractor Exam on the first try. Expert-guided courses, practice tests, and personal coaching guarantee.",
-};
 
 export default function Home() {
   return (
@@ -22,29 +17,29 @@ export default function Home() {
       <main>
         {/* 1. Hero */}
         <HeroSection />
-        
+
         {/* 2. Course Section */}
         <CourseCards />
-        
+
         {/* 3. 5 Pillars */}
         <PillarsSection />
-        
+
         {/* 4. Screenshots WhatsApp dos Profissionais */}
         <ScreenshotsTestimonialsSection />
-        
+
         {/* 5. Book Section */}
         <BookSection />
-        
+
         {/* 6. Feedback dos Estudantes (vídeos e agradecimentos) */}
         <WrittenTestimonials />
-        
+
         {/* 7. Stop Studying Alone */}
         <PlatformSection />
-        
+
         {/* 8. Perguntas Frequentes */}
         <FAQSection />
       </main>
-      
+
       {/* 9. Footer */}
       <LandingFooter />
     </div>

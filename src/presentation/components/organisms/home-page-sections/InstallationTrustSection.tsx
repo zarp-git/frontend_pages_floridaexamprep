@@ -6,7 +6,7 @@ export const InstallationTrustSection = () => {
   return (
     <section id="installation-trust" className="py-10 sm:py-14 md:py-20 bg-white">
       <div className="section-container flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
-        <h2 className="text-foreground text-2xl sm:text-3xl font-black font-hanken uppercase leading-tight tracking-wide text-center">
+        <h2 className="text-foreground text-2xl sm:text-3xl font-black font-red-hat uppercase leading-tight tracking-wide text-center">
           installation you can trust
         </h2>
 
@@ -24,7 +24,7 @@ export const InstallationTrustSection = () => {
           {/* Text Content */}
           <div className="flex-1 flex flex-col justify-start items-start gap-7">
             <div className="flex flex-col justify-start items-start gap-4">
-              <h3 className="text-foreground text-xl font-bold font-hanken uppercase leading-tight tracking-tight">
+              <h3 className="text-foreground text-xl font-bold font-red-hat uppercase leading-tight tracking-tight">
                 Built to Handle the Pressure
               </h3>
               <div className="text-muted-foreground text-base font-normal font-rubik leading-6">

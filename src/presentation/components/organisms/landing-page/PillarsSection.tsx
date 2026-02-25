@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 interface Pillar {
   number: string;
@@ -81,12 +82,13 @@ export default function PillarsSection() {
       <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* Heading */}
         <div className="flex flex-col justify-start items-center gap-3 sm:gap-4 px-2">
-          <h2 className="text-center text-sky-950 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat-display uppercase leading-tight">
+          <h2 className="text-center text-sky-950 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
             THE 5 PILLARS THAT TURN CANDIDATES INTO LICENSED CONTRACTORS:
           </h2>
           <p className="text-center text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl font-normal font-rubik leading-relaxed max-w-4xl">
-            Most contractors fail not because they lack skill — but because they had no plan. They
-            studied hard. They showed up on exam day. And still walked out without a passing score.
+            Most contractors fail not because they lack skill — but because they
+            had no plan. They studied hard. They showed up on exam day. And
+            still walked out without a passing score.
             <br className="hidden sm:block" />
             You won't.
           </p>
@@ -95,7 +97,10 @@ export default function PillarsSection() {
         {/* Pillars List */}
         <div className="w-full flex flex-col justify-start items-center gap-4 sm:gap-6">
           {PILLARS.map((pillar) => (
-            <div key={pillar.number} className="w-full pt-3 sm:pt-4 flex justify-start items-start gap-3 sm:gap-6 md:gap-8">
+            <div
+              key={pillar.number}
+              className="w-full pt-3 sm:pt-4 flex justify-start items-start gap-3 sm:gap-6 md:gap-8"
+            >
               <PillarIcon icon={pillar.icon} />
               <div className="flex-1 flex flex-col justify-start items-start gap-1 sm:gap-2">
                 <h3 className="text-neutral-800 text-sm sm:text-base font-bold font-rubik leading-tight">
@@ -116,22 +121,23 @@ export default function PillarsSection() {
                 YOUR APPROVAL
               </h3>
               <p className="text-neutral-800 text-base sm:text-lg md:text-xl lg:text-2xl font-normal font-rubik leading-relaxed">
-                You've seen what holds most people back. You know what it takes to pass. Now it's
-                time to decide: keep guessing, or follow the proven path.
+                You've seen what holds most people back. You know what it takes
+                to pass. Now it's time to decide: keep guessing, or follow the
+                proven path.
               </p>
             </div>
           </div>
         </div>
 
         {/* CTA Button */}
-        <PrimaryButton 
-          variant="blue-solid" 
+        <PrimaryButton
+          variant="blue-solid"
           size="lg"
           icon={<ArrowUpRight className="w-5 h-5" />}
           iconPosition="right"
           className="w-full sm:w-auto mt-2 sm:mt-4"
         >
-          get THAT +90 GRADE now
+          {CTA_TEXT}
         </PrimaryButton>
       </div>
     </section>
