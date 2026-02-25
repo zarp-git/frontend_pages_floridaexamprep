@@ -27,9 +27,9 @@ const PandaVideoPlayerComponent = ({
   onPause,
   onEnded,
 }: PandaVideoPlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isMuted, setIsMuted] = useState(muted);
-  const [showMutedIndicator, setShowMutedIndicator] = useState(muted);
+  const [showMutedIndicator, setShowMutedIndicator] = useState(muted && !autoPlay);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -40,6 +40,7 @@ const PandaVideoPlayerComponent = ({
 
     const handlePlay = () => {
       setIsPlaying(true);
+      setShowMutedIndicator(false);
       onPlay?.();
     };
 
@@ -94,17 +95,26 @@ const PandaVideoPlayerComponent = ({
 
     try {
       setIsLoading(true);
-      video.currentTime = 0;
-      video.muted = false;
-      setIsMuted(false);
-      setShowMutedIndicator(false);
-      await video.play();
-      requestFullscreen(video);
+      
+      // Se o vídeo estiver mutado, apenas desmuta e reproduz
+      if (isMuted) {
+        video.muted = false;
+        setIsMuted(false);
+        setShowMutedIndicator(false);
+        
+        if (video.paused) {
+          await video.play();
+        }
+      } else {
+        // Se não estiver mutado, apenas play/pause
+        if (video.paused) {
+          await video.play();
+        } else {
+          video.pause();
+        }
+      }
     } catch (error) {
       console.warn("Erro ao reproduzir vídeo:", error);
-      if (error instanceof Error && error.name !== 'AbortError') {
-        requestFullscreen(video);
-      }
     } finally {
       setIsLoading(false);
     }

@@ -162,6 +162,8 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
             className="w-full h-full"
             controls
             muted
+            autoPlay
+            loop
           />
         </div>
       </div>

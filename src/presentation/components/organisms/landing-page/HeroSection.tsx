@@ -3,6 +3,14 @@
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
+import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
+import Image from "next/image";
+
+const EXAM_TYPES = [
+  "BUSINESS & FINANCE",
+  "CONTRACT ADMINISTRATION",
+  "PROJECT MANAGEMENT",
+];
 
 export default function HeroSection() {
   return (
@@ -13,53 +21,71 @@ export default function HeroSection() {
           {/* Heading Section */}
           <div className="flex flex-col justify-center items-center gap-4 sm:gap-6 w-full">
             {/* Title */}
-            <div className="flex flex-col justify-start items-center gap-2 w-full px-2">
-              {/* First Line */}
+            <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 w-full px-2">
+              {/* First Line with Cycling Animation */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
-                <div className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat-display leading-tight tracking-wide">
+                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide">
                   You Pass
-                </div>
-                <div className="text-secondary text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black font-hanken-grotesk leading-tight tracking-wide uppercase">
-                  BUSINESS & FINANCE
-                </div>
+                </span>
+                <span className="text-[#FF6200] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-hanken-grotesk leading-tight tracking-wide uppercase">
+                  <CyclingText items={EXAM_TYPES} interval={3000} direction="up" />
+                </span>
               </div>
 
-              {/* Second Line with highlight */}
-              <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center relative">
-                <div className="relative flex justify-center items-center gap-2">
-                  {/* Yellow highlight - hidden on mobile, visible on larger screens */}
-                  <div className="hidden md:block w-32 lg:w-40 h-9 lg:h-11 absolute left-[140px] lg:left-[194px] top-[-6px] outline outline-4 outline-offset-[-2px] outline-yellow-400 rounded-sm" />
-                  <div className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat-display leading-tight tracking-wide">
-                    Exam on the
-                  </div>
-                </div>
-                <div className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat-display leading-tight tracking-wide">
-                  First Try
-                </div>
+              {/* Second Line with circle marker */}
+              <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
+                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide">
+                  Exam on the
+                </span>
+                <span className="relative inline-block text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat-display leading-tight tracking-wide px-2">
+                  <span className="relative z-10">First Try</span>
+                  {/* Circle marker PNG - positioned absolutely behind text */}
+                  <span className="absolute inset-0 flex items-center justify-center -z-10">
+                    <Image
+                      src="/images/hero/circle-marker.png"
+                      alt=""
+                      width={200}
+                      height={80}
+                      className="w-auto h-full max-h-[120%] object-contain"
+                      aria-hidden="true"
+                      priority
+                    />
+                  </span>
+                </span>
               </div>
             </div>
 
-            {/* Subtitle with underline */}
-            <div className="flex flex-wrap justify-center items-center gap-1 text-center px-2">
-              <div className="text-black text-base sm:text-lg md:text-xl font-medium font-red-hat-display leading-tight tracking-tight">
+            {/* Subtitle with line marker */}
+            <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 text-center px-2">
+              <span className="text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat-display leading-tight tracking-tight">
                 Or I&apos;ll Coach You Personally
-              </div>
-              <div className="relative flex justify-center items-center gap-2">
-                {/* Yellow marker underline - adjusted for mobile */}
-                <div className="w-24 sm:w-28 md:w-32 h-1.5 absolute left-0 top-[12px] sm:top-[14px] mix-blend-multiply outline outline-[12px] sm:outline-[16px] outline-offset-[-6px] sm:outline-offset-[-8px] outline-yellow-400" />
-                <div className="text-black text-base sm:text-lg md:text-xl font-medium font-red-hat-display leading-tight tracking-tight">
-                  Until You Do
-                </div>
-              </div>
+              </span>
+              <span className="relative inline-block text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat-display leading-tight tracking-tight px-1">
+                <span className="relative z-10">Until You Do</span>
+                {/* Line marker PNG - positioned at bottom */}
+                <span className="absolute bottom-0 left-0 right-0 flex items-end justify-center -z-10 h-3 sm:h-4">
+                  <Image
+                    src="/images/hero/line-marker.png"
+                    alt=""
+                    width={160}
+                    height={20}
+                    className="w-full h-auto object-contain"
+                    aria-hidden="true"
+                    priority
+                  />
+                </span>
+              </span>
             </div>
 
             {/* Video */}
-            <div className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2">
+            <div className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2 mt-4 sm:mt-6">
               <PandaVideoPlayer
                 src="/images/hero/hero-video-thumbnail.mp4"
                 className="w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
                 controls
                 muted
+                autoPlay
+                loop
               />
             </div>
 
