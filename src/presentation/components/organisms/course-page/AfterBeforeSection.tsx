@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function AfterBeforeSection() {
   const beforeFeatures = [
     "You open the books on a Sunday night after a full week on the job site.",
@@ -20,92 +22,153 @@ export default function AfterBeforeSection() {
   ];
 
   return (
-    <div className="w-full px-28 py-16 bg-white flex flex-col justify-start items-center gap-8 overflow-hidden">
-      <div className="self-stretch flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col justify-start items-start gap-4">
-          <div className="w-20 h-5 bg-orange-600 outline outline-[0.49px] outline-orange-600" />
-          <div className="size-5 origin-top-left rotate-[-9.81deg] bg-orange-600 outline outline-[0.49px] outline-orange-600" />
-          <div className="w-48 h-5 bg-blue-950" />
-          <div className="w-32 h-3.5 bg-blue-950" />
-          <div className="w-14 h-3.5 bg-blue-950" />
-          <div className="w-6 h-3.5 origin-top-left rotate-[-8.29deg] bg-stone-50 outline outline-[1.25px] outline-offset-[-0.63px] outline-orange-600" />
+    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 bg-white flex flex-col justify-start items-center gap-8 overflow-hidden">
+      {/* Header */}
+      <div className="self-stretch flex flex-col justify-center items-center ">
+        {/* Logo */}
+        <div className="flex justify-center items-center ">
+          <Image
+            src="/images/logo/logofooter.svg"
+            alt="Florida Exam Prep"
+            width={200}
+            height={60}
+            className="h-30 w-auto"
+          />
         </div>
-        <div className="text-center">
-          <span className="text-gray-800 text-3xl font-black font-['Hanken_Grotesk'] uppercase leading-7 tracking-wide">
+        
+        {/* Title */}
+        <h2 className="text-center">
+          <span className="text-gray-800 text-2xl sm:text-3xl font-black font-hanken uppercase leading-7 tracking-wide">
             AFTER AND BEFORE YOU{" "}
           </span>
-          <span className="text-secondary text-3xl font-black font-['Hanken_Grotesk'] uppercase leading-7 tracking-wide">
+          <span className="text-[#FF6200] text-2xl sm:text-3xl font- font-hanken uppercase leading-7 tracking-wide">
             JOIN IN
           </span>
-        </div>
-        <div className="text-center text-gray-600 text-base font-normal font-['Rubik'] leading-6">
+        </h2>
+        
+        {/* Subtitle */}
+        <p className="text-center text-gray-600 text-base font-normal font-rubik leading-6 max-w-2xl">
           Most contractors who fail aren&apos;t bad at their job. They just had no guidance for the Exam.
-        </div>
+        </p>
       </div>
       
-      <div className="self-stretch inline-flex justify-start items-start gap-5">
-        <div className="flex-1 px-1 rounded-[10px] inline-flex flex-col justify-start items-start gap-8 overflow-hidden">
-          <div className="self-stretch flex-1 p-6 bg-zinc-100 flex flex-col justify-center items-center gap-8">
-            <div className="w-80 h-64 relative overflow-hidden">
-              <div className="left-[247.19px] top-[41.25px] absolute text-white text-5xl font-bold">
-                🚫
-              </div>
+      {/* Two Columns */}
+      <div className="self-stretch grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {/* Left Column - Before */}
+        <div className="flex-1 px-1 rounded-[10px] flex flex-col justify-start items-start overflow-hidden">
+          <div className="self-stretch h-full p-6 bg-zinc-100 rounded-lg flex flex-col justify-start items-center gap-8">
+            {/* Image with blocked icon */}
+            <div className="w-full max-w-sm h-64 relative overflow-hidden">
+              <Image
+                src="/images/courses/frustated-attempt-image.png"
+                alt="Frustrated attempt"
+                fill
+                className="object-contain"
+              />
             </div>
-            <div className="text-accent-1 text-xl font-bold font-['Arial'] leading-7 tracking-wide">
-              YOU PAY FOR EACH FRUSTADED ATTEMPT
-            </div>
-            <div className="self-stretch inline-flex flex-col justify-start items-start">
+            
+            {/* Title */}
+            <h3 className="text-accent-1 text-xl font-bold font-arial leading-7 tracking-wide text-center">
+              YOU PAY FOR EACH FRUSTRATED ATTEMPT
+            </h3>
+            
+            {/* Features - 2 columns grid */}
+            <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 gap-6">
               {beforeFeatures.map((feature, index) => (
                 <div
                   key={index}
-                  className="self-stretch inline-flex flex-col justify-center items-center gap-3"
+                  className="flex flex-col justify-start items-center gap-3"
                 >
-                  <div className="size-12 bg-red-50 rounded-full inline-flex justify-center items-center">
-                    <div className="size-7 relative overflow-hidden">
-                      <div className="size-3.5 left-[7px] top-[7px] absolute outline outline-4 outline-offset-[-1.75px] outline-red-500" />
-                      <div className="size-3.5 left-[7px] top-[7px] absolute outline outline-4 outline-offset-[-1.75px] outline-red-500" />
-                    </div>
+                  {/* Icon */}
+                  <div className="size-12 bg-red-50 rounded-full flex justify-center items-center flex-shrink-0">
+                    <Image
+                      src="/images/svg/red-x-uncheck.svg"
+                      alt="Not included"
+                      width={28}
+                      height={28}
+                      className="object-contain"
+                    />
                   </div>
-                  <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Hanken_Grotesk'] leading-4 tracking-tight">
+                  
+                  {/* Text */}
+                  <p className="text-center text-gray-900 text-base sm:text-lg font-medium font-hanken leading-snug tracking-tight">
                     {feature}
-                  </div>
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
         
-        <div className="flex-1 bg-white/0 rounded-[10px] inline-flex flex-col justify-end items-center gap-8 overflow-hidden">
-          <div className="self-stretch p-6 relative bg-zinc-100 flex flex-col justify-end items-center gap-8">
-            <div className="w-80 h-64 relative overflow-hidden">
-              <div className="left-[247.19px] top-[41.25px] absolute text-white text-5xl font-bold">
-                ✅
+        {/* Right Column - After */}
+        <div className="flex-1 rounded-[10px] flex flex-col justify-start items-center overflow-hidden">
+          <div className="self-stretch h-full p-6 relative bg-zinc-100 rounded-lg flex flex-col justify-start items-center gap-8">
+            {/* Image with confirm icon */}
+            <div className="w-full max-w-sm h-64 relative overflow-hidden" >
+              <Image
+                src="/images/courses/platform-banner.png"
+                alt="Pass first try"
+                fill
+                className="object-contain"
+              />
+              {/* Confirm icon overlay */}
+              <div className="absolute top-10 right-12  ">
+                <Image
+                  src="/images/svg/confirm.svg"
+                  alt="Confirmed"
+                  width={50}
+                  height={50}
+                  className="object-contain"
+                />
               </div>
             </div>
-            <div className="text-blue-950 text-xl font-bold font-['Arial'] leading-7 tracking-wide">
-              YOU PASS THE FIRST TRY
+            
+            {/* Title with marker */}
+            <div className="relative inline-block">
+              <h3 className="text-blue-950 text-xl font-bold font-arial leading-7 tracking-wide text-center">
+                YOU PASS THE{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10">FIRST TRY</span>
+                  {/* Yellow line marker under "FIRST TRY" */}
+                  <Image
+                    src="/images/hero/line-marker.png"
+                    alt=""
+                    width={120}
+                    height={12}
+                    className="absolute left-0 -bottom-[-4px] w-full h-auto pointer-events-none z-0 top-3"
+                  />
+                </span>
+              </h3>
             </div>
-            <div className="self-stretch inline-flex flex-col justify-start items-start">
+            
+            {/* Features - 2 columns grid */}
+            <div className="self-stretch grid grid-cols-1 sm:grid-cols-2 gap-6">
               {afterFeatures.map((feature, index) => (
                 <div
                   key={index}
-                  className="self-stretch inline-flex flex-col justify-center items-center gap-3"
+                  className="flex flex-col justify-start items-center gap-3"
                 >
-                  <div className="size-12 bg-green-50 rounded-full inline-flex justify-center items-center">
-                    <div className="size-7 relative overflow-hidden">
-                      <div className="w-5 h-3 left-[4.67px] top-[7px] absolute outline outline-4 outline-offset-[-1.75px] outline-green-600" />
-                    </div>
+                  {/* Icon */}
+                  <div className="size-12 bg-green-50 rounded-full flex justify-center items-center flex-shrink-0">
+                    <Image
+                      src="/images/svg/green-check.svg"
+                      alt="Included"
+                      width={28}
+                      height={28}
+                      className="object-contain"
+                    />
                   </div>
-                  <div className="self-stretch text-center text-gray-900 text-lg font-medium font-['Hanken_Grotesk'] leading-4 tracking-tight">
+                  
+                  {/* Text */}
+                  <p className="text-center text-gray-900 text-base sm:text-lg font-medium font-hanken leading-snug tracking-tight">
                     {feature}
-                  </div>
+                  </p>
                 </div>
               ))}
             </div>
-            <div className="w-32 h-1.5 left-[327px] top-[329.65px] absolute mix-blend-multiply outline outline-[16px] outline-offset-[-8px] outline-yellow-400" />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
