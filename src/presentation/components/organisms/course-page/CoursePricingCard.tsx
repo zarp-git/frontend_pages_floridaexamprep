@@ -104,11 +104,13 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
               key={index}
               className="w-full bg-zinc-950/50 rounded-2xl border border-white/20 flex flex-col overflow-hidden"
             >
-              {/* Badge - Fixed at top */}
-              <div className={`w-full px-8 sm:px-12 py-3 sm:py-4 ${tier.badge.color} flex justify-center items-center`}>
-                <h3 className="text-white text-lg sm:text-xl font-semibold font-rubik text-center">
-                  {tier.badge.text}
-                </h3>
+              {/* Badge - Centered with rounded bottom corners */}
+              <div className="w-full flex justify-center pt-0">
+                <div className={`px-8 sm:px-12 py-3 sm:py-4 ${tier.badge.color} rounded-bl-[20px] rounded-br-[20px] inline-flex justify-center items-center`}>
+                  <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold font-rubik text-center">
+                    {tier.badge.text}
+                  </h3>
+                </div>
               </div>
               
               {/* Card Content */}
