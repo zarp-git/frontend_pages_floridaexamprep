@@ -82,7 +82,7 @@ export default function AfterBeforeSection() {
                   {/* Icon */}
                   <div className="size-12 bg-red-50 rounded-full flex justify-center items-center flex-shrink-0">
                     <Image
-                      src="/images/svg/red-x-uncheck.svg"
+                      src="/images/svg/IconRed.svg"
                       alt="Not included"
                       width={28}
                       height={28}
@@ -151,7 +151,7 @@ export default function AfterBeforeSection() {
                   {/* Icon */}
                   <div className="size-12 bg-green-50 rounded-full flex justify-center items-center flex-shrink-0">
                     <Image
-                      src="/images/svg/green-check.svg"
+                      src="/images/svg/IconCheck.svg"
                       alt="Included"
                       width={28}
                       height={28}
