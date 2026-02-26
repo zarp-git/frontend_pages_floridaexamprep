@@ -196,19 +196,13 @@ function StarRating({ rating }: { rating: number }) {
 
 function BlueCheckmark() {
   return (
-    <div className="relative w-5 h-5 flex-shrink-0">
-      <div className="absolute inset-0 bg-blue-400 rounded-full" />
-      <div className="absolute inset-[3.75px] bg-blue-600 rounded-full" />
-      <svg className="absolute inset-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
-        <path
-          d="M7.5 10.5L9.5 12.5L12.5 8.5"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
+    <Image
+      src="/images/svg/blue-check.svg"
+      alt="Verified"
+      width={20}
+      height={20}
+      className="w-5 h-5"
+    />
   );
 }
 
@@ -247,14 +241,18 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       {/* Profile */}
       <div className="flex flex-col gap-2 sm:gap-3.5">
         <div className="flex items-center gap-3 sm:gap-4">
-          <Image
-            src={testimonial.avatar}
-            alt={testimonial.studentName}
-            width={48}
-            height={48}
-            className="rounded-full w-12 h-12 sm:w-16 sm:h-16"
-          />
-          <BlueCheckmark />
+          <div className="relative">
+            <Image
+              src={testimonial.avatar}
+              alt={testimonial.studentName}
+              width={48}
+              height={48}
+              className="rounded-full w-12 h-12 sm:w-16 sm:h-16"
+            />
+            <div className="absolute -bottom-0.5 -right-0.5">
+              <BlueCheckmark />
+            </div>
+          </div>
           <div className="flex-1 flex flex-col gap-0.5 sm:gap-1">
             <p className="text-black text-sm sm:text-base font-normal font-rubik capitalize">
               {testimonial.studentName}
