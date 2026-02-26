@@ -85,8 +85,8 @@ export default function HeroSection() {
                 className="w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
                 controls
                 muted
-                autoPlay
-                loop
+                autoPlay={false}
+                loop={false}
               />
             </div>
 

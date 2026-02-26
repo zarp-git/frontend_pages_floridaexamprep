@@ -88,7 +88,7 @@ export default function PlatformSection() {
           {/* Right Image */}
           <div className="w-full lg:w-1/2 max-w-2xl h-64 sm:h-80 md:h-96 lg:h-[512px] relative rounded-lg overflow-hidden">
             <Image
-              src="/images/platform-banner.png"
+              src="/images/courses/platform-banner.png"
               alt="Platform preview"
               fill
               className="object-cover"

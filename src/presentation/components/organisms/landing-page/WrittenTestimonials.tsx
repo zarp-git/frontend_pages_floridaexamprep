@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, MoreHorizontal } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
@@ -19,7 +20,7 @@ interface Testimonial {
 }
 
 const TESTIMONIALS: Testimonial[][] = [
-  // Row 1
+  // Row 1 - Mix of video and written
   [
     {
       id: "video-1",
@@ -27,7 +28,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/videostudant/videostudant.mp4",
+      video: "/images/testimonials/videostudant/videostudant.mp4",
       rating: 5,
     },
     {
@@ -42,18 +43,16 @@ const TESTIMONIALS: Testimonial[][] = [
       text: "Today I passed my business and finance exam. Best wishes to everyone else! I watched all the videos, took practice exams multiple times until I was consistently scoring 100%. The course helped me get familiar with navigating each book.",
     },
     {
-      id: "3",
-      type: "written",
-      studentName: "David Martin",
+      id: "video-2",
+      type: "video",
+      studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      image:
-        "/images/testimonials/screenshots/floridaexamprep_testimonial_danielpryor.jpg",
+      video: "/images/testimonials/videostudant/videostudanttwo.mp4",
       rating: 5,
-      text: "1 test checked off! I passed my business and finance today!!!",
     },
   ],
-  // Row 2
+  // Row 2 - Mix of written and video
   [
     {
       id: "4",
@@ -67,6 +66,15 @@ const TESTIMONIALS: Testimonial[][] = [
       text: "Passed Business & Finance Exam! I can't thank Cruz enough for his guidance and this amazing course he created! Ended the year right! Happy New Year to you all!",
     },
     {
+      id: "video-3",
+      type: "video",
+      studentName: "Student Video",
+      examType: "Business & Finance Exam",
+      avatar: "/images/logo/skool-logo.png",
+      video: "/images/testimonials/videostudant/floridaexamprep_testimonial_video 2.mp4",
+      rating: 5,
+    },
+    {
       id: "5",
       type: "written",
       studentName: "Tyler Cook",
@@ -77,6 +85,9 @@ const TESTIMONIALS: Testimonial[][] = [
       rating: 5,
       text: "Winnnnn! Thanks to Cruz and thanks to this community I have accomplished something I really wanted to leave in 2025 and I did it thanks to everyone! You guys got this!",
     },
+  ],
+  // Row 3 - Mix of written and video
+  [
     {
       id: "6",
       type: "written",
@@ -88,9 +99,6 @@ const TESTIMONIALS: Testimonial[][] = [
       rating: 5,
       text: "Passed all 3! Just finished all 3 of my exams for the GC license. Seriously couldn't have done it without Cruz's course & the community behind it. Would recommend his course to everyone!",
     },
-  ],
-  // Row 3
-  [
     {
       id: "7",
       type: "written",
@@ -101,6 +109,27 @@ const TESTIMONIALS: Testimonial[][] = [
         "/images/testimonials/screenshots/floridaexamprep_testimonial_javierrodriguez.jpg",
       rating: 5,
       text: "Passed!! If you're struggling with studying or feel like quitting... don't. I stepped away for almost two months because of personal issues. Came back, finished the remaining chapters, and passed. Grateful for Cruz's help and his CRAM course!",
+    },
+    {
+      id: "video-4",
+      type: "video",
+      studentName: "Student Video",
+      examType: "Business & Finance Exam",
+      avatar: "/images/logo/skool-logo.png",
+      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 3.mp4",
+      rating: 5,
+    },
+  ],
+  // Row 4 - Hidden initially (Load More)
+  [
+    {
+      id: "video-5",
+      type: "video",
+      studentName: "Student Video",
+      examType: "Business & Finance Exam",
+      avatar: "/images/logo/skool-logo.png",
+      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 4.mp4",
+      rating: 5,
     },
     {
       id: "1",
@@ -114,12 +143,35 @@ const TESTIMONIALS: Testimonial[][] = [
       text: "PASSED THE BUSINESS AND FINANCE EXAM! Thank you Cruz for this course because it has helped me tremendously!",
     },
     {
-      id: "video-2",
+      id: "video-6",
       type: "video",
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/videostudant/videostudanttwo.mp4",
+      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 5.mp4",
+      rating: 5,
+    },
+  ],
+  // Row 5 - Hidden initially (Load More)
+  [
+    {
+      id: "8",
+      type: "written",
+      studentName: "Joel Kennedy",
+      examType: "Business & Finance Exam",
+      avatar: "/images/logo/skool-logo.png",
+      image:
+        "/images/testimonials/screenshots/floridaexamprep_testimonial_joelkennedy.jpg",
+      rating: 5,
+      text: "Passed my Business & Finance exam! The course material was comprehensive and Cruz's teaching style made complex topics easy to understand.",
+    },
+    {
+      id: "video-7",
+      type: "video",
+      studentName: "Student Video",
+      examType: "Business & Finance Exam",
+      avatar: "/images/logo/skool-logo.png",
+      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 6.mp4",
       rating: 5,
     },
   ],
@@ -170,8 +222,8 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
             className="w-full h-full"
             controls
             muted
-            autoPlay
-            loop
+            autoPlay={false}
+            loop={false}
           />
         </div>
       </div>
@@ -226,6 +278,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 }
 
 export default function WrittenTestimonials() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleRows = showAll ? TESTIMONIALS : TESTIMONIALS.slice(0, 3);
+
   return (
     <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6 sm:gap-8">
@@ -246,7 +301,7 @@ export default function WrittenTestimonials() {
 
         {/* Testimonials Grid */}
         <div className="w-full flex flex-col gap-4 sm:gap-6">
-          {TESTIMONIALS.map((row, rowIndex) => (
+          {visibleRows.map((row, rowIndex) => (
             <div
               key={rowIndex}
               className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8"
@@ -272,15 +327,18 @@ export default function WrittenTestimonials() {
           >
             {CTA_TEXT}
           </PrimaryButton>
-          <PrimaryButton
-            variant="outline"
-            size="lg"
-            icon={<MoreHorizontal className="w-5 h-5" />}
-            iconPosition="right"
-            className="w-full sm:w-auto"
-          >
-            Load More
-          </PrimaryButton>
+          {!showAll && (
+            <PrimaryButton
+              variant="outline"
+              size="lg"
+              icon={<MoreHorizontal className="w-5 h-5" />}
+              iconPosition="right"
+              className="w-full sm:w-auto"
+              onClick={() => setShowAll(true)}
+            >
+              Load More
+            </PrimaryButton>
+          )}
         </div>
       </div>
     </section>
