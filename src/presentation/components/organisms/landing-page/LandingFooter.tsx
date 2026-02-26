@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
-import { CTA_TEXT } from "@/constants";
+import { CTA_TEXT, SOCIAL_LINKS, CONTACT } from "@/constants";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 const COMPANY_LINKS = [
@@ -134,10 +134,10 @@ export default function LandingFooter() {
                       </div>
                       <div className="pb-[0.80px]">
                         <Link
-                          href="tel:+14436956218"
+                          href={CONTACT.phoneHref}
                           className="text-neutral-800 text-2xl font-semibold font-poppins leading-5 hover:text-[#0866FF] transition-colors"
                         >
-                          + 1 443 695-6218
+                          {CONTACT.phoneDisplay}
                         </Link>
                       </div>
                     </div>
@@ -245,7 +245,7 @@ export default function LandingFooter() {
               <div className="flex items-center gap-6">
                 {/* Instagram */}
                 <Link
-                  href="https://www.instagram.com/floridaexamprep/"
+                  href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
@@ -261,7 +261,7 @@ export default function LandingFooter() {
 
                 {/* Facebook */}
                 <Link
-                  href="https://www.facebook.com/floridaexamprep/"
+                  href={SOCIAL_LINKS.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
@@ -277,14 +277,30 @@ export default function LandingFooter() {
 
                 {/* YouTube */}
                 <Link
-                  href="https://www.youtube.com/@floridaexamprep"
+                  href={SOCIAL_LINKS.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
                   <Image
-                    src="/images/brands/youtubeicon.png"
+                    src="/images/svg/youtubeicon.svg"
                     alt="YouTube"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10"
+                  />
+                </Link>
+
+                {/* WhatsApp */}
+                <Link
+                  href={SOCIAL_LINKS.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <Image
+                    src="/images/svg/whatsapp-icon.svg"
+                    alt="WhatsApp"
                     width={40}
                     height={40}
                     className="w-10 h-10"

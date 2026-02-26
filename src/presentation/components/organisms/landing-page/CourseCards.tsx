@@ -87,19 +87,13 @@ const COURSES: Course[] = [
 
 function CheckIcon() {
   return (
-    <div className="relative w-5 h-5 flex-shrink-0 rounded-full overflow-hidden">
-      <div className="absolute inset-0 bg-emerald-300" />
-      <div className="absolute inset-[3.75px] bg-emerald-500 rounded-full" />
-      <svg className="absolute inset-0 w-5 h-5" viewBox="0 0 20 20" fill="none">
-        <path
-          d="M7.5 10.5L9.5 12.5L12.5 8.5"
-          stroke="white"
-          strokeWidth="0.62"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
+    <Image
+      src="/images/svg/green-check.svg"
+      alt="Included"
+      width={20}
+      height={20}
+      className="w-5 h-5 flex-shrink-0"
+    />
   );
 }
 

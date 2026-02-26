@@ -15,17 +15,18 @@ export const SITE_CONFIG = {
 // Social media links
 export const SOCIAL_LINKS = {
 	instagram: "https://www.instagram.com/floridaexamprep/",
-	facebook:
-		"https://www.facebook.com/floridaexamprep/",
+	facebook: "https://www.facebook.com/people/Florida-Exam-Prep/61577610429350/",
+	youtube: "https://www.youtube.com/@Cruzvinci",
+	whatsapp: "https://wa.me/14436956218",
 	googleMaps: "https://www.google.com/maps/place/Florida+Exam+Prep",
 } as const;
 
 // Contact information used across the site
 export const CONTACT = {
 	email: "contact@floridaexamprep.com",
-	phoneDisplay: "+1 407-818-7876",
-	phoneHref: "tel:+14078187876",
-	phoneRaw: "+14078187876",
+	phoneDisplay: "+1 443 695-6218",
+	phoneHref: "tel:+14436956218",
+	phoneRaw: "+14436956218",
 	hours: "Mon-Sat: 9:00 AM - 5:00 PM",
 } as const;
 

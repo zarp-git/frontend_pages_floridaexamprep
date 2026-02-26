@@ -241,6 +241,40 @@ export default function Footer({ variant = "default" }: FooterProps) {
                 </li>
                 <li>
                   <Link
+                    href={SOCIAL_LINKS.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow us on YouTube"
+                    className="transition-transform hover:scale-110 block"
+                  >
+                    <Image
+                      src="/images/svg/youtubeicon.svg"
+                      alt="YouTube"
+                      width={40}
+                      height={40}
+                      className="w-10 h-10"
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={SOCIAL_LINKS.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Contact us on WhatsApp"
+                    className="transition-transform hover:scale-110 block"
+                  >
+                    <Image
+                      src="/images/svg/whatsapp-icon.svg"
+                      alt="WhatsApp"
+                      width={40}
+                      height={40}
+                      className="w-10 h-10"
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href={SOCIAL_LINKS.googleMaps}
                     target="_blank"
                     rel="noopener noreferrer"
