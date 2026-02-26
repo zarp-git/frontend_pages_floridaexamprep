@@ -5,12 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 interface NavItem {
   label: string;
   href: string;
   hasDropdown?: boolean;
   dropdownItems?: { label: string; href: string }[];
+  isMaintenance?: boolean;
 }
 
 interface NavigationProps {
@@ -23,6 +25,7 @@ export default function Navigation({ navItems, className }: NavigationProps) {
   const [activeSection, setActiveSection] = useState<string>("");
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const { openModal } = useMaintenanceModal();
 
   // Detect active section via IntersectionObserver (for anchor links on home page)
   useEffect(() => {
@@ -157,24 +160,40 @@ export default function Navigation({ navItems, className }: NavigationProps) {
               </>
             ) : (
               /* Regular Link */
-              <Link
-                href={item.href}
-                className={cn(
-                  "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
-                  isActive
-                    ? "text-blue-600"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                )}
-              >
-                {item.label}
-                {/* Active indicator bar */}
-                <span
+              item.isMaintenance ? (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openModal();
+                  }}
                   className={cn(
-                    "absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out",
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                    "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
+                    "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   )}
-                />
-              </Link>
+                >
+                  {item.label}
+                  <span className="absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out w-0 group-hover:w-full" />
+                </button>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
+                    isActive
+                      ? "text-blue-600"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                  )}
+                >
+                  {item.label}
+                  {/* Active indicator bar */}
+                  <span
+                    className={cn(
+                      "absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out",
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                  />
+                </Link>
+              )
             )}
           </div>
         );

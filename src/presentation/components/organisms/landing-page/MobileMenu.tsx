@@ -7,12 +7,14 @@ import { ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
+import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 interface NavItem {
   label: string;
   href: string;
   hasDropdown?: boolean;
   dropdownItems?: { label: string; href: string }[];
+  isMaintenance?: boolean;
 }
 
 interface MobileMenuProps {
@@ -25,6 +27,7 @@ export default function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProp
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
   const pathname = usePathname();
+  const { openModal } = useMaintenanceModal();
 
   useEffect(() => {
     if (isOpen) {
@@ -155,6 +158,20 @@ export default function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProp
                           </ul>
                         )}
                       </>
+                    ) : item.isMaintenance ? (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openModal();
+                          onClose();
+                        }}
+                        className={cn(
+                          "w-full text-left px-4 py-3 rounded-lg text-base font-rubik transition-all duration-200",
+                          "text-gray-700 hover:bg-gray-50"
+                        )}
+                      >
+                        {item.label}
+                      </button>
                     ) : (
                       <Link
                         href={item.href}

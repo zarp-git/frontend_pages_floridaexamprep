@@ -15,6 +15,7 @@ interface NavItem {
   href: string;
   hasDropdown?: boolean;
   dropdownItems?: { label: string; href: string }[];
+  isMaintenance?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -40,7 +41,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: "Quizzes", href: "/quizzes" },
-  { label: "Tutoring Call", href: "/tutoring" },
+  { label: "Win Board", href: "#", isMaintenance: true },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
 ];

@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
+import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 const COMPANY_LINKS = [
   { label: "About us", href: "/about" },
@@ -12,7 +15,7 @@ const COMPANY_LINKS = [
 ];
 
 const COURSE_LINKS = [
-  { label: "Exclusive tutoring call", href: "/tutoring" },
+  { label: "Win Board", href: "#", isMaintenance: true },
   { label: "Business And Finance", href: "/courses/business-finance" },
   { label: "Contract Adminstration", href: "/courses/contract-admin" },
   { label: "Project Management", href: "/courses/project-management" },
@@ -31,6 +34,8 @@ const BOOK_LINKS = [
 ];
 
 export default function LandingFooter() {
+  const { openModal } = useMaintenanceModal();
+
   return (
     <footer className="w-full bg-white">
       <div className="px-4 md:px-28 pt-16 flex flex-col gap-12">
@@ -186,15 +191,28 @@ export default function LandingFooter() {
                 </h3>
                 <div className="w-10 h-0.5 bg-orange-600 rounded-lg" />
               </div>
-              {COURSE_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-700 text-base font-normal font-rubik hover:text-gray-900"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {COURSE_LINKS.map((link) => 
+                link.isMaintenance ? (
+                  <button
+                    key={link.label}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openModal();
+                    }}
+                    className="text-gray-700 text-base font-normal font-rubik hover:text-gray-900 text-left"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-gray-700 text-base font-normal font-rubik hover:text-gray-900"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
 
             {/* Books */}
