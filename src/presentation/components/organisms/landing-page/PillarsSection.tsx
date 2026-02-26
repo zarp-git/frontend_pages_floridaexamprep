@@ -82,10 +82,10 @@ export default function PillarsSection() {
       <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* Heading */}
         <div className="flex flex-col justify-start items-center gap-3 sm:gap-4 px-2">
-          <h2 className="text-center text-sky-950 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
+          <h2 className="text-center text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">
             THE 5 PILLARS THAT TURN CANDIDATES INTO LICENSED CONTRACTORS:
           </h2>
-          <p className="text-center text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl font-normal font-rubik leading-relaxed max-w-4xl">
+          <p className="text-center text-neutral-800 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed max-w-4xl">
             Most contractors fail not because they lack skill — but because they
             had no plan. They studied hard. They showed up on exam day. And
             still walked out without a passing score.
@@ -106,7 +106,7 @@ export default function PillarsSection() {
                 <h3 className="text-neutral-800 text-sm sm:text-base font-bold font-rubik leading-tight">
                   {pillar.title}
                 </h3>
-                <p className="text-neutral-800 text-base sm:text-lg md:text-xl lg:text-2xl font-normal font-rubik leading-relaxed">
+                <p className="text-neutral-800 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
                   {pillar.description}
                 </p>
               </div>

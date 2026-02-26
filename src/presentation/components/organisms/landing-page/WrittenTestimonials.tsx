@@ -71,7 +71,8 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/floridaexamprep_testimonial_video 2.mp4",
+      video:
+        "/images/testimonials/videostudant/floridaexamprep_testimonial_video 2.mp4",
       rating: 5,
     },
     {
@@ -116,7 +117,8 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 3.mp4",
+      video:
+        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 3.mp4",
       rating: 5,
     },
   ],
@@ -128,7 +130,8 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 4.mp4",
+      video:
+        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 4.mp4",
       rating: 5,
     },
     {
@@ -148,7 +151,8 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 5.mp4",
+      video:
+        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 5.mp4",
       rating: 5,
     },
   ],
@@ -171,7 +175,8 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/floridaexamprep_testiominal_video 6.mp4",
+      video:
+        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 6.mp4",
       rating: 5,
     },
   ],
@@ -289,7 +294,7 @@ export default function WrittenTestimonials() {
               DON'T TRY IT ALONE
             </span>
           </div>
-          <h2 className="text-gray-800 text-xl sm:text-2xl md:text-3xl font-semibold font-red-hat uppercase leading-tight text-center">
+          <h2 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight text-center">
             What Our Students Are Talking About Us
           </h2>
           <p className="text-center text-gray-500 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">

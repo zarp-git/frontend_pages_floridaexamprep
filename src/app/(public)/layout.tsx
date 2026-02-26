@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
 import { Rubik, Red_Hat_Display } from "next/font/google";
 import "@/app/globals.css";
-import Header from "@/presentation/components/organisms/common/header/Header";
-import Footer from "@/presentation/components/organisms/common/footer/Footer";
+import "lenis/dist/lenis.css";
 import { LeadCollectModal } from "@/presentation/components/organisms/common/lead-collect-modal/LeadCollectModal";
 import { ContactModal } from "@/presentation/components/organisms/common/contact-modal/ContactModal";
 import { MaintenanceModal } from "@/presentation/components/organisms/common/MaintenanceModal";
+import { SmoothScrollProvider } from "@/presentation/components/providers/SmoothScrollProvider";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -31,15 +30,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-US">
       <body
         className={`${rubik.variable} ${redHatDisplay.variable} antialiased`}
       >
-        {/* Header e Footer removidos - agora cada página controla seus próprios */}
-        {children}
-        <LeadCollectModal />
-        <ContactModal />
-        <MaintenanceModal />
+        <SmoothScrollProvider>
+          {children}
+          <LeadCollectModal />
+          <ContactModal />
+          <MaintenanceModal />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

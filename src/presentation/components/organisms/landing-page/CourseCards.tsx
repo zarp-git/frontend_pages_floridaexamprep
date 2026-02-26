@@ -166,34 +166,42 @@ function CourseCard({ course }: { course: Course }) {
   );
 }
 
-export default function CourseCards() {
+export default function CourseCardsSection() {
   return (
-    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
-        {/* Heading */}
-        <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
-          <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
-            <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed">
-              DON'T TRY IT ALONE
-            </span>
+    <div
+      className="bg-black"
+      style={{
+        background:
+          "radial-gradient(37.55% 29.18% at 113.44% 43.98%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(54.06% 49.74% at 40.94% 68.84%, rgba(41, 8, 134, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(68.5% 61.39% at 55.21% -19.94%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(49.46% 42.97% at -9.9% 105.52%, #B00D23 0%, rgba(0, 0, 0, 0.00) 100%), #05060B",
+      }}
+    >
+      <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
+          {/* Heading */}
+          <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
+            <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
+              <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed">
+                DON&apos;T TRY IT ALONE
+              </span>
+            </div>
+            <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">
+              WE WALKED THROUGH ALL STEPS AND WE COMPILED
+              <br className="hidden sm:block" />
+              EVERYTHING RIGHT HAND TO YOU GET THAT +90 GRADE
+            </h2>
+            <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
+              We WILL HELP You Get APPROVED IN THE Exam TODAY
+            </p>
           </div>
-          <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
-            WE WALKED THROUGH ALL STEPS AND WE COMPILED
-            <br className="hidden sm:block" />
-            EVERYTHING RIGHT HAND TO YOU GET THAT +90 GRADE
-          </h2>
-          <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
-            We WILL HELP You Get APPROVED IN THE Exam TODAY
-          </p>
-        </div>
 
-        {/* Course Cards */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {COURSES.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
+          {/* Course Cards */}
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {COURSES.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

@@ -51,7 +51,7 @@ export default function PlatformSection() {
                 STOP STUDYING ALONE. ENROLL TODAY & GUARANTEE THESE{" "}
                 <span className="text-sky-400">EXCLUSIVE</span> BENEFITS
               </h2>
-              <p className="w-full text-white text-base sm:text-lg md:text-xl font-medium font-rubik leading-relaxed">
+              <p className="w-full text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
                 When you enroll, you get:
               </p>
             </div>

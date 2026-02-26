@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
@@ -20,9 +21,63 @@ interface NavigationProps {
   className?: string;
 }
 
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: -8,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 300,
+      staggerChildren: 0.03,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    scale: 0.96,
+    transition: { duration: 0.15 },
+  },
+};
+
+const dropdownItemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0 },
+};
+
+/**
+ * Animated underline that grows from right to left on hover.
+ * Uses layoutId for smooth active-state transitions.
+ */
+function NavUnderline({
+  isActive,
+  itemKey,
+}: {
+  isActive: boolean;
+  itemKey: string;
+}) {
+  return (
+    <motion.span
+      className="absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full"
+      initial={{ scaleX: 0, originX: 1 }}
+      style={{ width: "100%", transformOrigin: "right" }}
+      animate={{ scaleX: isActive ? 1 : 0, originX: 1 }}
+      transition={{ type: "spring", damping: 25, stiffness: 300 }}
+      key={`underline-${itemKey}`}
+    />
+  );
+}
+
 export default function Navigation({ navItems, className }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const { openModal } = useMaintenanceModal();
@@ -49,7 +104,7 @@ export default function Navigation({ navItems, className }: NavigationProps) {
           }
         });
       },
-      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
     );
 
     sectionIds.forEach((id) => {
@@ -79,10 +134,13 @@ export default function Navigation({ navItems, className }: NavigationProps) {
   };
 
   const getIsActive = (item: NavItem): boolean => {
-    const isAnchorLink = item.href.startsWith("/#") || item.href.startsWith("#");
+    const isAnchorLink =
+      item.href.startsWith("/#") || item.href.startsWith("#");
 
     if (isAnchorLink) {
-      const hash = item.href.startsWith("/#") ? item.href.substring(1) : item.href;
+      const hash = item.href.startsWith("/#")
+        ? item.href.substring(1)
+        : item.href;
       return activeSection === hash;
     }
 
@@ -97,103 +155,121 @@ export default function Navigation({ navItems, className }: NavigationProps) {
     <nav ref={navRef} className={cn("flex items-center gap-1", className)}>
       {navItems.map((item) => {
         const isActive = getIsActive(item);
+        const isHovered = hoveredItem === item.label;
+        const showUnderline = isActive || isHovered;
 
         return (
           <div key={item.label} className="relative">
             {item.hasDropdown && item.dropdownItems ? (
               <>
                 {/* Dropdown Trigger */}
-                <button
+                <motion.button
                   onClick={() => handleToggle(item.label)}
+                  onHoverStart={() => setHoveredItem(item.label)}
+                  onHoverEnd={() => setHoveredItem(null)}
                   className={cn(
                     "relative flex items-center gap-1 px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
                     activeDropdown === item.label
                       ? "text-blue-600 bg-blue-50"
                       : isActive
-                      ? "text-blue-600"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                        ? "text-blue-600"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
                   )}
+                  whileTap={{ scale: 0.97 }}
                 >
                   {item.label}
-                  <ChevronDown
-                    className={cn(
-                      "size-4 transition-transform duration-200",
-                      activeDropdown === item.label && "rotate-180"
-                    )}
-                  />
-                  {/* Active indicator bar */}
-                  <span
-                    className={cn(
-                      "absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out",
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    )}
-                  />
-                </button>
+                  <motion.span
+                    animate={{
+                      rotate: activeDropdown === item.label ? 180 : 0,
+                    }}
+                    transition={{ type: "spring", damping: 15, stiffness: 200 }}
+                  >
+                    <ChevronDown className="size-4" />
+                  </motion.span>
+                  {/* Animated underline: right to left */}
+                  <NavUnderline isActive={showUnderline} itemKey={item.label} />
+                </motion.button>
 
                 {/* Dropdown Panel */}
-                {activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-2 min-w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                    {item.dropdownItems.map((subItem) => {
-                      const isSubActive = pathname === subItem.href;
-                      return (
-                        <Link
-                          key={subItem.label}
-                          href={subItem.href}
-                          onClick={() => setActiveDropdown(null)}
-                          className={cn(
-                            "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors relative",
-                            isSubActive
-                              ? "text-blue-600 bg-blue-50 font-medium"
-                              : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                          )}
-                        >
-                          {subItem.label}
-                          {/* Left border indicator for active item */}
-                          {isSubActive && (
-                            <span className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r" />
-                          )}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </>
-            ) : (
-              /* Regular Link */
-              item.isMaintenance ? (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    openModal();
-                  }}
-                  className={cn(
-                    "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
-                    "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                <AnimatePresence>
+                  {activeDropdown === item.label && (
+                    <motion.div
+                      className="absolute top-full left-0 mt-2 min-w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      {item.dropdownItems.map((subItem) => {
+                        const isSubActive = pathname === subItem.href;
+                        return (
+                          <motion.div
+                            key={subItem.label}
+                            variants={dropdownItemVariants}
+                          >
+                            <Link
+                              href={subItem.href}
+                              onClick={() => setActiveDropdown(null)}
+                              className={cn(
+                                "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors relative",
+                                isSubActive
+                                  ? "text-blue-600 bg-blue-50 font-medium"
+                                  : "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
+                              )}
+                            >
+                              {subItem.label}
+                              {/* Left border indicator for active item */}
+                              {isSubActive && (
+                                <motion.span
+                                  className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r"
+                                  layoutId="dropdown-active-indicator"
+                                />
+                              )}
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
                   )}
-                >
-                  {item.label}
-                  <span className="absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out w-0 group-hover:w-full" />
-                </button>
-              ) : (
+                </AnimatePresence>
+              </>
+            ) : /* Regular Link */
+            item.isMaintenance ? (
+              <motion.button
+                onClick={(e) => {
+                  e.preventDefault();
+                  openModal();
+                }}
+                onHoverStart={() => setHoveredItem(item.label)}
+                onHoverEnd={() => setHoveredItem(null)}
+                className={cn(
+                  "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
+                  "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
+                )}
+                whileTap={{ scale: 0.97 }}
+              >
+                {item.label}
+                <NavUnderline isActive={isHovered} itemKey={item.label} />
+              </motion.button>
+            ) : (
+              <motion.div
+                onHoverStart={() => setHoveredItem(item.label)}
+                onHoverEnd={() => setHoveredItem(null)}
+              >
                 <Link
                   href={item.href}
                   className={cn(
                     "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
                     isActive
                       ? "text-blue-600"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
                   )}
                 >
                   {item.label}
-                  {/* Active indicator bar */}
-                  <span
-                    className={cn(
-                      "absolute left-0 bottom-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ease-out",
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    )}
-                  />
+                  {/* Animated underline: right to left */}
+                  <NavUnderline isActive={showUnderline} itemKey={item.label} />
                 </Link>
-              )
+              </motion.div>
             )}
           </div>
         );

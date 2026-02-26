@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiArrowDownSLine } from "@remixicon/react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { INavItem } from "@/types/header";
 import { NAV_ITEMS } from "@/constants";
 import { cn } from "@/lib/utils";
@@ -14,10 +15,63 @@ interface NavigationProps {
   navItems?: INavItem[];
 }
 
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: -8,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 300,
+      staggerChildren: 0.03,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    scale: 0.96,
+    transition: { duration: 0.15 },
+  },
+};
+
+const dropdownItemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0 },
+};
+
+/**
+ * Animated underline that grows from right to left on hover.
+ */
+function NavUnderline({
+  isActive,
+  itemKey,
+}: {
+  isActive: boolean;
+  itemKey: string;
+}) {
+  return (
+    <motion.span
+      className="absolute left-0 bottom-0 h-0.5 bg-primary rounded-full"
+      initial={{ scaleX: 0, originX: 1 }}
+      style={{ width: "100%", transformOrigin: "right" }}
+      animate={{ scaleX: isActive ? 1 : 0, originX: 1 }}
+      transition={{ type: "spring", damping: 25, stiffness: 300 }}
+      key={`underline-${itemKey}`}
+    />
+  );
+}
+
 export default function Navigation({ className, navItems }: NavigationProps) {
   const items = navItems || NAV_ITEMS;
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const { openModal } = useMaintenanceModal();
@@ -91,8 +145,15 @@ export default function Navigation({ className, navItems }: NavigationProps) {
     return pathname === item.href;
   };
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href === "/learning-center" || href === "/tools/design-visualizer" || href === "/tools/cost-calculator") {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (
+      href === "/learning-center" ||
+      href === "/tools/design-visualizer" ||
+      href === "/tools/cost-calculator"
+    ) {
       e.preventDefault();
       openModal();
     }
@@ -102,14 +163,18 @@ export default function Navigation({ className, navItems }: NavigationProps) {
     <nav ref={navRef} className={cn("flex items-center gap-1", className)}>
       {items.map((item) => {
         const isActive = getIsActive(item);
+        const isHovered = hoveredItem === item.title;
+        const showUnderline = isActive || isHovered;
 
         return (
           <div key={item.title} className="relative">
             {item.hasDropdown && item.dropdownItems ? (
               <>
                 {/* Dropdown Trigger */}
-                <button
+                <motion.button
                   onClick={() => handleToggle(item.title)}
+                  onHoverStart={() => setHoveredItem(item.title)}
+                  onHoverEnd={() => setHoveredItem(null)}
                   className={cn(
                     "relative flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium font-rubik transition-colors",
                     activeDropdown === item.title
@@ -118,73 +183,83 @@ export default function Navigation({ className, navItems }: NavigationProps) {
                         ? "text-primary"
                         : "text-foreground hover:text-primary hover:bg-gray-50",
                   )}
+                  whileTap={{ scale: 0.97 }}
                 >
                   {item.title}
-                  <RiArrowDownSLine
-                    className={cn(
-                      "size-4 transition-transform duration-200",
-                      activeDropdown === item.title && "rotate-180",
-                    )}
-                  />
+                  <motion.span
+                    animate={{
+                      rotate: activeDropdown === item.title ? 180 : 0,
+                    }}
+                    transition={{ type: "spring", damping: 15, stiffness: 200 }}
+                  >
+                    <RiArrowDownSLine className="size-4" />
+                  </motion.span>
 
-                  {/* Active indicator bar */}
-                  <span
-                    className={cn(
-                      "absolute left-0 bottom-0 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
-                      isActive ? "w-full" : "w-0 group-hover:w-full",
-                    )}
-                  />
-                </button>
+                  {/* Animated underline: right to left */}
+                  <NavUnderline isActive={showUnderline} itemKey={item.title} />
+                </motion.button>
 
                 {/* Dropdown Panel */}
-                {activeDropdown === item.title && (
-                  <div className="absolute top-full left-0 mt-2 min-w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                    {item.dropdownItems.map((subItem) => {
-                      const isSubActive = pathname === subItem.href;
-                      return (
-                        <Link
-                          key={subItem.title}
-                          href={subItem.href}
-                          onClick={(e) => {
-                            setActiveDropdown(null);
-                            handleLinkClick(e, subItem.href);
-                          }}
-                          className={cn(
-                            "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors",
-                            isSubActive
-                              ? "text-primary bg-primary/5 font-medium"
-                              : "text-gray-700 hover:text-primary hover:bg-primary/5",
-                          )}
-                        >
-                          {subItem.title}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {activeDropdown === item.title && (
+                    <motion.div
+                      className="absolute top-full left-0 mt-2 min-w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      {item.dropdownItems.map((subItem) => {
+                        const isSubActive = pathname === subItem.href;
+                        return (
+                          <motion.div
+                            key={subItem.title}
+                            variants={dropdownItemVariants}
+                          >
+                            <Link
+                              href={subItem.href}
+                              onClick={(e) => {
+                                setActiveDropdown(null);
+                                handleLinkClick(e, subItem.href);
+                              }}
+                              className={cn(
+                                "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors",
+                                isSubActive
+                                  ? "text-primary bg-primary/5 font-medium"
+                                  : "text-gray-700 hover:text-primary hover:bg-primary/5",
+                              )}
+                            >
+                              {subItem.title}
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </>
             ) : (
               /* Regular Link */
-              <Link
-                href={item.href}
-                onClick={(e) => handleLinkClick(e, item.href)}
-                className={cn(
-                  "relative flex items-center px-3 py-2 rounded-lg text-sm font-medium font-rubik transition-colors group",
-                  isActive
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary hover:bg-gray-50",
-                )}
+              <motion.div
+                onHoverStart={() => setHoveredItem(item.title)}
+                onHoverEnd={() => setHoveredItem(null)}
               >
-                {item.title}
-
-                {/* Active indicator bar */}
-                <span
+                <Link
+                  href={item.href}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                   className={cn(
-                    "absolute left-0 bottom-0 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
-                    isActive ? "w-full" : "w-0 group-hover:w-full",
+                    "relative flex items-center px-3 py-2 rounded-lg text-sm font-medium font-rubik transition-colors group",
+                    isActive
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary hover:bg-gray-50",
                   )}
-                />
-              </Link>
+                >
+                  {item.title}
+
+                  {/* Animated underline: right to left */}
+                  <NavUnderline isActive={showUnderline} itemKey={item.title} />
+                </Link>
+              </motion.div>
             )}
           </div>
         );

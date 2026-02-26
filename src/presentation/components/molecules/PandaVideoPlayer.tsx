@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, memo } from "react";
+import { useState, useRef, useEffect, memo, type RefObject } from "react";
 import { cn } from "@/lib/utils";
 
 interface PandaVideoPlayerProps {
@@ -13,6 +13,7 @@ interface PandaVideoPlayerProps {
   onPlay?: () => void;
   onPause?: () => void;
   onEnded?: () => void;
+  externalVideoRef?: RefObject<HTMLVideoElement | null>;
 }
 
 const PandaVideoPlayerComponent = ({
@@ -26,6 +27,7 @@ const PandaVideoPlayerComponent = ({
   onPlay,
   onPause,
   onEnded,
+  externalVideoRef,
 }: PandaVideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -35,6 +37,15 @@ const PandaVideoPlayerComponent = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Sync external ref with internal ref
+  useEffect(() => {
+    if (externalVideoRef && videoRef.current) {
+      (
+        externalVideoRef as React.MutableRefObject<HTMLVideoElement | null>
+      ).current = videoRef.current;
+    }
+  }, [externalVideoRef]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -182,7 +193,10 @@ const PandaVideoPlayerComponent = ({
           <button
             onClick={handleVideoClick}
             disabled={isLoading}
-            className="panda-muted-indicator-impact-wrapper panda-muted-indicator-item animate-pulse hover:scale-105 transition-transform duration-300 flex flex-col items-center px-6 py-4 bg-black/60 rounded-2xl backdrop-blur-sm border border-white/20 group/button disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="panda-muted-indicator-impact-wrapper panda-muted-indicator-item hover:scale-105 transition-transform duration-300 flex flex-col items-center px-6 py-4 bg-black/60 rounded-2xl backdrop-blur-sm border border-white/20 group/button disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            style={{
+              animation: "gentle-breathe 3s ease-in-out infinite",
+            }}
           >
             <span className="text-white text-sm font-medium">Click here</span>
             <div className="relative">
@@ -193,35 +207,41 @@ const PandaVideoPlayerComponent = ({
                 xmlSpace="preserve"
               >
                 <style>{`
+                  @keyframes gentle-breathe {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                  }
                   .fg-color { fill: currentColor; }
                   .bg-color { fill: rgba(0,0,0,0.8); }
                   .volume, .wave { transform: scale(1); transform-box: fill-box; transform-origin: center; }
-                  .wave { animation: wave-pulse 2.5s ease-in-out infinite; transform-origin: center; }
-                  .wave:nth-child(3) { animation-delay: 0.3s; opacity: 0.8; }
-                  .wave:nth-child(4) { animation-delay: 0.6s; opacity: 0.6; }
-                  .wave:nth-child(5) { animation-delay: 0.9s; opacity: 0.4; }
-                  @keyframes wave-pulse {
-                    0%, 100% { opacity: 0.2; transform: scale(0.95); }
-                    25% { opacity: 0.6; transform: scale(1.02); }
-                    50% { opacity: 1; transform: scale(1.08); }
-                    75% { opacity: 0.8; transform: scale(1.04); }
+                  .wave {
+                    animation: wave-pulse 1.5s ease-in-out infinite;
+                    transform-origin: center;
                   }
-                  .volume { animation: volume-heartbeat 2s ease-in-out infinite; }
+                  .wave:nth-child(3) { animation-delay: 0s; }
+                  .wave:nth-child(4) { animation-delay: 0.2s; }
+                  .wave:nth-child(5) { animation-delay: 0.4s; }
+                  @keyframes wave-pulse {
+                    0%, 100% { opacity: 0.3; transform: scale(0.85); }
+                    50% { opacity: 1; transform: scale(1.1); }
+                  }
+                  .volume {
+                    animation: volume-heartbeat 1.8s ease-in-out infinite;
+                  }
                   @keyframes volume-heartbeat {
                     0%, 100% { transform: scale(1); }
-                    10% { transform: scale(1.1); }
-                    20% { transform: scale(1); }
-                    30% { transform: scale(1.15); }
-                    40% { transform: scale(1); }
+                    15% { transform: scale(1.15); }
+                    30% { transform: scale(1); }
+                    45% { transform: scale(1.1); }
+                    60% { transform: scale(1); }
                   }
-                  .line { animation: line-flash 1.2s ease-in-out infinite; }
+                  .line {
+                    animation: line-flash 1.5s ease-in-out infinite;
+                  }
                   @keyframes line-flash {
-                    0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); }
-                    50% { opacity: 1; filter: drop-shadow(0 0 4px rgba(255,255,255,0.6)); }
+                    0%, 100% { opacity: 0.7; }
+                    50% { opacity: 1; filter: drop-shadow(0 0 4px rgba(255,255,255,0.5)); }
                   }
-                  .group\\/button:hover .wave { animation-duration: 1.5s; }
-                  .group\\/button:hover .volume { animation-duration: 1s; }
-                  .group\\/button:hover .line { animation-duration: 0.8s; }
                 `}</style>
                 <path
                   className="volume fg-color"

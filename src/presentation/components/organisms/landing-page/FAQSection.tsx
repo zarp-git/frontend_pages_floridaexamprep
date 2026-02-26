@@ -16,17 +16,17 @@ const FAQ_ITEMS: FAQItem[] = [
     question:
       "Why should I invest in this course instead of studying on my own?",
     answer:
-      "Our course provides structured, expert-guided content that covers exactly what you need to pass. We've distilled years of experience into a clear path to success, saving you countless hours of confusion and uncertainty.",
+      "Our course provides structured, expert-guided content that covers exactly what you need to pass. We\u2019ve distilled years of experience into a clear path to success, saving you countless hours of confusion and uncertainty.",
   },
   {
-    question: "What's included in the course?",
+    question: "What\u2019s included in the course?",
     answer:
-      "Full breakdown of the Florida Contractor's Manual, Builder's Guide to Accounting essentials, AIA documents guidance, study plan, 20+ practice quizzes, exam simulator, simplified math explanations, and 24/7 access for 12 months.",
+      "Full breakdown of the Florida Contractor\u2019s Manual, Builder\u2019s Guide to Accounting essentials, AIA documents guidance, study plan, 20+ practice quizzes, exam simulator, simplified math explanations, and 24/7 access for 12 months.",
   },
   {
     question: "Will this course actually help me pass?",
     answer:
-      "Yes! Over 150 students have passed using our methods. We offer a personal coaching guarantee - if you complete the full course and don't pass, we'll personally coach you until you do.",
+      "Yes! Over 150 students have passed using our methods. We offer a personal coaching guarantee - if you complete the full course and don\u2019t pass, we\u2019ll personally coach you until you do.",
   },
   {
     question: "Will I learn how to use the books during the test?",
@@ -45,9 +45,9 @@ const FAQ_ITEMS: FAQItem[] = [
       "Currently, the course is available in English, as the Florida State Exam is conducted in English.",
   },
   {
-    question: "I already purchased another course—can I switch to yours?",
+    question: "I already purchased another course\u2014can I switch to yours?",
     answer:
-      "Yes! Contact us and we'll work with you to make the transition as smooth as possible. Many of our successful students came from other programs.",
+      "Yes! Contact us and we\u2019ll work with you to make the transition as smooth as possible. Many of our successful students came from other programs.",
   },
   {
     question: "How do I register for the actual exam?",
@@ -60,30 +60,31 @@ function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col">
       {FAQ_ITEMS.map((item, index) => (
-        <div key={index} className="flex flex-col">
+        <div key={index} className="border-b border-gray-200">
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="py-2.5 flex justify-between items-center gap-4 text-left hover:opacity-80 transition-opacity"
+            className="w-full py-4 sm:py-5 flex justify-between items-center gap-4 text-left hover:text-blue-600 transition-colors cursor-pointer"
           >
-            <span className="text-gray-800 text-base font-normal font-rubik leading-6">
+            <span className="text-gray-800 text-sm sm:text-base font-medium font-rubik leading-relaxed">
               {item.question}
             </span>
             <ChevronDown
-              className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${
-                openIndex === index ? "rotate-180" : ""
+              className={`w-5 h-5 text-gray-500 shrink-0 transition-transform duration-300 ${
+                openIndex === index ? "rotate-180 text-blue-600" : ""
               }`}
             />
           </button>
-          {openIndex === index && (
-            <div className="pb-4 pt-2">
-              <p className="text-gray-600 text-sm font-normal font-rubik leading-6">
-                {item.answer}
-              </p>
-            </div>
-          )}
-          <div className="h-px bg-gray-400" />
+          <div
+            className={`overflow-hidden transition-all duration-300 ${
+              openIndex === index ? "max-h-96 pb-4" : "max-h-0"
+            }`}
+          >
+            <p className="text-gray-600 text-sm sm:text-base font-normal font-rubik leading-relaxed">
+              {item.answer}
+            </p>
+          </div>
         </div>
       ))}
     </div>
@@ -92,12 +93,12 @@ function FAQAccordion() {
 
 export default function FAQSection() {
   return (
-    <section className="w-full px-4 md:px-28 py-20 bg-gray-50">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-16">
+    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-16">
           {/* Left Side - Guarantee Badge */}
-          <div className="w-full lg:w-[554px] flex flex-col gap-8">
-            <div className="relative w-64 h-64">
+          <div className="w-full lg:w-5/12 flex flex-col gap-6 sm:gap-8">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56">
               <Image
                 src="/images/svg/exclusive.svg"
                 alt="Exclusive Guarantee"
@@ -108,21 +109,20 @@ export default function FAQSection() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-blue-600 text-3xl font-semibold font-red-hat">
-                I'll Coach You Personally Until
-                <br />
-                You Get Approved
+              <h3 className="text-blue-600 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat leading-tight">
+                I&apos;ll Coach You Personally Until
+                <br className="hidden sm:block" /> You Get Approved
               </h3>
-              <p className="text-gray-800 text-base font-normal font-rubik leading-6 max-w-[480px]">
-                That's a commitment. Complete the full course — every video,
-                every quiz, every guide — and if you still don't pass, our
-                expert will personally schedule a free one-hour session with you
-                to fix whatever's holding you back.
-                <br />
-                <br />
+              <p className="text-gray-700 text-sm sm:text-base font-normal font-rubik leading-relaxed max-w-md">
+                That&apos;s a commitment. Complete the full course — every
+                video, every quiz, every guide — and if you still don&apos;t
+                pass, our expert will personally schedule a free one-hour
+                session with you to fix whatever&apos;s holding you back.
+              </p>
+              <p className="text-gray-700 text-sm sm:text-base font-normal font-rubik leading-relaxed max-w-md">
                 No fine print. No loopholes. Just a guarantee backed by someone
-                who's done this hundreds of times and refuses to let you fail
-                twice. Enroll today. Stop gambling with your license.
+                who&apos;s done this hundreds of times and refuses to let you
+                fail twice. Enroll today. Stop gambling with your license.
               </p>
             </div>
 
@@ -131,19 +131,19 @@ export default function FAQSection() {
               size="lg"
               icon={<ArrowUpRight className="w-5 h-5" />}
               iconPosition="right"
-              className="w-full"
+              className="w-full sm:w-auto"
             >
               {CTA_TEXT}
             </PrimaryButton>
           </div>
 
           {/* Right Side - FAQ */}
-          <div className="flex-1 flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <p className="text-gray-800 text-xl font-medium font-rubik uppercase leading-7">
+          <div className="flex-1 flex flex-col gap-4 sm:gap-6">
+            <div className="flex flex-col gap-1 sm:gap-2">
+              <p className="text-gray-500 text-sm sm:text-base font-medium font-rubik uppercase tracking-wide">
                 Still Got Questions?
               </p>
-              <h2 className="text-gray-800 text-4xl font-semibold font-red-hat uppercase leading-10">
+              <h2 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">
                 Frequently Asked Questions
               </h2>
             </div>
