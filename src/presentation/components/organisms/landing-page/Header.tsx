@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { RiMenu3Line, RiCloseLine } from "@remixicon/react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
 import Navigation from "./Navigation";
@@ -105,9 +105,9 @@ export default function Header() {
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <RiCloseLine className="size-7" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <RiMenu3Line className="size-7" />
               )}
             </button>
           </div>
