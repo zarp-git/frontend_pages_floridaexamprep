@@ -62,7 +62,7 @@ export default function GHLIframeContainer({
   const [iframeState, setIframeState] = useState<IframeState>({
     hasError: false,
     errorMessage: null,
-    iframeHeight: 800, // Default height
+    iframeHeight: 850, // Default height
     isVisible: false,
   });
 
