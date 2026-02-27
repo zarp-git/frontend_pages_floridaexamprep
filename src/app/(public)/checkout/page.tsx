@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "@/presentation/components/organisms/landing-page/Header";
 import LandingFooter from "@/presentation/components/organisms/landing-page/LandingFooter";
@@ -11,7 +11,7 @@ import type { CourseSlug } from "@/types/courses";
 
 export const dynamic = 'force-dynamic';
 
-export default function CheckoutPage() {
+function CheckoutPageContent() {
   const searchParams = useSearchParams();
   const tier = searchParams.get("tier") as CourseSlug | null;
   
@@ -26,10 +26,7 @@ export default function CheckoutPage() {
   }, []);
 
   return (
-    <div className="w-full bg-white flex flex-col">
-      {/* Header */}
-      <Header />
-
+    <>
       {/* Hero Section */}
       <CheckoutHero />
 
@@ -38,6 +35,23 @@ export default function CheckoutPage() {
 
       {/* Guarantee + FAQ Section */}
       <CheckoutGuarantee />
+    </>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <div className="w-full bg-white flex flex-col">
+      {/* Header */}
+      <Header />
+
+      <Suspense fallback={
+        <div className="w-full min-h-screen flex items-center justify-center">
+          <div className="animate-pulse text-gray-600">Loading...</div>
+        </div>
+      }>
+        <CheckoutPageContent />
+      </Suspense>
 
       {/* Footer */}
       <LandingFooter />
