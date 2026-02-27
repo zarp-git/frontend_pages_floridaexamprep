@@ -89,7 +89,7 @@ export default function LandingFooter() {
             {/* Right Column - Courses and Contact */}
             <div className="flex-1 px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8">
               {/* Courses and Contact Row */}
-              <div className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-8">
+              <div className="flex flex-col sm:flex-row justify-left gap-38">
                 {/* Some of Our Courses */}
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
