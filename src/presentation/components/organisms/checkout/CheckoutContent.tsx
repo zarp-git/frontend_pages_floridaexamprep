@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import GHLIframeContainer from "./GHLIframeContainer";
 import type { CourseSlug } from "@/types/courses";
@@ -8,29 +8,29 @@ interface CheckoutContentProps {
 }
 
 const testimonialScreenshots = [
-  "/images/testimonials/screenshots/floridaexamprep_testimonial_danielpryor.jpg",
-  "/images/testimonials/screenshots/floridaexamprep_testimonial_javierrodriguez.jpg",
+  "/images/testimonials/screenshots/floridaexamprep_testimonial_camilalujan1.jpg",
+  "/images/testimonials/screenshots/floridaexamprep_testimonial_camilalujan2.jpg",
+  "/images/testimonials/screenshots/floridaexamprep_testimonial_camilalujan3.jpg",
   "/images/testimonials/screenshots/floridaexamprep_testimonial_joelkennedy.jpg",
   "/images/testimonials/screenshots/floridaexamprep_testimonial_kevinlopez.jpg",
-  "/images/testimonials/screenshots/floridaexamprep_testimonial_oryangrey.jpg",
   "/images/testimonials/screenshots/floridaexamprep_testimonial_tylercook.jpg",
 ];
 
 export default function CheckoutContent({ courseSlug }: CheckoutContentProps) {
   return (
     <section className="w-full bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="container mx-auto px-1">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-2 lg:items-stretch">
           {/* Left Column - Checkout Form */}
-          <div className="lg:col-span-8">
-            <div className="bg-white rounded-lg shadow-sm">
+          <div className="lg:col-span-6 flex">
+            <div className="bg-white rounded-lg shadow-sm w-full">
               <GHLIframeContainer courseSlug={courseSlug} />
             </div>
           </div>
 
           {/* Right Column - Social Proof */}
-          <div className="lg:col-span-4">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6">
+          <div className="lg:col-span-4 flex">
+            <div className="bg-white rounded-lg shadow-sm p-6 w-full flex flex-col">
               <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
                 Students Pass Board
               </h3>
@@ -38,7 +38,7 @@ export default function CheckoutContent({ courseSlug }: CheckoutContentProps) {
                 Join thousands who passed their Florida State Exam
               </p>
               
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="grid grid-cols-2 gap-3 mb-6 flex-1">
                 {testimonialScreenshots.map((screenshot, index) => (
                   <div 
                     key={index}
@@ -55,7 +55,7 @@ export default function CheckoutContent({ courseSlug }: CheckoutContentProps) {
               </div>
 
               {/* Trust Indicators */}
-              <div className="pt-4 border-t border-gray-200 space-y-3">
+              <div className="pt-4 border-t border-gray-200 space-y-3 mt-auto">
                 <div className="flex items-center gap-2 text-sm text-gray-700">
                   <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
