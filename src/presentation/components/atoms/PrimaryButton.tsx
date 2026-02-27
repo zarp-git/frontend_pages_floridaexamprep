@@ -20,7 +20,7 @@ export interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonEleme
 }
 
 const BASE_CLASSES =
-  "inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-full rounded-xl";
+  "inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-full rounded-xl";
 
 const SHINE_CLASSES = [
   "group relative overflow-hidden",
@@ -51,7 +51,7 @@ const VARIANT_CLASSES = {
 const SIZE_CLASSES = {
   default: "h-10 px-4 py-2 text-sm",
   sm: "h-9 px-3 py-2 text-xs",
-  lg: "h-11 px-8 py-4 text-base",
+  lg: "h-11 px-5 sm:px-8 py-4 text-sm sm:text-base",
 } as const;
 
 const PrimaryButton = forwardRef<

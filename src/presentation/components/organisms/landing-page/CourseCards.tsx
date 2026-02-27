@@ -172,10 +172,10 @@ export default function CourseCardsSection() {
       className="bg-black"
       style={{
         background:
-          "radial-gradient(37.55% 29.18% at 113.44% 43.98%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(54.06% 49.74% at 40.94% 68.84%, rgba(41, 8, 134, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(68.5% 61.39% at 55.21% -19.94%, #290886 0%, rgba(0, 0, 0, 0.00) 100%), radial-gradient(49.46% 42.97% at -9.9% 105.52%, #B00D23 0%, rgba(0, 0, 0, 0.00) 100%), #05060B",
+          "radial-gradient(122.59% 134.96% at 149.27% -34.05%, #0BF 0%, rgba(0, 60, 255, 0.00) 89.06%), radial-gradient(47.75% 46.47% at -26.25% 94.45%, #0BF 0%, rgba(0, 60, 255, 0.00) 100%), #000A1C",
       }}
     >
-      <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
+      <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">

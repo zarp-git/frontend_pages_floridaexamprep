@@ -85,10 +85,10 @@ export function FloatingVideo({ src, className }: FloatingVideoProps) {
     <>
       {/* Original video slot */}
       <div ref={containerRef} className={className}>
-        <div className="relative overflow-hidden rounded-2xl sm:rounded-[24px] md:rounded-[30px]">
+        <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-[24px] md:rounded-[30px]">
           <PandaVideoPlayer
             src={src}
-            className="w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
+            className="w-full h-[200px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
             controls={false}
             muted
             autoPlay={false}

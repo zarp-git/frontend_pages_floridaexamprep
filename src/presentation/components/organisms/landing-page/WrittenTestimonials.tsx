@@ -214,7 +214,7 @@ function BlueCheckmark() {
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   if (testimonial.type === "video") {
     return (
-      <div className="flex-1 min-w-full lg:min-w-0 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
+      <div className="flex-1 min-w-full lg:min-w-0 bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden flex flex-col min-h-[220px] sm:min-h-[320px] lg:min-h-[500px]">
         <div className="relative flex-1">
           <PandaVideoPlayer
             src={testimonial.video!}
