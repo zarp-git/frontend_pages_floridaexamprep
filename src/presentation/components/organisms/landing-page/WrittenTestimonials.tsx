@@ -185,6 +185,8 @@ const TESTIMONIALS: Testimonial[][] = [
 
 const ALL_TESTIMONIALS = TESTIMONIALS.flat();
 
+const SLIDE_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
 const mobileSlideVariants = {
   enter: (direction: number) => ({
     x: direction > 0 ? "100%" : "-100%",
@@ -193,14 +195,14 @@ const mobileSlideVariants = {
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.4, ease: SLIDE_EASE },
   },
   exit: (direction: number) => ({
     x: direction > 0 ? "-100%" : "100%",
     opacity: 0,
-    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.3, ease: SLIDE_EASE },
   }),
-} as const;
+};
 
 /* ── Shared helpers (unchanged) ── */
 
@@ -418,15 +420,6 @@ function MobileCarousel() {
     }
     return clearTimer;
   }, [isVideoPlaying, startTimer, clearTimer]);
-
-  const goTo = useCallback(
-    (index: number) => {
-      setDirection(index > currentIndex ? 1 : -1);
-      setCurrentIndex(index);
-      setIsVideoPlaying(false);
-    },
-    [currentIndex],
-  );
 
   const goNext = useCallback(() => {
     setDirection(1);
