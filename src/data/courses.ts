@@ -1,3 +1,11 @@
+import {
+  PRICING_TIERS,
+  COURSE_DEFAULT_TIER,
+  COURSE_RATING,
+  TIER_DISPLAY,
+  type CoursePageSlug,
+} from "@/constants/pricing";
+
 export interface CourseFeature {
   included: boolean;
   text: string;
@@ -24,23 +32,25 @@ export interface CourseData {
   heroDescription: string;
 }
 
+function getDefaultPricing(slug: CoursePageSlug) {
+  const tierSlug = COURSE_DEFAULT_TIER[slug];
+  return PRICING_TIERS[tierSlug];
+}
+
+function getDefaultBadge(slug: CoursePageSlug) {
+  const tierSlug = COURSE_DEFAULT_TIER[slug];
+  const tier = TIER_DISPLAY.find((t) => t.slug === tierSlug)!;
+  return { text: tier.label, color: tier.badgeColor };
+}
+
 export const courseData: Record<string, CourseData> = {
   "business-finance": {
     slug: "business-finance",
     title: "BUSINESS & FINANCE",
     subtitle: "You Pass Business & Finance Exam on the First Try",
-    badge: {
-      text: "Primary Course",
-      color: "bg-emerald-600",
-    },
-    pricing: {
-      originalValue: 350,
-      currentPrice: 299,
-    },
-    rating: {
-      score: 4.9,
-      platform: "Skool",
-    },
+    badge: getDefaultBadge("business-finance"),
+    pricing: getDefaultPricing("business-finance"),
+    rating: COURSE_RATING,
     heroDescription:
       "I help future contractors pass their Florida State Exams first try so you never have to worry about it again!",
     features: [
@@ -96,20 +106,12 @@ export const courseData: Record<string, CourseData> = {
   },
   "contract-administration": {
     slug: "contract-administration",
-    title: "CONTRACT ADMINISTRATION",
-    subtitle: "You Pass Contract Administration Exam on the First Try",
-    badge: {
-      text: "Primary Course",
-      color: "bg-emerald-600",
-    },
-    pricing: {
-      originalValue: 350,
-      currentPrice: 299,
-    },
-    rating: {
-      score: 4.9,
-      platform: "Skool",
-    },
+    title: "CONTRACT ADMINISTRATION & PROJECT MANAGEMENT",
+    subtitle:
+      "You Pass Contract Administration & Project Management Exam on the First Try",
+    badge: getDefaultBadge("contract-administration"),
+    pricing: getDefaultPricing("contract-administration"),
+    rating: COURSE_RATING,
     heroDescription:
       "Master contract administration with our proven method and pass on your first attempt!",
     features: [
@@ -167,18 +169,9 @@ export const courseData: Record<string, CourseData> = {
     slug: "complete-exam-prep",
     title: "COMPLETE EXAM PREP",
     subtitle: "You Pass All Florida Contractor Exams on the First Try",
-    badge: {
-      text: "Premium + Books",
-      color: "bg-blue-600",
-    },
-    pricing: {
-      originalValue: 1150,
-      currentPrice: 715,
-    },
-    rating: {
-      score: 4.9,
-      platform: "Skool",
-    },
+    badge: getDefaultBadge("complete-exam-prep"),
+    pricing: getDefaultPricing("complete-exam-prep"),
+    rating: COURSE_RATING,
     heroDescription:
       "Everything you need to pass all Florida contractor exams - complete preparation in one package!",
     features: [

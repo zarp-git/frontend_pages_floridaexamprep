@@ -1,6 +1,7 @@
 "use client";
 
 import { CourseData, CourseFeature } from "@/data/courses";
+import { PRICING_TIERS, TIER_DISPLAY, COURSE_RATING } from "@/constants/pricing";
 import { Star } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import Image from "next/image";
@@ -28,61 +29,34 @@ interface PricingTier {
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
-  // Define the 3 pricing tiers based on the current course
-  const pricingTiers: PricingTier[] = [
-    {
-      badge: {
-        text: "Primary Course",
-        color: "bg-emerald-600",
-      },
-      pricing: {
-        originalValue: 350,
-        currentPrice: 299,
-      },
-      rating: {
-        score: 4.9,
-        platform: "Skool",
-      },
-      features: course.features, // All features with correct included flags
-      tierSlug: "primary-course",
-    },
-    {
-      badge: {
-        text: "Primary + Books",
-        color: "bg-violet-600",
-      },
-      pricing: {
-        originalValue: 700,
-        currentPrice: 649,
-      },
-      rating: {
-        score: 4.9,
-        platform: "Skool",
-      },
-      features: course.features.map((f, idx) => ({
+  // Build the 3 pricing tiers from SSOT constants
+  const pricingTiers: PricingTier[] = TIER_DISPLAY.map((tier, idx) => {
+    const pricing = PRICING_TIERS[tier.slug];
+
+    // Determine feature inclusion per tier:
+    //  - primary-course (idx 0): use course's original included flags
+    //  - primary-books  (idx 1): include first 10 features
+    //  - premium-books  (idx 2): include all features
+    let features: CourseFeature[];
+    if (idx === 0) {
+      features = course.features;
+    } else if (idx === 1) {
+      features = course.features.map((f, i) => ({
         ...f,
-        // Include first 10 features (0-9), exclude last 2
-        included: idx < 10,
-      })),
-      tierSlug: "primary-books",
-    },
-    {
-      badge: {
-        text: "Premium + Books",
-        color: "bg-blue-600",
-      },
-      pricing: {
-        originalValue: 1150,
-        currentPrice: 715,
-      },
-      rating: {
-        score: 4.9,
-        platform: "Skool",
-      },
-      features: course.features.map(f => ({ ...f, included: true })), // All features included
-      tierSlug: "premium-books",
-    },
-  ];
+        included: i < 10,
+      }));
+    } else {
+      features = course.features.map((f) => ({ ...f, included: true }));
+    }
+
+    return {
+      badge: { text: tier.label, color: tier.badgeColor },
+      pricing,
+      rating: COURSE_RATING,
+      features,
+      tierSlug: tier.slug,
+    };
+  });
 
   return (
     <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gradient-to-b from-sky-400 via-[#00091C] via-50% to-[#00091C] overflow-hidden">
@@ -117,7 +91,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                   </h3>
                 </div>
               </div>
-              
+
               {/* Card Content */}
               <div className="px-5 pb-8 pt-6 flex flex-col justify-start items-center gap-6 sm:gap-8">
               {/* Rating */}
