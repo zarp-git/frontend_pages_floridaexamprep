@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import GHLIframeContainer from "./GHLIframeContainer";
 import type { CourseSlug } from "@/types/courses";
 
@@ -43,13 +42,13 @@ export default function CheckoutContent({ courseSlug }: CheckoutContentProps) {
                 {testimonialScreenshots.map((screenshot, index) => (
                   <div 
                     key={index}
-                    className="relative aspect-square rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                    className="relative w-full aspect-square rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                   >
-                    <Image
+                    <img
                       src={screenshot}
                       alt={`Student testimonial ${index + 1}`}
-                      fill
-                      className="object-cover"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 ))}

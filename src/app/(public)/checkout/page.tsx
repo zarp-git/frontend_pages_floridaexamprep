@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "@/presentation/components/organisms/landing-page/Header";
 import LandingFooter from "@/presentation/components/organisms/landing-page/LandingFooter";
@@ -18,6 +19,11 @@ export default function CheckoutPage() {
   const courseSlug: CourseSlug = tier && ["primary-course", "primary-books", "premium-books"].includes(tier)
     ? tier
     : "primary-course";
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="w-full bg-white flex flex-col">
