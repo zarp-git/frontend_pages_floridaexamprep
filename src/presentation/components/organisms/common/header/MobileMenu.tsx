@@ -45,7 +45,7 @@ const panelVariants = {
       stiffness: 300,
     },
   },
-};
+} as const;
 
 const navItemVariants = {
   hidden: { opacity: 0, x: 30 },
@@ -55,7 +55,7 @@ const navItemVariants = {
     transition: { type: "spring", damping: 25, stiffness: 250 },
   },
   exit: { opacity: 0, x: 30, transition: { duration: 0.15 } },
-};
+} as const;
 
 const dropdownVariants = {
   hidden: { height: 0, opacity: 0 },
@@ -75,7 +75,7 @@ const dropdownVariants = {
       opacity: { duration: 0.1 },
     },
   },
-};
+} as const;
 
 const footerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -84,7 +84,7 @@ const footerVariants = {
     y: 0,
     transition: { delay: 0.2, type: "spring", damping: 25 },
   },
-};
+} as const;
 
 export default function MobileMenu({
   isOpen,

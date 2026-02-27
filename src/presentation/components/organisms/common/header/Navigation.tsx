@@ -38,12 +38,12 @@ const dropdownVariants = {
     scale: 0.96,
     transition: { duration: 0.15 },
   },
-};
+} as const;
 
 const dropdownItemVariants = {
   hidden: { opacity: 0, x: -8 },
   visible: { opacity: 1, x: 0 },
-};
+} as const;
 
 /**
  * Animated underline that grows from right to left on hover.

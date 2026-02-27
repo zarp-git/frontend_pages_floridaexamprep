@@ -36,7 +36,7 @@ const headingVariants = {
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" },
   },
-};
+} as const;
 
 const chipVariants = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -45,7 +45,7 @@ const chipVariants = {
     scale: 1,
     transition: { duration: 0.5, ease: "easeOut" },
   },
-};
+} as const;
 
 const imageVariants = {
   enter: (direction: number) => ({
@@ -59,7 +59,7 @@ const imageVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   },
   exit: (direction: number) => ({
@@ -68,10 +68,10 @@ const imageVariants = {
     scale: 0.9,
     transition: {
       duration: 0.4,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   }),
-};
+} as const;
 
 export default function ScreenshotsTestimonialsSection() {
   const [startIndex, setStartIndex] = useState(0);
