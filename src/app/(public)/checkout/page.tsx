@@ -8,6 +8,8 @@ import CheckoutGuarantee from "@/presentation/components/organisms/checkout/Chec
 import CheckoutContent from "@/presentation/components/organisms/checkout/CheckoutContent";
 import type { CourseSlug } from "@/types/courses";
 
+export const dynamic = 'force-dynamic';
+
 export default function CheckoutPage() {
   const searchParams = useSearchParams();
   const tier = searchParams.get("tier") as CourseSlug | null;
