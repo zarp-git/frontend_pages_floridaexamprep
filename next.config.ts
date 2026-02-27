@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    NEXT_PUBLIC_GHL_IFRAME_PRIMARY_COURSE: process.env.NEXT_PUBLIC_GHL_IFRAME_PRIMARY_COURSE,
+    NEXT_PUBLIC_GHL_IFRAME_PRIMARY_BOOKS: process.env.NEXT_PUBLIC_GHL_IFRAME_PRIMARY_BOOKS,
+    NEXT_PUBLIC_GHL_IFRAME_PREMIUM_BOOKS: process.env.NEXT_PUBLIC_GHL_IFRAME_PREMIUM_BOOKS,
+    NEXT_PUBLIC_GHL_ORIGIN: process.env.NEXT_PUBLIC_GHL_ORIGIN,
+  },
 };
 
 export default nextConfig;

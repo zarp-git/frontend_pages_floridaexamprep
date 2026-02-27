@@ -4,6 +4,7 @@ import { CourseData, CourseFeature } from "@/data/courses";
 import { Star } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CoursePricingCardProps {
   course: CourseData;
@@ -23,6 +24,7 @@ interface PricingTier {
     platform: string;
   };
   features: CourseFeature[];
+  tierSlug: "primary-course" | "primary-books" | "premium-books";
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
@@ -42,6 +44,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         platform: "Skool",
       },
       features: course.features, // All features with correct included flags
+      tierSlug: "primary-course",
     },
     {
       badge: {
@@ -61,6 +64,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         // Include first 10 features (0-9), exclude last 2
         included: idx < 10,
       })),
+      tierSlug: "primary-books",
     },
     {
       badge: {
@@ -76,6 +80,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         platform: "Skool",
       },
       features: course.features.map(f => ({ ...f, included: true })), // All features included
+      tierSlug: "premium-books",
     },
   ];
 
@@ -162,13 +167,15 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                     </div>
                   </div>
 
-                  <PrimaryButton
-                    variant="blue-solid"
-                    size="lg"
-                    className="w-full"
-                  >
-                    GET THAT +90 GRADE NOW
-                  </PrimaryButton>
+                  <Link href={`/checkout?tier=${tier.tierSlug}`}>
+                    <PrimaryButton
+                      variant="blue-solid"
+                      size="lg"
+                      className="w-full"
+                    >
+                      GET THAT +90 GRADE NOW
+                    </PrimaryButton>
+                  </Link>
                 </div>
 
                 {/* Features Title */}
@@ -215,13 +222,15 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
               </div>
 
               {/* Bottom CTA */}
-              <PrimaryButton
-                variant="blue-solid"
-                size="lg"
-                className="w-full"
-              >
-                GET THAT +90 GRADE NOW
-              </PrimaryButton>
+              <Link href={`/checkout?tier=${tier.tierSlug}`}>
+                <PrimaryButton
+                  variant="blue-solid"
+                  size="lg"
+                  className="w-full"
+                >
+                  GET THAT +90 GRADE NOW
+                </PrimaryButton>
+              </Link>
               </div>
             </div>
           ))}
