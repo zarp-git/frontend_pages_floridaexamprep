@@ -1,7 +1,7 @@
 "use client";
 
 import { CourseData, CourseFeature } from "@/data/courses";
-import { PRICING_TIERS, TIER_DISPLAY, COURSE_RATING } from "@/constants/pricing";
+import { PRICING_TIERS, TIER_DISPLAY, COURSE_RATING, CTA_TEXT, TIER_CTA_URL } from "@/constants/pricing";
 import { Star } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import Image from "next/image";
@@ -25,18 +25,20 @@ interface PricingTier {
     platform: string;
   };
   features: CourseFeature[];
-  tierSlug: "primary-course" | "primary-books" | "premium-books";
+  tierSlug: string;
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
-  // Build the 3 pricing tiers from SSOT constants
-  const pricingTiers: PricingTier[] = TIER_DISPLAY.map((tier, idx) => {
-    const pricing = PRICING_TIERS[tier.slug];
+  // Define os tiers válidos para cada curso
+  const courseTiersMap: Record<string, string[]> = {
+    "business-finance": ["primary-course", "primary-books", "premium-books"],
+    "contract-administration": ["capm-course", "capm-books", "capm-package"],
+    "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
+  };
 
-    // Determine feature inclusion per tier:
-    //  - primary-course (idx 0): use course's original included flags
-    //  - primary-books  (idx 1): include first 10 features
-    //  - premium-books  (idx 2): include all features
+  const validTiers = courseTiersMap[course.slug] || [];
+  const pricingTiers: PricingTier[] = TIER_DISPLAY.filter((tier) => validTiers.includes(tier.slug)).map((tier, idx) => {
+    const pricing = PRICING_TIERS[tier.slug];
     let features: CourseFeature[];
     if (idx === 0) {
       features = course.features;
@@ -48,7 +50,6 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     } else {
       features = course.features.map((f) => ({ ...f, included: true }));
     }
-
     return {
       badge: { text: tier.label, color: tier.badgeColor },
       pricing,
@@ -60,13 +61,13 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
 
   return (
     <div
-      className="bg-black"
+      className="bg-black overflow-x-hidden"
       style={{
         background:
           "radial-gradient(122.59% 134.96% at 149.27% -34.05%, #0BF 0%, rgba(0, 60, 255, 0.00) 89.06%), radial-gradient(47.75% 46.47% at -26.25% 94.45%, #0BF 0%, rgba(0, 60, 255, 0.00) 100%), #000A1C",
       }}
     >
-      <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 overflow-hidden">
+      <section className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 py-10 sm:py-14 md:py-20 overflow-x-hidden">
         <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
@@ -151,13 +152,13 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                         </div>
                       </div>
 
-                      <Link href={`/checkout?tier=${tier.tierSlug}`}>
+                      <Link href={TIER_CTA_URL[tier.tierSlug]}>
                         <PrimaryButton
                           variant="blue-solid"
                           size="lg"
                           className="w-full"
                         >
-                          GET THAT +90 GRADE NOW
+                          {CTA_TEXT}
                         </PrimaryButton>
                       </Link>
                     </div>
@@ -206,13 +207,13 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                   </div>
 
                   {/* Bottom CTA */}
-                  <Link href={`/checkout?tier=${tier.tierSlug}`}>
+                  <Link href={TIER_CTA_URL[tier.tierSlug]}>
                     <PrimaryButton
                       variant="blue-solid"
                       size="lg"
                       className="w-full"
                     >
-                      GET THAT +90 GRADE NOW
+                      {CTA_TEXT}
                     </PrimaryButton>
                   </Link>
                 </div>

@@ -1,3 +1,22 @@
+// ---------------------------------------------------------------------------
+// CTA Texts & URLs (SSOT)
+// ---------------------------------------------------------------------------
+export const CTA_TEXT = "Get that approval right away";
+
+export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
+  // Business & Finance
+  "primary-course": "/checkout?tier=primary-course",
+  "primary-books": "/checkout?tier=primary-books",
+  "premium-books": "/checkout?tier=premium-books",
+  // CA/PM
+  "capm-course": "/checkout?tier=capm-course",
+  "capm-books": "/checkout?tier=capm-books",
+  "capm-package": "/checkout?tier=capm-package",
+  // Complete Exam Prep
+  "complete-course": "/checkout?tier=complete-course",
+  "complete-books": "/checkout?tier=complete-books",
+  "complete-package": "/checkout?tier=complete-package",
+};
 /**
  * Pricing Constants — Single Source of Truth (SSOT)
  * ==================================================
@@ -8,7 +27,16 @@
 // ---------------------------------------------------------------------------
 // Pricing Tier Slugs
 // ---------------------------------------------------------------------------
-export type PricingTierSlug = "primary-course" | "primary-books" | "premium-books";
+export type PricingTierSlug =
+  | "primary-course"
+  | "primary-books"
+  | "premium-books"
+  | "capm-course"
+  | "capm-books"
+  | "capm-package"
+  | "complete-course"
+  | "complete-books"
+  | "complete-package";
 
 // ---------------------------------------------------------------------------
 // Course Page Slugs
@@ -27,6 +55,7 @@ export interface TierPricing {
 }
 
 export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
+  // Business & Finance
   "primary-course": {
     originalValue: 350,
     currentPrice: 299,
@@ -38,6 +67,32 @@ export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
   "premium-books": {
     originalValue: 1150,
     currentPrice: 715,
+  },
+  // Contract Administration / Project Management (CA/PM)
+  "capm-course": {
+    originalValue: 699,
+    currentPrice: 599,
+  },
+  "capm-books": {
+    originalValue: 1099,
+    currentPrice: 999,
+  },
+  "capm-package": {
+    originalValue: 1799,
+    currentPrice: 1599,
+  },
+  // Complete Exam Prep
+  "complete-course": {
+    originalValue: 899,
+    currentPrice: 799,
+  },
+  "complete-books": {
+    originalValue: 1499,
+    currentPrice: 1299,
+  },
+  "complete-package": {
+    originalValue: 2499,
+    currentPrice: 2199,
   },
 } as const;
 
@@ -51,9 +106,18 @@ export interface TierDisplayInfo {
 }
 
 export const TIER_DISPLAY: TierDisplayInfo[] = [
+  // Business & Finance
   { slug: "primary-course", label: "Primary Course", badgeColor: "bg-emerald-600" },
   { slug: "primary-books", label: "Primary + Books", badgeColor: "bg-violet-600" },
   { slug: "premium-books", label: "Premium + Books", badgeColor: "bg-blue-600" },
+  // CA/PM
+  { slug: "capm-course", label: "CA/PM Course", badgeColor: "bg-emerald-600" },
+  { slug: "capm-books", label: "CA/PM Books Only", badgeColor: "bg-violet-600" },
+  { slug: "capm-package", label: "CA/PM Package", badgeColor: "bg-blue-600" },
+  // Complete Exam Prep
+  { slug: "complete-course", label: "Course Bundle", badgeColor: "bg-emerald-600" },
+  { slug: "complete-books", label: "Books Bundle", badgeColor: "bg-violet-600" },
+  { slug: "complete-package", label: "Complete Package", badgeColor: "bg-blue-600" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -62,8 +126,8 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
 // ---------------------------------------------------------------------------
 export const COURSE_DEFAULT_TIER: Record<CoursePageSlug, PricingTierSlug> = {
   "business-finance": "primary-course",
-  "contract-administration": "primary-course",
-  "complete-exam-prep": "premium-books",
+  "contract-administration": "capm-course",
+  "complete-exam-prep": "complete-package",
 } as const;
 
 // ---------------------------------------------------------------------------
