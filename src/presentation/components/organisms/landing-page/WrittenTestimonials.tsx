@@ -541,8 +541,8 @@ export default function WrittenTestimonials() {
       </section>
 
       {/* ───── DESKTOP: Original grid layout (>= lg, unchanged) ───── */}
-      <section className="hidden lg:block w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6 sm:gap-8">
+      <section className="hidden lg:block w-full py-12 sm:py-16 md:py-20 bg-white">
+        <div className="px-4 md:px-28 max-w-[1440px] mx-auto flex flex-col items-center gap-6 sm:gap-8">
           <div className="flex flex-col items-center gap-2 sm:gap-3 px-2">
             <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
               <span className="text-white text-base sm:text-lg md:text-xl font-medium font-rubik leading-relaxed">

@@ -37,13 +37,14 @@ const VARIANT_CLASSES = {
   default:
     "bg-gradient-to-br from-[#bb0711] to-[#3f4adf] text-white hover:from-[#a00610] hover:to-[#3540c0]",
   outline:
-    "border-2 border-primary text-primary bg-transparent hover:bg-primary dark:border-primary dark:text-primary bg-background hover:text-white",
+    "border-2 border-[#002770] text-[#002770] bg-transparent hover:bg-[#002770] hover:text-white transition-colors",
   "outline-solid":
     "border-2 border-primary text-primary bg-transparent hover:bg-primary/10 dark:border-primary dark:text-primary",
   white:
     "bg-background text-primary border border-input hover:bg-accent dark:bg-background dark:text-primary",
   blue: "bg-gradient-to-br from-blue-700 to-blue-950 text-white hover:from-blue-600 hover:to-blue-900",
-  "blue-solid": "bg-blue-950 text-white hover:bg-blue-900",
+  "blue-solid":
+    "bg-gradient-to-br from-blue-700 to-blue-950 text-white hover:from-blue-600 hover:to-blue-900",
   orange:
     "bg-gradient-to-br from-orange-600 to-amber-800 text-white hover:from-orange-500 hover:to-amber-700",
 } as const;

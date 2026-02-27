@@ -78,8 +78,8 @@ function DiplomaIcon() {
 
 export default function PillarsSection() {
   return (
-    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 xl:px-56 py-12 sm:py-16 md:py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
+    <section className="w-full py-12 sm:py-16 md:py-20 bg-white overflow-hidden">
+      <div className="px-4 md:px-28 max-w-[1440px] mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
         {/* Heading */}
         <div className="flex flex-col justify-start items-center gap-3 sm:gap-4 px-2">
           <h2 className="text-center text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">

@@ -48,7 +48,7 @@ export default function LandingFooter() {
 
   return (
     <footer className="w-full bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pt-12 sm:pt-16 flex flex-col gap-10 sm:gap-12">
+      <div className="px-4 md:px-28 max-w-[1440px] mx-auto pt-12 sm:pt-16 flex flex-col gap-10 sm:gap-12">
         {/* Main Content */}
         <div className="flex flex-col gap-8 sm:gap-10">
           {/* Top Section with Border */}
@@ -62,7 +62,7 @@ export default function LandingFooter() {
                   alt="Florida Exam Prep"
                   width={192}
                   height={80}
-                  className="h-16 sm:h-20 w-auto"
+                  className="h-16 sm:h-20 w-fit"
                 />
 
                 {/* Description */}
@@ -94,7 +94,7 @@ export default function LandingFooter() {
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
                     <h3 className="text-gray-800 text-lg font-medium font-rubik uppercase leading-7">
-                      some of our courses
+                      Some of our courses
                     </h3>
                     <div className="w-10 h-0.5 bg-[#FF6200] rounded-lg" />
                   </div>
@@ -298,24 +298,29 @@ export default function LandingFooter() {
       </div>
 
       {/* Copyright Bar */}
-      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-20 py-6 sm:py-8 bg-black border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 mt-8 sm:mt-10">
-        <p className="text-gray-400 text-sm sm:text-base font-normal font-rubik leading-5 text-center sm:text-left">
-          FLORIDA EXAM PREP &copy; Copyright 2026 - All Rights Reserved.
-        </p>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <Link
-            href="https://www.zarpstudio.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 text-sm sm:text-base font-normal font-rubik underline leading-5 hover:text-gray-300 transition-colors"
-          >
-            Developed and Maintained by
-          </Link>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-400 text-xl sm:text-2xl font-semibold font-familjen-grotesk">
-              Zarp
-            </span>
-            <span className="text-gray-400 text-xs">&trade;</span>
+      <div className="w-full bg-black border-t border-gray-900 mt-8 sm:mt-10">
+        <div className="px-4 md:px-28 flex flex-col sm:flex-row items-center justify-between h-auto py-6 sm:py-0 sm:h-[64px] md:h-[72px] max-w-[1440px] mx-auto gap-3 sm:gap-4">
+          <p className="text-gray-400 text-sm sm:text-base font-normal font-rubik leading-5 text-center sm:text-left">
+            FLORIDA EXAM PREP &copy; Copyright 2026 - All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link
+              href="https://www.zarpstudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <span className="text-gray-500 text-sm sm:text-base font-normal font-rubik leading-5">
+                Developed and Maintained by
+              </span>
+              <Image
+                src="/images/brands/zarp-logomark.svg"
+                alt="Zarp Studio"
+                width={83}
+                height={25}
+                className="h-5 w-auto"
+              />
+            </Link>
           </div>
         </div>
       </div>

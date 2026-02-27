@@ -94,61 +94,50 @@ function FAQAccordion() {
 export default function FAQSection() {
   return (
     <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-16">
-          {/* Left Side - Guarantee Badge */}
-          <div className="w-full lg:w-5/12 flex flex-col gap-6 sm:gap-8">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56">
-              <Image
-                src="/images/svg/exclusive.svg"
-                alt="Exclusive Guarantee"
-                width={256}
-                height={256}
-                className="w-full h-full"
-              />
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <h3 className="text-blue-600 text-xl sm:text-2xl md:text-3xl font-bold font-red-hat leading-tight">
-                I&apos;ll Coach You Personally Until
-                <br className="hidden sm:block" /> You Get Approved
-              </h3>
-              <p className="text-gray-700 text-sm sm:text-base font-normal font-rubik leading-relaxed max-w-md">
-                That&apos;s a commitment. Complete the full course — every
-                video, every quiz, every guide — and if you still don&apos;t
-                pass, our expert will personally schedule a free one-hour
-                session with you to fix whatever&apos;s holding you back.
-              </p>
-              <p className="text-gray-700 text-sm sm:text-base font-normal font-rubik leading-relaxed max-w-md">
-                No fine print. No loopholes. Just a guarantee backed by someone
-                who&apos;s done this hundreds of times and refuses to let you
-                fail twice. Enroll today. Stop gambling with your license.
-              </p>
-            </div>
-
-            <PrimaryButton
-              variant="blue"
-              size="lg"
-              icon={<ArrowUpRight className="w-5 h-5" />}
-              iconPosition="right"
-              className="w-full sm:w-auto"
-            >
-              {CTA_TEXT}
-            </PrimaryButton>
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+        {/* Left Side - Guarantee Badge */}
+        <div className="w-full md:w-80 lg:w-[554px] flex flex-col items-center md:items-start gap-6 sm:gap-8 md:shrink-0">
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56">
+            <Image
+              src="/images/svg/exclusive.svg"
+              alt="Exclusive Guarantee"
+              width={256}
+              height={256}
+              className="w-full h-full object-contain"
+            />
           </div>
 
-          {/* Right Side - FAQ */}
-          <div className="flex-1 flex flex-col gap-4 sm:gap-6">
-            <div className="flex flex-col gap-1 sm:gap-2">
-              <p className="text-gray-500 text-sm sm:text-base font-medium font-rubik uppercase tracking-wide">
-                Still Got Questions?
-              </p>
-              <h2 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight">
-                Frequently Asked Questions
-              </h2>
-            </div>
-            <FAQAccordion />
+          <div className="flex flex-col gap-3 text-center md:text-left">
+            <h3 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-bold font-red-hat leading-tight font-extrabold ">
+              I&apos;ll Coach You Personally Until
+              <br className="hidden sm:block" /> You Get Approved
+            </h3>
+            <p className="text-gray-700 text-sm sm:text-base font-normal font-rubik leading-relaxed max-w-md">
+              That&apos;s a commitment. Complete the full course — every video,
+              every quiz, every guide — and if you still don&apos;t pass, our
+              expert will personally schedule a free one-hour session with you
+              to fix whatever&apos;s holding you back. We&apos;re invested in
+              your success, and I won&apos;t let you fail twice.
+            </p>
           </div>
+
+          <PrimaryButton
+            variant="blue"
+            size="lg"
+            icon={<ArrowUpRight className="w-5 h-5" />}
+            iconPosition="right"
+            className="w-full sm:w-auto"
+          >
+            {CTA_TEXT}
+          </PrimaryButton>
+        </div>
+
+        {/* Right Side - FAQ */}
+        <div className="w-full md:flex-1 lg:max-w-xl flex flex-col gap-6">
+          <h2 className="text-[#002770] text-[24px] sm:text-[28px] lg:text-3xl font-extrabold font-red-hat uppercase leading-tight sm:leading-10">
+            FREQUENTLY ASKED QUESTIONS
+          </h2>
+          <FAQAccordion />
         </div>
       </div>
     </section>

@@ -24,15 +24,15 @@ const BOOKS: Book[] = [
 
 export default function BookSection() {
   return (
-     <div
+    <div
       className="bg-black"
       style={{
         background:
           "radial-gradient(122.59% 134.96% at 149.27% -34.05%, #0BF 0%, rgba(0, 60, 255, 0.00) 89.06%), radial-gradient(47.75% 46.47% at -26.25% 94.45%, #0BF 0%, rgba(0, 60, 255, 0.00) 100%), #000A1C",
       }}
     >
-      <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 overflow-hidden">
-        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <section className="w-full py-12 sm:py-16 md:py-20 overflow-hidden">
+        <div className="px-4 md:px-28 max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Left Content */}
           <div className="flex flex-col justify-center items-start gap-5">
             {/* Chip */}
