@@ -1,8 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ArrowUpRight, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
+  MoreHorizontal,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
 import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
@@ -20,7 +26,6 @@ interface Testimonial {
 }
 
 const TESTIMONIALS: Testimonial[][] = [
-  // Row 1 - Mix of video and written
   [
     {
       id: "video-1",
@@ -52,7 +57,6 @@ const TESTIMONIALS: Testimonial[][] = [
       rating: 5,
     },
   ],
-  // Row 2 - Mix of written and video
   [
     {
       id: "4",
@@ -87,7 +91,6 @@ const TESTIMONIALS: Testimonial[][] = [
       text: "Winnnnn! Thanks to Cruz and thanks to this community I have accomplished something I really wanted to leave in 2025 and I did it thanks to everyone! You guys got this!",
     },
   ],
-  // Row 3 - Mix of written and video
   [
     {
       id: "6",
@@ -122,7 +125,6 @@ const TESTIMONIALS: Testimonial[][] = [
       rating: 5,
     },
   ],
-  // Row 4 - Hidden initially (Load More)
   [
     {
       id: "video-5",
@@ -156,7 +158,6 @@ const TESTIMONIALS: Testimonial[][] = [
       rating: 5,
     },
   ],
-  // Row 5 - Hidden initially (Load More)
   [
     {
       id: "8",
@@ -181,6 +182,29 @@ const TESTIMONIALS: Testimonial[][] = [
     },
   ],
 ];
+
+const ALL_TESTIMONIALS = TESTIMONIALS.flat();
+
+const SLIDE_EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
+const mobileSlideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.4, ease: SLIDE_EASE },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? "-100%" : "100%",
+    opacity: 0,
+    transition: { duration: 0.3, ease: SLIDE_EASE },
+  }),
+};
+
+/* ── Shared helpers (unchanged) ── */
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -211,6 +235,8 @@ function BlueCheckmark() {
   );
 }
 
+/* ── Desktop card (unchanged) ── */
+
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   if (testimonial.type === "video") {
     return (
@@ -231,7 +257,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
   return (
     <div className="flex-1 min-w-full lg:min-w-0 px-3 pt-3 pb-4 sm:pb-6 bg-gray-50 rounded-2xl border border-gray-200 flex flex-col gap-3 sm:gap-4">
-      {/* Image - Much larger for rows with video */}
       {testimonial.image && (
         <div className="relative h-64 sm:h-80 md:h-[350px] w-full rounded-lg border border-gray-200 overflow-hidden">
           <Image
@@ -242,8 +267,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           />
         </div>
       )}
-
-      {/* Profile */}
       <div className="flex flex-col gap-2 sm:gap-3.5">
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="relative">
@@ -269,8 +292,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
         <StarRating rating={testimonial.rating} />
       </div>
-
-      {/* Text */}
       {testimonial.text && (
         <p className="text-neutral-600 text-sm sm:text-base font-normal font-rubik capitalize leading-relaxed">
           {testimonial.text}
@@ -280,70 +301,303 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   );
 }
 
+/* ── Mobile carousel slide ── */
+
+function MobileSlide({
+  testimonial,
+  onVideoPlay,
+  onVideoPause,
+  onVideoEnd,
+}: {
+  testimonial: Testimonial;
+  onVideoPlay: () => void;
+  onVideoPause: () => void;
+  onVideoEnd: () => void;
+}) {
+  const [mediaLoaded, setMediaLoaded] = useState(false);
+
+  if (testimonial.type === "video") {
+    return (
+      <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black">
+        <PandaVideoPlayer
+          src={testimonial.video!}
+          className="w-full h-full"
+          controls
+          muted
+          autoPlay={false}
+          loop={false}
+          onPlay={onVideoPlay}
+          onPause={onVideoPause}
+          onEnded={onVideoEnd}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-full rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden flex flex-col p-3">
+      {testimonial.image && (
+        <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden">
+          {!mediaLoaded && (
+            <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg z-10" />
+          )}
+          <Image
+            src={testimonial.image}
+            alt={`Testimonial from ${testimonial.studentName}`}
+            fill
+            className="object-cover"
+            loading="lazy"
+            onLoad={() => setMediaLoaded(true)}
+          />
+        </div>
+      )}
+      <div className="shrink-0 pt-2 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <div className="relative shrink-0">
+            <Image
+              src={testimonial.avatar}
+              alt={testimonial.studentName}
+              width={32}
+              height={32}
+              className="rounded-full w-8 h-8"
+            />
+            <div className="absolute -bottom-0.5 -right-0.5 scale-75">
+              <BlueCheckmark />
+            </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-black text-sm font-normal font-rubik capitalize truncate">
+              {testimonial.studentName}
+            </p>
+            <p className="text-gray-400 text-xs font-normal font-rubik capitalize truncate">
+              {testimonial.examType}
+            </p>
+          </div>
+        </div>
+        <StarRating rating={testimonial.rating} />
+        {testimonial.text && (
+          <p className="text-neutral-600 text-xs font-normal font-rubik capitalize leading-relaxed line-clamp-3">
+            {testimonial.text}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Mobile carousel controller ── */
+
+function MobileCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
+
+  const totalSlides = ALL_TESTIMONIALS.length;
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const startTimer = useCallback(() => {
+    clearTimer();
+    timerRef.current = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, 5000);
+  }, [totalSlides, clearTimer]);
+
+  useEffect(() => {
+    if (isVideoPlaying) {
+      clearTimer();
+    } else {
+      startTimer();
+    }
+    return clearTimer;
+  }, [isVideoPlaying, startTimer, clearTimer]);
+
+  const goNext = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    setIsVideoPlaying(false);
+  }, [totalSlides]);
+
+  const goPrev = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+    setIsVideoPlaying(false);
+  }, [totalSlides]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartXRef.current = e.targetTouches[0].clientX;
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const diff = touchStartXRef.current - touchEndXRef.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goNext();
+      else goPrev();
+    }
+  }, [goNext, goPrev]);
+
+  return (
+    <div className="flex-1 min-h-0 relative">
+      {/* Arrow buttons */}
+      <motion.button
+        onClick={goPrev}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute left-1 top-1/2 -translate-y-1/2 w-9 h-9 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
+        aria-label="Previous slide"
+      >
+        <ArrowLeft className="w-4 h-4 text-white" />
+      </motion.button>
+
+      <motion.button
+        onClick={goNext}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
+        aria-label="Next slide"
+      >
+        <ArrowRight className="w-4 h-4 text-white" />
+      </motion.button>
+
+      {/* Carousel viewport */}
+      <div
+        className="w-full h-full overflow-hidden flex items-center justify-center"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <AnimatePresence mode="wait" custom={direction} initial={false}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={mobileSlideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="h-full aspect-4/5 max-w-full mx-auto"
+          >
+            <MobileSlide
+              testimonial={ALL_TESTIMONIALS[currentIndex]}
+              onVideoPlay={() => setIsVideoPlaying(true)}
+              onVideoPause={() => setIsVideoPlaying(false)}
+              onVideoEnd={() => setIsVideoPlaying(false)}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main component ── */
+
 export default function WrittenTestimonials() {
   const [showAll, setShowAll] = useState(false);
   const visibleRows = showAll ? TESTIMONIALS : TESTIMONIALS.slice(0, 3);
 
   return (
-    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-6 sm:gap-8">
-        {/* Heading */}
-        <div className="flex flex-col items-center gap-2 sm:gap-3 px-2">
-          <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
-            <span className="text-white text-base sm:text-lg md:text-xl font-medium font-rubik leading-relaxed">
-              DON'T TRY IT ALONE
-            </span>
-          </div>
-          <h2 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight text-center">
+    <>
+      {/* ───── MOBILE: Auto-advancing carousel (< lg) ───── */}
+      <section className="lg:hidden w-full max-h-svh h-svh flex flex-col px-4 py-6 bg-white">
+        {/* Compact heading */}
+        <div className="flex flex-col items-center gap-1 shrink-0 mb-3">
+          <h2 className="text-[#002770] text-lg font-extrabold font-red-hat uppercase leading-tight text-center">
             What Our Students Are Talking About Us
           </h2>
-          <p className="text-center text-gray-500 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
+          <p className="text-center text-gray-500 text-sm font-normal font-rubik leading-relaxed">
             Real Student Feedback From Our Community
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="w-full flex flex-col gap-4 sm:gap-6">
-          {visibleRows.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8"
-            >
-              {row.map((testimonial) => (
-                <TestimonialCard
-                  key={testimonial.id}
-                  testimonial={testimonial}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
+        {/* Carousel */}
+        <MobileCarousel />
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+        {/* CTA */}
+        <div className="shrink-0 mt-3">
           <PrimaryButton
             variant="blue-solid"
             size="lg"
             icon={<ArrowUpRight className="w-5 h-5" />}
             iconPosition="right"
-            className="w-full sm:w-auto"
+            className="w-full"
           >
             {CTA_TEXT}
           </PrimaryButton>
-          {!showAll && (
+        </div>
+      </section>
+
+      {/* ───── DESKTOP: Original grid layout (>= lg, unchanged) ───── */}
+      <section className="hidden lg:block w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-6 sm:gap-8">
+          <div className="flex flex-col items-center gap-2 sm:gap-3 px-2">
+            <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+              <span className="text-white text-base sm:text-lg md:text-xl font-medium font-rubik leading-relaxed">
+                DON&apos;T TRY IT ALONE
+              </span>
+            </div>
+            <h2 className="text-[#002770] text-xl sm:text-2xl md:text-3xl font-extrabold font-red-hat uppercase leading-tight text-center">
+              What Our Students Are Talking About Us
+            </h2>
+            <p className="text-center text-gray-500 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
+              Real Student Feedback From Our Community
+            </p>
+          </div>
+
+          <div className="w-full flex flex-col gap-4 sm:gap-6">
+            {visibleRows.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8"
+              >
+                {row.map((testimonial) => (
+                  <TestimonialCard
+                    key={testimonial.id}
+                    testimonial={testimonial}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <PrimaryButton
-              variant="outline"
+              variant="blue-solid"
               size="lg"
-              icon={<MoreHorizontal className="w-5 h-5" />}
+              icon={<ArrowUpRight className="w-5 h-5" />}
               iconPosition="right"
               className="w-full sm:w-auto"
-              onClick={() => setShowAll(true)}
             >
-              Load More
+              {CTA_TEXT}
             </PrimaryButton>
-          )}
+            {!showAll && (
+              <PrimaryButton
+                variant="outline"
+                size="lg"
+                icon={<MoreHorizontal className="w-5 h-5" />}
+                iconPosition="right"
+                className="w-full sm:w-auto"
+                onClick={() => setShowAll(true)}
+              >
+                Load More
+              </PrimaryButton>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
