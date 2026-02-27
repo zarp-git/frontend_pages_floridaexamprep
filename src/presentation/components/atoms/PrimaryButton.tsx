@@ -27,7 +27,7 @@ const SHINE_CLASSES = [
   "transform hover:scale-105 transition-transform duration-300",
   "shadow-lg hover:shadow-xl hover:shadow-blue-500/25",
   "btn-shine",
-  "after:absolute after:inset-0 after:bg-gradient-to-r",
+  "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r",
   "after:from-transparent after:via-white/10 after:to-transparent",
   "after:translate-x-[-100%] hover:after:translate-x-[100%]",
   "after:transition-transform after:duration-700 after:ease-in-out",

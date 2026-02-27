@@ -28,7 +28,7 @@ const brandedButtonVariants = cva(
         pulse: "animate-pulse",
         shake: "animate-shake-infinite",
         shine:
-          "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent overflow-hidden",
+          "before:content-[''] before:absolute before:inset-0 before:-translate-x-full before:animate-shine before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent overflow-hidden",
         radar: "animate-glow",
       },
       fullWidth: {
