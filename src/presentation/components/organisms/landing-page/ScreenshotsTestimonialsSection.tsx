@@ -133,125 +133,128 @@ export default function ScreenshotsTestimonialsSection() {
             These and over 150 other students have already passed the exam
           </p>
         </motion.div>
+      </div>
 
-        {/* Carousel Container */}
-        <div className="relative w-full h-[360px] sm:h-[440px] md:h-[520px] flex items-center justify-center px-4">
-          {/* Navigation Buttons */}
-          <motion.button
-            onClick={handlePrevious}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="absolute left-2 sm:left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
-            aria-label="Previous slide"
-          >
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </motion.button>
+      {/* Carousel Container - Now outside the padded wrapper to be full-width */}
+      <div className="relative w-full max-w-[1920px] mx-auto h-[360px] sm:h-[440px] md:h-[520px] flex items-center justify-center">
+        {/* Navigation Buttons */}
+        <motion.button
+          onClick={handlePrevious}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="absolute left-4 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
+          aria-label="Previous slide"
+        >
+          <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        </motion.button>
 
-          {/* Images Row */}
-          <div className="relative flex justify-center items-center gap-2 sm:gap-3 md:gap-4">
-            {/* Mobile: show 3 images */}
-            <AnimatePresence mode="popLayout" custom={direction}>
-              <div
-                key={`mobile-group-${startIndex}`}
-                className="flex md:hidden justify-center items-center gap-2"
-              >
-                {visibleImages.slice(1, 4).map((image, index) => {
-                  const style = mobileStyles[index];
-                  return (
-                    <motion.div
-                      key={`${image}-mobile-${startIndex}-${index}`}
-                      custom={direction}
-                      variants={imageVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      className="relative shrink-0"
-                      style={{
-                        width: `${style.width}px`,
-                        height: `${style.height}px`,
-                        transform: `rotate(${style.rotation}deg) scale(${style.scale})`,
-                        zIndex: style.zIndex,
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        alt={`Testimonial ${index + 1}`}
-                        fill
-                        className="object-cover rounded-lg shadow-2xl"
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </AnimatePresence>
+        {/* Images Row */}
+        <div className="relative flex justify-center items-center gap-2 sm:gap-3 md:gap-4">
+          {/* Mobile: show 3 images */}
+          <AnimatePresence mode="popLayout" custom={direction}>
+            <div
+              key={`mobile-group-${startIndex}`}
+              className="flex md:hidden justify-center items-center gap-2"
+            >
+              {visibleImages.slice(1, 4).map((image, index) => {
+                const style = mobileStyles[index];
+                return (
+                  <motion.div
+                    key={`${image}-mobile-${startIndex}-${index}`}
+                    custom={direction}
+                    variants={imageVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    className="relative shrink-0"
+                    style={{
+                      width: `${style.width}px`,
+                      height: `${style.height}px`,
+                      transform: `rotate(${style.rotation}deg) scale(${style.scale})`,
+                      zIndex: style.zIndex,
+                    }}
+                  >
+                    <Image
+                      src={image}
+                      alt={`Testimonial ${index + 1}`}
+                      fill
+                      className="object-cover rounded-lg shadow-2xl"
+                    />
+                  </motion.div>
+                );
+              })}
+            </div>
+          </AnimatePresence>
 
-            {/* Desktop: show all 5 images */}
-            <AnimatePresence mode="popLayout" custom={direction}>
-              <div
-                key={`desktop-group-${startIndex}`}
-                className="hidden md:flex justify-center items-center gap-4"
-              >
-                {visibleImages.map((image, index) => {
-                  const style = desktopStyles[index];
-                  return (
-                    <motion.div
-                      key={`${image}-desktop-${startIndex}-${index}`}
-                      custom={direction}
-                      variants={imageVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      className="relative shrink-0"
-                      style={{
-                        width: `${style.width}px`,
-                        height: `${style.height}px`,
-                        transform: `rotate(${style.rotation}deg) scale(${style.scale})`,
-                        zIndex: style.zIndex,
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        alt={`Testimonial ${index + 1}`}
-                        fill
-                        className="object-cover rounded-lg shadow-2xl"
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </AnimatePresence>
-          </div>
-
-          <motion.button
-            onClick={handleNext}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="absolute right-2 sm:right-4 md:right-8 lg:right-12 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
-            aria-label="Next slide"
-          >
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </motion.button>
-
-          {/* Left Gradient Overlay */}
-          <div className="absolute left-0 top-0 w-32 sm:w-48 md:w-80 h-full bg-gradient-to-r from-zinc-100 via-zinc-100/50 to-transparent pointer-events-none z-10" />
-
-          {/* Right Gradient Overlay */}
-          <div className="absolute right-0 top-0 w-32 sm:w-48 md:w-80 h-full bg-gradient-to-l from-zinc-100 via-zinc-100/50 to-transparent pointer-events-none z-10" />
+          {/* Desktop: show all 5 images */}
+          <AnimatePresence mode="popLayout" custom={direction}>
+            <div
+              key={`desktop-group-${startIndex}`}
+              className="hidden md:flex justify-center items-center gap-4"
+            >
+              {visibleImages.map((image, index) => {
+                const style = desktopStyles[index];
+                return (
+                  <motion.div
+                    key={`${image}-desktop-${startIndex}-${index}`}
+                    custom={direction}
+                    variants={imageVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    className="relative shrink-0"
+                    style={{
+                      width: `${style.width}px`,
+                      height: `${style.height}px`,
+                      transform: `rotate(${style.rotation}deg) scale(${style.scale})`,
+                      zIndex: style.zIndex,
+                    }}
+                  >
+                    <Image
+                      src={image}
+                      alt={`Testimonial ${index + 1}`}
+                      fill
+                      className="object-cover rounded-lg shadow-2xl"
+                    />
+                  </motion.div>
+                );
+              })}
+            </div>
+          </AnimatePresence>
         </div>
 
+        <motion.button
+          onClick={handleNext}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="absolute right-4 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-gray-800/80 rounded-full flex justify-center items-center hover:bg-gray-800 transition-colors z-30 shadow-lg cursor-pointer"
+          aria-label="Next slide"
+        >
+          <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        </motion.button>
+
+        {/* Left Gradient Overlay - Adjusted width for better coverage */}
+        <div className="absolute left-0 top-0 w-32 sm:w-48 md:w-64 lg:w-96 h-full bg-gradient-to-r from-zinc-100 via-zinc-100/50 to-zinc-100/0 pointer-events-none z-20" />
+
+        {/* Right Gradient Overlay - Adjusted width for better coverage */}
+        <div className="absolute right-0 top-0 w-32 sm:w-48 md:w-64 lg:w-96 h-full bg-gradient-to-l from-zinc-100 via-zinc-100/50 to-zinc-100/0 pointer-events-none z-20" />
+      </div>
+
+      <div className="px-4 md:px-28 max-w-[1440px] mx-auto w-full flex flex-col justify-center items-center">
         {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
+          className="w-full flex justify-center mt-4 sm:mt-6"
         >
           <PrimaryButton
             variant="blue"
             size="lg"
             icon={<ArrowUpRight className="w-5 h-5" />}
             iconPosition="right"
-            className="w-full sm:w-auto mx-4"
+            className="w-full sm:w-auto"
           >
             {CTA_TEXT}
           </PrimaryButton>

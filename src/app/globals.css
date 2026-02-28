@@ -422,37 +422,32 @@
 /* Shine sweep effect for buttons */
 @keyframes shine {
   0% {
-    transform: translate3d(-100%, 0, 0) skewX(-25deg);
-    opacity: 0;
+    transform: translateX(-150%) skewX(-25deg);
   }
-  50% {
-    opacity: 1;
-  }
+  15%,
   100% {
-    transform: translate3d(200%, 0, 0) skewX(-25deg);
-    opacity: 0;
+    transform: translateX(150%) skewX(-25deg);
   }
 }
 
 @utility btn-shine {
+  position: relative;
+  overflow: hidden;
+
   &::before {
     content: "";
     position: absolute;
     inset: 0;
+    width: 60%;
     background: linear-gradient(
       to right,
       transparent,
-      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.4),
       transparent
     );
-    transform: translate3d(-100%, 0, 0) skewX(-25deg);
+    transform: translateX(-150%) skewX(-25deg);
     animation: shine 4s ease-in-out infinite;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  &:hover::before {
-    opacity: 0;
+    z-index: 10;
   }
 }
 

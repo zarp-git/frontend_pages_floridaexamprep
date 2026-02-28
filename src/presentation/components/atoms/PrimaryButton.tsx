@@ -28,9 +28,9 @@ const SHINE_CLASSES = [
   "shadow-lg hover:shadow-xl hover:shadow-blue-500/25",
   "btn-shine",
   "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r",
-  "after:from-transparent after:via-white/10 after:to-transparent",
-  "after:translate-x-[-100%] hover:after:translate-x-[100%]",
-  "after:transition-transform after:duration-700 after:ease-in-out",
+  "after:from-transparent after:via-white/40 after:to-transparent",
+  "after:-translate-x-full hover:after:translate-x-full",
+  "after:transition-transform after:duration-[800ms] after:ease-in-out",
 ].join(" ");
 
 const VARIANT_CLASSES = {

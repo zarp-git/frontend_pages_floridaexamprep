@@ -101,12 +101,13 @@ function CourseCard({ course }: { course: Course }) {
   return (
     <div className="flex-1 min-w-full sm:min-w-[320px] lg:min-w-0 p-px bg-zinc-100 rounded-lg border border-gray-300 flex flex-col overflow-hidden">
       {/* Image */}
-      <div className="relative h-48 sm:h-56 md:h-60 w-full">
+      <div className="relative w-full aspect-[16/9]">
         <Image
           src={course.image}
           alt={course.title}
           fill
           className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
         <div
           className={`absolute top-3 sm:top-[18px] left-3 sm:left-4 px-2 py-[3px] ${course.badgeColor} rounded-full backdrop-blur-sm`}

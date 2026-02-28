@@ -25,10 +25,10 @@ export default function HeroSection() {
             <div className="flex flex-col justify-center items-center gap-2 sm:gap-3 w-full px-2">
               {/* First Line with Cycling Animation */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
-                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
+                <span className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat leading-tight tracking-wide">
                   You Pass
                 </span>
-                <span className="text-[#FF6200] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black font-red-hat leading-tight tracking-wide uppercase">
+                <span className="text-[#FF6200] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black font-red-hat leading-tight tracking-wide uppercase">
                   <CyclingText
                     items={EXAM_TYPES}
                     interval={3000}
@@ -39,10 +39,10 @@ export default function HeroSection() {
 
               {/* Second Line with circle marker */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
-                <span className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
+                <span className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat leading-tight tracking-wide">
                   Exam on the
                 </span>
-                <span className="relative inline-flex items-center justify-center text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-red-hat leading-tight tracking-wide">
+                <span className="relative inline-flex items-center justify-center text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat leading-tight tracking-wide">
                   <span className="relative z-10 px-4">First Try</span>
                   {/* Circle marker SVG - scribble draw-in */}
                   <motion.svg
@@ -79,14 +79,14 @@ export default function HeroSection() {
 
             {/* Subtitle with line marker */}
             <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 text-center px-2">
-              <span className="text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight">
+              <span className="text-black text-base sm:text-lg md:text-xl font-medium font-red-hat leading-tight tracking-tight">
                 Or I&apos;ll Coach You Personally
               </span>
-              <span className="relative inline-flex items-center justify-center text-black text-lg sm:text-xl md:text-2xl font-medium font-red-hat leading-tight tracking-tight">
+              <span className="relative inline-flex items-center justify-center text-black text-base sm:text-lg md:text-xl font-medium font-red-hat leading-tight tracking-tight">
                 <span className="relative z-10 px-2">Until You Do</span>
                 {/* Line marker SVG - scribble draw-in */}
                 <motion.svg
-                  className="absolute bottom-[-8px] left-0 right-0 z-0 w-full"
+                  className="absolute bottom-[-4px] sm:bottom-[-8px] left-1/2 -translate-x-1/2 z-0 w-[120%] sm:w-[130%] h-auto overflow-visible"
                   viewBox="0 0 126 23"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

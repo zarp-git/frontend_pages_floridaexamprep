@@ -1,18 +1,14 @@
 "use client";
 
 import React from "react";
-import {
-  RiToolsLine,
-  RiPhoneLine,
-} from "@remixicon/react";
+import { RiToolsLine, RiMailLine } from "@remixicon/react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
 } from "@/presentation/components/atoms/ui/dialog";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
-import { BrandedButton } from "@/presentation/components/molecules/common/BrandedButton";
-import { CONTACT } from "@/constants";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 
 export const MaintenanceModal = () => {
   const { isOpen, closeModal } = useMaintenanceModal();
@@ -20,7 +16,7 @@ export const MaintenanceModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden">
-        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8">
+        <div className="relative bg-linear-to-br from-gray-50 to-gray-100 p-8">
           {/* Icon */}
           <div className="flex justify-center mb-6">
             <div className="relative">
@@ -38,23 +34,28 @@ export const MaintenanceModal = () => {
 
           {/* Description */}
           <p className="text-base text-gray-600 mb-6 font-rubik leading-relaxed text-center">
-            This page is currently undergoing maintenance to bring you an even better experience. We appreciate your patience and will be back online shortly.
+            This page is currently undergoing maintenance to bring you an even
+            better experience. We appreciate your patience and will be back
+            online shortly.
           </p>
 
           {/* CTA */}
           <div className="text-center">
             <p className="text-sm text-gray-500 font-rubik mb-3">
-              Need help now? Call us:
+              Need help now? Contact us:
             </p>
-            <BrandedButton
-              variant="primary"
+            <PrimaryButton
+              variant="blue"
               size="lg"
               className="shadow-xl"
-              leftIcon={<RiPhoneLine className="w-5 h-5" />}
-              onClick={() => (window.location.href = CONTACT.phoneHref)}
+              icon={<RiMailLine className="w-5 h-5" />}
+              iconPosition="left"
+              onClick={() =>
+                (window.location.href = "mailto:cruzvinci@floridaexamprep.com")
+              }
             >
-              {CONTACT.phoneDisplay}
-            </BrandedButton>
+              cruzvinci@floridaexamprep.com
+            </PrimaryButton>
           </div>
         </div>
       </DialogContent>
