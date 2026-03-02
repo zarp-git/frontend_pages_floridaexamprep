@@ -14,6 +14,7 @@ interface PandaVideoPlayerProps {
   onPause?: () => void;
   onEnded?: () => void;
   externalVideoRef?: RefObject<HTMLVideoElement | null>;
+  disableInteraction?: boolean;
 }
 
 const PandaVideoPlayerComponent = ({
@@ -28,6 +29,7 @@ const PandaVideoPlayerComponent = ({
   onPause,
   onEnded,
   externalVideoRef,
+  disableInteraction = false,
 }: PandaVideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -60,6 +62,11 @@ const PandaVideoPlayerComponent = ({
     const handlePause = () => {
       setIsPlaying(false);
       onPause?.();
+      
+      // If interaction is disabled and video is paused, restart it
+      if (disableInteraction && autoPlay) {
+        video.play().catch(console.warn);
+      }
     };
 
     const handleEnded = () => {
@@ -76,7 +83,7 @@ const PandaVideoPlayerComponent = ({
       video.removeEventListener("pause", handlePause);
       video.removeEventListener("ended", handleEnded);
     };
-  }, [onPlay, onPause, onEnded]);
+  }, [onPlay, onPause, onEnded, disableInteraction, autoPlay]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -113,7 +120,7 @@ const PandaVideoPlayerComponent = ({
 
   const handleVideoClick = async () => {
     const video = videoRef.current;
-    if (!video || isLoading) return;
+    if (!video || isLoading || disableInteraction) return;
 
     try {
       setIsLoading(true);
@@ -169,7 +176,10 @@ const PandaVideoPlayerComponent = ({
         ref={videoRef}
         src={src}
         poster={poster}
-        className="w-full h-full cursor-pointer video-player"
+        className={cn(
+          "w-full h-full video-player",
+          disableInteraction ? "pointer-events-none" : "cursor-pointer"
+        )}
         style={{
           objectFit: isFullscreen ? "contain" : "cover",
         }}

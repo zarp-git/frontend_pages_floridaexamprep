@@ -7,9 +7,22 @@ import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideo
 interface FloatingVideoProps {
   src: string;
   className?: string;
+  autoPlay?: boolean;
+  controls?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  disableInteraction?: boolean;
 }
 
-export function FloatingVideo({ src, className }: FloatingVideoProps) {
+export function FloatingVideo({ 
+  src, 
+  className,
+  autoPlay = false,
+  controls = false,
+  loop = false,
+  muted = true,
+  disableInteraction = false,
+}: FloatingVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mainVideoRef = useRef<HTMLVideoElement>(null);
   const pipVideoSlotRef = useRef<HTMLDivElement>(null);
@@ -41,6 +54,13 @@ export function FloatingVideo({ src, className }: FloatingVideoProps) {
   const handleVideoPlay = useCallback(() => {
     setHasInteracted(true);
   }, []);
+
+  // Auto-mark as interacted if autoPlay is enabled
+  useEffect(() => {
+    if (autoPlay) {
+      setHasInteracted(true);
+    }
+  }, [autoPlay]);
 
   const handleDismiss = useCallback(() => {
     setIsDismissed(true);
@@ -89,14 +109,20 @@ export function FloatingVideo({ src, className }: FloatingVideoProps) {
           <PandaVideoPlayer
             src={src}
             className="w-full h-[200px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
-            controls={false}
-            muted
-            autoPlay={false}
-            loop={false}
+            controls={controls}
+            muted={muted}
+            autoPlay={autoPlay}
+            loop={loop}
             onPlay={handleVideoPlay}
             externalVideoRef={mainVideoRef}
+            disableInteraction={disableInteraction}
           />
           <FakeProgressBar videoRef={mainVideoRef} />
+          
+          {/* Overlay to block interactions when controls are disabled */}
+          {!controls && (
+            <div className="absolute inset-0 z-20 cursor-default" />
+          )}
         </div>
       </div>
 

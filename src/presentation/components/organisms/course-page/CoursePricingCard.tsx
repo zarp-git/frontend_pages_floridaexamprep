@@ -1,19 +1,12 @@
 "use client";
 
 import { CourseData, CourseFeature } from "@/data/courses";
-import { 
-  PRICING_TIERS, 
-  TIER_DISPLAY, 
-  COURSE_RATING, 
-  CTA_TEXT, 
-  TIER_CTA_URL,
-  COURSE_TIERS_MAP,
-  type CoursePageSlug
-} from "@/constants/pricing";
-import { Star } from "lucide-react";
+import { PRICING_TIERS, TIER_DISPLAY, TIER_CTA_URL, PricingTierSlug } from "@/constants/pricing";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
-import Image from "next/image";
+import { Check, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface CoursePricingCardProps {
   course: CourseData;
@@ -23,24 +16,36 @@ interface PricingTier {
   badge: {
     text: string;
     color: string;
+    highlight?: string;
   };
   pricing: {
     originalValue: number;
     currentPrice: number;
   };
-  rating: {
-    score: number;
-    platform: string;
-  };
   features: CourseFeature[];
-  tierSlug: string;
+  tierSlug: PricingTierSlug;
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
-  const validTiers = COURSE_TIERS_MAP[course.slug as CoursePageSlug] || [];
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  const toggleExpanded = (idx: number) => {
+    setExpandedCards(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
+  // Define os tiers válidos para cada curso
+  const courseTiersMap: Record<string, string[]> = {
+    "business-finance": ["primary-course", "primary-books", "premium-books"],
+    "contract-administration": ["capm-course", "capm-books", "capm-package"],
+    "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
+  };
+
+  const validTiers = courseTiersMap[course.slug] || [];
   const pricingTiers: PricingTier[] = TIER_DISPLAY.filter((tier) => validTiers.includes(tier.slug)).map((tier, idx) => {
     const pricing = PRICING_TIERS[tier.slug];
     let features: CourseFeature[];
+    let highlight: string | undefined;
+    
     if (idx === 0) {
       features = course.features;
     } else if (idx === 1) {
@@ -48,17 +53,22 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         ...f,
         included: i < 10,
       }));
+      highlight = "Most Popular";
     } else {
       features = course.features.map((f) => ({ ...f, included: true }));
+      highlight = "Best Value";
     }
+    
     return {
-      badge: { text: tier.label, color: tier.badgeColor },
+      badge: { text: tier.label, color: tier.badgeColor, highlight },
       pricing,
-      rating: COURSE_RATING,
       features,
       tierSlug: tier.slug,
     };
   });
+
+  // Obter todas as features únicas
+  const allFeatures = course.features;
 
   return (
     <div
@@ -69,7 +79,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
       }}
     >
       <section className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 py-10 sm:py-14 md:py-20 overflow-x-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
+        <div className="w-full mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
             <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
@@ -86,140 +96,285 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
             </p>
           </div>
 
-          {/* Pricing Cards Grid */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pricingTiers.map((tier, index) => (
-              <div
-                key={index}
-                className="w-full bg-zinc-950/50 rounded-2xl border border-white/20 flex flex-col overflow-hidden"
-              >
-                {/* Badge - Centered with rounded bottom corners */}
-                <div className="w-full flex justify-center pt-0">
-                  <div
-                    className={`px-8 sm:px-12 py-3 sm:py-4 ${tier.badge.color} rounded-bl-[20px] rounded-br-[20px] inline-flex justify-center items-center`}
-                  >
-                    <h3 className="text-white text-lg sm:text-xl md:text-2xl font-semibold font-rubik text-center">
-                      {tier.badge.text}
-                    </h3>
-                  </div>
-                </div>
+          {/* Comparison Table - Desktop */}
+          <div className="hidden md:block w-full bg-white rounded-2xl overflow-hidden shadow-2xl">
+            {/* Header Row */}
+            <div className="grid grid-cols-4 border-b border-gray-200">
+              {/* Left Column - Features Label */}
+              <div className="col-span-1 p-4 sm:p-6 bg-gray-50 flex items-end pb-4">
+                <h3 className="text-gray-900 text-sm sm:text-base font-bold font-rubik">
+                  What&apos;s Included:
+                </h3>
+              </div>
 
-                {/* Card Content */}
-                <div className="px-5 pb-8 pt-6 flex flex-col justify-start items-center gap-6 sm:gap-8">
-                  {/* Rating */}
-                  <div className="inline-flex justify-center items-center gap-2 flex-wrap">
-                    <div className="flex justify-start items-start gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-amber-400 text-amber-400"
-                        />
-                      ))}
-                    </div>
-                    <div className="flex justify-start items-center gap-1">
-                      <span className="text-white text-sm font-medium font-rubik uppercase">
-                        {tier.rating.score}
-                      </span>
-                      <span className="text-gray-400 text-xs font-normal font-rubik">
-                        on {tier.rating.platform}
-                      </span>
-                    </div>
+              {/* Tier Headers */}
+              {pricingTiers.map((tier, idx) => (
+                <div
+                  key={idx}
+                  className={cn(
+                    "col-span-1 p-4 sm:p-6 flex flex-col items-center gap-3",
+                    idx === 1 && "bg-blue-50"
+                  )}
+                >
+                  {/* Highlight Badge - ou espaço vazio para manter alinhamento */}
+                  <div className="h-6">
+                    {tier.badge.highlight ? (
+                      <div className={cn(
+                        "px-3 py-1 rounded-full text-xs font-bold text-white",
+                        idx === 1 ? "bg-green-600" : "bg-blue-600"
+                      )}>
+                        {tier.badge.highlight}
+                      </div>
+                    ) : (
+                      <div className="h-6" />
+                    )}
                   </div>
+
+                  {/* Tier Name */}
+                  <h3 className="text-gray-900 text-sm sm:text-base font-bold font-rubik text-center">
+                    {tier.badge.text}
+                  </h3>
 
                   {/* Pricing */}
-                  <div className="self-stretch flex flex-col justify-center items-center gap-6">
-                    <div className="self-stretch flex flex-col justify-center items-center gap-6 sm:gap-7">
-                      <div className="flex flex-col justify-end items-center gap-2.5">
-                        <div className="flex flex-col justify-start items-center">
-                          <div className="inline-flex justify-start items-start gap-1">
-                            <span className="text-white text-base font-semibold font-rubik leading-5">
-                              Total Value:
-                            </span>
-                            <span className="text-red-600 text-base font-medium font-rubik line-through leading-5">
-                              ${tier.pricing.originalValue}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-white text-sm font-normal font-rubik leading-4">
-                          For only
-                        </div>
-                        <div className="inline-flex justify-center items-end gap-0.5">
-                          <span className="text-white text-2xl font-semibold font-rubik leading-6">
-                            $
-                          </span>
-                          <span className="text-white text-3xl sm:text-4xl font-semibold font-rubik leading-9">
-                            {tier.pricing.currentPrice}
-                          </span>
-                        </div>
-                      </div>
-
-                      <Link href={TIER_CTA_URL[tier.tierSlug]}>
-                        <PrimaryButton
-                          variant="blue-solid"
-                          size="lg"
-                          className="w-full"
-                        >
-                          {CTA_TEXT}
-                        </PrimaryButton>
-                      </Link>
+                  <div className="flex flex-col items-center gap-1">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-gray-400 text-xs line-through">
+                        ${tier.pricing.originalValue}
+                      </span>
                     </div>
-
-                    {/* Features Title */}
-                    <h4 className="self-stretch text-center text-stone-100 text-base font-semibold font-rubik leading-4">
-                      EVERYTHING YOU GET ACCESS NOW
-                    </h4>
-
-                    {/* Features List */}
-                    <div className="self-stretch flex flex-col justify-center items-start gap-4 sm:gap-6">
-                      {tier.features.map((feature, featureIndex) => (
-                        <div
-                          key={featureIndex}
-                          className="self-stretch inline-flex justify-start items-start gap-3"
-                        >
-                          {feature.included ? (
-                            <div className="w-5 h-5 flex-shrink-0 mt-0.5 relative">
-                              <Image
-                                src="/images/svg/green-check.svg"
-                                alt="Included"
-                                width={20}
-                                height={20}
-                                className="object-contain"
-                              />
-                            </div>
-                          ) : (
-                            <div className="w-5 h-5 flex-shrink-0 mt-0.5 relative">
-                              <Image
-                                src="/images/svg/red-x-uncheck.svg"
-                                alt="Not included"
-                                width={20}
-                                height={20}
-                                className="object-contain"
-                              />
-                            </div>
-                          )}
-                          <div className="flex-1">
-                            <p className="text-white text-sm font-semibold font-rubik leading-6">
-                              {feature.text}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
+                    <div className="flex items-baseline">
+                      <span className="text-blue-600 text-2xl sm:text-3xl font-bold">
+                        ${tier.pricing.currentPrice}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Bottom CTA */}
-                  <Link href={TIER_CTA_URL[tier.tierSlug]}>
+                  {/* CTA Button */}
+                  <Link href={TIER_CTA_URL[tier.tierSlug]} className="w-full">
                     <PrimaryButton
-                      variant="blue-solid"
-                      size="lg"
-                      className="w-full"
+                      variant="orange"
+                      size="sm"
+                      className="w-full text-xs sm:text-sm"
                     >
-                      {CTA_TEXT}
+                      Buy Now
+                    </PrimaryButton>
+                  </Link>
+
+                  {/* Additional Info - ou espaço vazio para manter alinhamento */}
+                  <div className="h-8 text-center">
+                    {idx === 1 && (
+                      <>
+                        <p className="text-blue-600 text-xs font-medium">
+                          Pre-Tabbed &
+                        </p>
+                        <p className="text-blue-600 text-xs font-medium">
+                          Highlighted Books Included
+                        </p>
+                      </>
+                    )}
+                    {idx === 2 && (
+                      <>
+                        <p className="text-gray-600 text-xs font-medium">
+                          Basic Course + Required
+                        </p>
+                        <p className="text-gray-600 text-xs font-medium">
+                          Books
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Feature Rows */}
+            {allFeatures.map((feature, featureIdx) => (
+              <div
+                key={featureIdx}
+                className={cn(
+                  "grid grid-cols-4 border-b border-gray-100",
+                  featureIdx % 2 === 0 ? "bg-white" : "bg-gray-50"
+                )}
+              >
+                {/* Feature Name */}
+                <div className="col-span-1 p-3 sm:p-4 flex items-center">
+                  <p className="text-gray-700 text-xs sm:text-sm font-rubik">
+                    {feature.text}
+                  </p>
+                </div>
+
+                {/* Checkmarks for each tier */}
+                {pricingTiers.map((tier, tierIdx) => {
+                  const isIncluded = tier.features[featureIdx]?.included;
+                  return (
+                    <div
+                      key={tierIdx}
+                      className={cn(
+                        "col-span-1 p-3 sm:p-4 flex items-center justify-center",
+                        tierIdx === 1 && "bg-blue-50/50"
+                      )}
+                    >
+                      {isIncluded ? (
+                        <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+
+            {/* Bottom CTA Row */}
+            <div className="grid grid-cols-4 bg-gray-50 p-4 sm:p-6">
+              <div className="col-span-1" />
+              {pricingTiers.map((tier, idx) => (
+                <div
+                  key={idx}
+                  className={cn(
+                    "col-span-1 flex items-center justify-center",
+                    idx === 1 && "bg-blue-50"
+                  )}
+                >
+                  <Link href={TIER_CTA_URL[tier.tierSlug]} className="w-full px-2">
+                    <PrimaryButton
+                      variant="orange"
+                      size="sm"
+                      className="w-full text-xs sm:text-sm"
+                    >
+                      Buy Now
                     </PrimaryButton>
                   </Link>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="md:hidden w-full flex flex-col gap-6">
+            {pricingTiers.map((tier, idx) => {
+              const isExpanded = expandedCards[idx];
+              const visibleFeatures = isExpanded ? tier.features : tier.features.slice(0, 4);
+              const hasMoreFeatures = tier.features.length > 4;
+
+              return (
+                <div
+                  key={idx}
+                  className="w-full bg-white rounded-2xl overflow-hidden shadow-xl"
+                >
+                  {/* Card Header */}
+                  <div className="p-6 flex flex-col items-center gap-3 border-b border-gray-200">
+                    {/* Highlight Badge */}
+                    {tier.badge.highlight && (
+                      <div className={cn(
+                        "px-3 py-1 rounded-full text-xs font-bold text-white",
+                        idx === 1 ? "bg-green-600" : "bg-blue-600"
+                      )}>
+                        {tier.badge.highlight}
+                      </div>
+                    )}
+
+                    {/* Tier Name */}
+                    <h3 className="text-gray-900 text-xl font-bold font-rubik text-center">
+                      {tier.badge.text}
+                    </h3>
+
+                    {/* Additional Info */}
+                    {idx === 1 && (
+                      <div className="text-center">
+                        <p className="text-blue-600 text-sm font-medium">
+                          Pre-Tabbed & Highlighted Books ($2,199 value!)
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Pricing */}
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-gray-400 text-lg line-through">
+                          ${tier.pricing.originalValue}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline">
+                        <span className="text-blue-600 text-4xl font-bold">
+                          ${tier.pricing.currentPrice}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <Link href={TIER_CTA_URL[tier.tierSlug]} className="w-full">
+                      <PrimaryButton
+                        variant="orange"
+                        size="lg"
+                        className="w-full"
+                      >
+                        Buy Now
+                      </PrimaryButton>
+                    </Link>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="p-6">
+                    <div className="flex flex-col gap-4">
+                      {visibleFeatures.map((feature, featureIdx) => (
+                        <div
+                          key={featureIdx}
+                          className="flex items-start gap-3"
+                        >
+                          {feature.included ? (
+                            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <Check className="w-4 h-4 text-white" />
+                            </div>
+                          ) : (
+                            <div className="w-6 h-6 flex-shrink-0" />
+                          )}
+                          <p className="text-gray-700 text-sm font-rubik flex-1">
+                            {feature.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Show All Button */}
+                    {hasMoreFeatures && (
+                      <button
+                        onClick={() => toggleExpanded(idx)}
+                        className="mt-4 w-full flex items-center justify-center gap-2 text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors"
+                      >
+                        <span>
+                          {isExpanded 
+                            ? "Show less" 
+                            : `+ Show all ${tier.features.length} features`
+                          }
+                        </span>
+                        <ChevronDown 
+                          className={cn(
+                            "w-4 h-4 transition-transform",
+                            isExpanded && "rotate-180"
+                          )} 
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Bottom CTA */}
+                  <div className="p-6 pt-0">
+                    <Link href={TIER_CTA_URL[tier.tierSlug]} className="w-full">
+                      <PrimaryButton
+                        variant="orange"
+                        size="lg"
+                        className="w-full"
+                      >
+                        Buy Now
+                      </PrimaryButton>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
