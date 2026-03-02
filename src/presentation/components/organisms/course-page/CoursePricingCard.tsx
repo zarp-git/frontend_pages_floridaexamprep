@@ -1,7 +1,7 @@
 "use client";
 
 import { CourseData, CourseFeature } from "@/data/courses";
-import { PRICING_TIERS, TIER_DISPLAY, CTA_TEXT, TIER_CTA_URL } from "@/constants/pricing";
+import { PRICING_TIERS, TIER_DISPLAY, CTA_TEXT, TIER_CTA_URL, type PricingTierSlug } from "@/constants/pricing";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { Check, ChevronDown } from "lucide-react";
 import Link from "next/link";
@@ -23,7 +23,7 @@ interface PricingTier {
     currentPrice: number;
   };
   features: CourseFeature[];
-  tierSlug: string;
+  tierSlug: PricingTierSlug;
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
