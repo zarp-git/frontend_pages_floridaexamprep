@@ -68,7 +68,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
       }}
     >
       <section className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 py-10 sm:py-14 md:py-20 overflow-x-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
+        <div className="w-full mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
             <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">

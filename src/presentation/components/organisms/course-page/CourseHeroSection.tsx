@@ -4,7 +4,7 @@ import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
-import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
+import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CourseData } from "@/data/courses";
 
 interface CourseHeroSectionProps {
@@ -111,19 +111,18 @@ export default function CourseHeroSection({ course }: CourseHeroSectionProps) {
             </div>
 
             {/* Video */}
-            <div className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2 mt-4 sm:mt-6">
-              <PandaVideoPlayer
-                src={
-                  course.videoThumbnail ||
-                  "/images/hero/hero-video-thumbnail.mp4"
-                }
-                className="w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
-                controls
-                muted
-                autoPlay={false}
-                loop={false}
-              />
-            </div>
+            <FloatingVideo
+              src={
+                course.videoThumbnail ||
+                "/images/hero/hero-video-thumbnail.mp4"
+              }
+              className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2 mt-4 sm:mt-6"
+              autoPlay={true}
+              controls={false}
+              loop={true}
+              muted={false}
+              disableInteraction={true}
+            />
 
             {/* Description */}
             <p className="w-full max-w-md sm:max-w-lg text-center text-gray-600 text-sm sm:text-base font-normal font-rubik leading-6 px-4">
