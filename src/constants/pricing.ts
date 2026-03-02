@@ -32,17 +32,35 @@ export type CoursePageSlug =
 // ---------------------------------------------------------------------------
 export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
   // Business & Finance
-  "primary-course": "https://pay.floridaexamprep.com/buy",
-  "primary-books": "https://pay.floridaexamprep.com/buy",
-  "premium-books": "https://pay.floridaexamprep.com/buy",
+  "primary-course": "/checkout?tier=primary-course",
+  "primary-books": "/checkout?tier=primary-books",
+  "premium-books": "/checkout?tier=premium-books",
   // CA/PM
-  "capm-course": "https://pay.floridaexamprep.com/buy",
-  "capm-books": "https://pay.floridaexamprep.com/buy",
-  "capm-package": "https://pay.floridaexamprep.com/buy",
+  "capm-course": "/checkout?tier=capm-course",
+  "capm-books": "/checkout?tier=capm-books",
+  "capm-package": "/checkout?tier=capm-package",
   // Complete Exam Prep
-  "complete-course": "https://pay.floridaexamprep.com/buy",
-  "complete-books": "https://pay.floridaexamprep.com/buy",
-  "complete-package": "https://pay.floridaexamprep.com/buy",
+  "complete-course": "/checkout?tier=complete-course",
+  "complete-books": "/checkout?tier=complete-books",
+  "complete-package": "/checkout?tier=complete-package",
+} as const;
+
+// ---------------------------------------------------------------------------
+// GHL Checkout URLs - Maps tier slugs to external payment URLs
+// ---------------------------------------------------------------------------
+export const GHL_CHECKOUT_URLS: Record<PricingTierSlug, string> = {
+  // Business & Finance
+  "primary-course": "https://pay.floridaexamprep.com/buycourseonly",
+  "primary-books": "https://pay.floridaexamprep.com/buy/primary-books",
+  "premium-books": "https://pay.floridaexamprep.com/buy/premium-books",
+  // CA/PM
+  "capm-course": "https://pay.floridaexamprep.com/buy/capm-course",
+  "capm-books": "https://pay.floridaexamprep.com/buy/capm-books",
+  "capm-package": "https://pay.floridaexamprep.com/buy/capm-package",
+  // Complete Exam Prep
+  "complete-course": "https://pay.floridaexamprep.com/buy/complete-course",
+  "complete-books": "https://pay.floridaexamprep.com/buy/complete-books",
+  "complete-package": "https://pay.floridaexamprep.com/buy/complete-package",
 } as const;
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,22 @@
+# /static Directory Rules
+
+## Purpose
+Base de exportação para HTML customizado usado no builder (quimera).
+
+## Access Rules
+- PROTECTED: Só renderiza em ambiente de desenvolvimento
+- Production: Redireciona automaticamente para home
+
+## Workflow
+1. Desenvolver checkout dentro de /static
+2. Exportar HTML usando extensão
+3. Injetar HTML no custom HTML do builder
+4. Builder usa esse HTML para checkout customizado
+
+## Parameters
+Captura via URL:
+- tier: Identificador do produto (ex: primary-course, premium-books)
+- course: Identificador do curso (ex: florida-exam)
+
+## Redirect Flow
+/static → Identifica parâmetros → GHL_CHECKOUT_URLS[tier] → API GHL

@@ -36,3 +36,8 @@ Analyse the conditions to prompt these rules [when condition; prefer to do (some
 - When using a lib or when the user ask you: prefer to use Context7 mcp before generating code for better results.
 - When implementing a new feature ask the user for futher clarification and engage him to use  the command '/speckit.specify' to start a spec of the feature.
 
+Folder Organization
+.gitkeep Files
+Use .gitkeep files in important folders to document immutable rules and conventions
+Keep rules concise and actionable (they need to be balanced)
+Example: src/constants/.gitkeep contains SSOT rules for constants folder
