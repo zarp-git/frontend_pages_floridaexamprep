@@ -92,7 +92,7 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "Complete Book Set For Business and Finance",
+        text: "Complete Book Set For Business and Finance Exam Brand New",
       },
       {
         included: false,
@@ -100,7 +100,11 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "Book Tabs For All Business And Finance Books",
+        text: "Book Tabs For All Books",
+      },
+      {
+        included: false,
+        text: "Pre Highlighted and Tabbed Books",
       },
     ],
   },
@@ -117,27 +121,27 @@ export const courseData: Record<string, CourseData> = {
     features: [
       {
         included: true,
-        text: "Complete coverage of AIA contract documents",
+        text: "Full breakdown of all 14 books allowed in the exams",
       },
       {
         included: true,
-        text: "Contract law essentials for Florida contractors",
+        text: "Highlighting Guide of all 14 books allowed in the exams",
       },
       {
         included: true,
-        text: "Step-by-step guidance on contract administration",
+        text: "Tab Guide of all 14 books allowed in the exams",
       },
       {
         included: true,
-        text: "A clear study plan",
+        text: "Important info of books not allowed in the exams",
       },
       {
         included: true,
-        text: "20+ practice quizzes and a timed exam simulator",
+        text: "Full Course On Plan Reading",
       },
       {
         included: true,
-        text: "Real-world contract scenarios",
+        text: "Math you need to know, explained simply",
       },
       {
         included: true,
@@ -145,7 +149,15 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: true,
-        text: "Multilingual access – English, Spanish and Portuguese",
+        text: "A clear study plan",
+      },
+      {
+        included: true,
+        text: "14+ practice quizzes and a timed exam simulators",
+      },
+      {
+        included: true,
+        text: "Multilingual access – English, Spanish, and Portuguese",
       },
       {
         included: true,
@@ -153,15 +165,15 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "Complete Book Set For Contract Administration",
+        text: "Complete Book Set of Trade books allowed into the exam Brand New",
       },
       {
         included: false,
-        text: "3 Hour Cram Course",
+        text: "Book Tabs For All Books",
       },
       {
         included: false,
-        text: "Book Tabs For All Contract Administration Books",
+        text: "Pre Highlighted and Tabbed Books",
       },
     ],
   },
@@ -177,23 +189,23 @@ export const courseData: Record<string, CourseData> = {
     features: [
       {
         included: true,
-        text: "Full breakdown of every chapter in the Florida Contractor's Manual",
+        text: "Full Course for the Business and Finance Exam",
       },
       {
         included: true,
-        text: "The most important content in the Builder's Guide to Accounting",
+        text: "Full Course for the Trade Exams",
       },
       {
         included: true,
-        text: "Step-by-step guidance on the AIA documents",
+        text: "Full Course on Plan Reading",
       },
       {
         included: true,
-        text: "A clear study plan",
+        text: "Clear study plan for all exams",
       },
       {
         included: true,
-        text: "20+ practice quizzes and a timed exam simulator",
+        text: "34+ practice quizzes and timed exam simulators",
       },
       {
         included: true,
@@ -201,11 +213,11 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: true,
-        text: "Guidance on how to navigate the books during the exam",
+        text: "Guidance on how to navigate books during the exam",
       },
       {
         included: true,
-        text: "Multilingual access – English, Spanish and Portuguese",
+        text: "Multilingual access – English, Spanish, and Portuguese",
       },
       {
         included: true,
@@ -213,15 +225,23 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: true,
-        text: "Complete Book Set For Business and Finance",
+        text: "3 Hour Cram Course for Business And Finance Exam",
       },
       {
-        included: true,
-        text: "3 Hour Cram Course",
+        included: false,
+        text: "Complete Book Set of Trade books allowed into the exam Brand New",
       },
       {
-        included: true,
-        text: "Book Tabs For All Business And Finance Books",
+        included: false,
+        text: "Complete Book Set for Business and Finance Exam Brand New",
+      },
+      {
+        included: false,
+        text: "Book Tabs for All Exams",
+      },
+      {
+        included: false,
+        text: "Pre Highlighted and Tabbed Books",
       },
     ],
   },

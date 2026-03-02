@@ -12,12 +12,15 @@ export type PricingTierSlug =
   | "primary-course"
   | "primary-books"
   | "premium-books"
+  | "premium-highlighted-books"
   | "capm-course"
   | "capm-books"
   | "capm-package"
+  | "capm-highlighted-books"
   | "complete-course"
   | "complete-books"
-  | "complete-package";
+  | "complete-package"
+  | "complete-highlighted-books";
 
 // ---------------------------------------------------------------------------
 // Course Page Slugs
@@ -35,14 +38,17 @@ export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
   "primary-course": "/checkout?tier=primary-course",
   "primary-books": "/checkout?tier=primary-books",
   "premium-books": "/checkout?tier=premium-books",
+  "premium-highlighted-books": "/checkout?tier=premium-highlighted-books",
   // CA/PM
   "capm-course": "/checkout?tier=capm-course",
   "capm-books": "/checkout?tier=capm-books",
   "capm-package": "/checkout?tier=capm-package",
+  "capm-highlighted-books": "/checkout?tier=capm-highlighted-books",
   // Complete Exam Prep
   "complete-course": "/checkout?tier=complete-course",
   "complete-books": "/checkout?tier=complete-books",
   "complete-package": "/checkout?tier=complete-package",
+  "complete-highlighted-books": "/checkout?tier=complete-highlighted-books",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -53,14 +59,17 @@ export const GHL_CHECKOUT_URLS: Record<PricingTierSlug, string> = {
   "primary-course": "https://pay.floridaexamprep.com/buycourseonly",
   "primary-books": "https://pay.floridaexamprep.com/buy/primary-books",
   "premium-books": "https://pay.floridaexamprep.com/buy/premium-books",
+  "premium-highlighted-books": "https://pay.floridaexamprep.com/buy/premium-highlighted-books",
   // CA/PM
   "capm-course": "https://pay.floridaexamprep.com/buy/capm-course",
   "capm-books": "https://pay.floridaexamprep.com/buy/capm-books",
   "capm-package": "https://pay.floridaexamprep.com/buy/capm-package",
+  "capm-highlighted-books": "https://pay.floridaexamprep.com/buy/capm-highlighted-books",
   // Complete Exam Prep
   "complete-course": "https://pay.floridaexamprep.com/buy/complete-course",
   "complete-books": "https://pay.floridaexamprep.com/buy/complete-books",
   "complete-package": "https://pay.floridaexamprep.com/buy/complete-package",
+  "complete-highlighted-books": "https://pay.floridaexamprep.com/buy/complete-highlighted-books",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -75,15 +84,19 @@ export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
   // Business & Finance
   "primary-course": {
     originalValue: 350,
-    currentPrice: 299,
+    currentPrice: 349,
   },
   "primary-books": {
     originalValue: 700,
-    currentPrice: 649,
+    currentPrice: 349,
   },
   "premium-books": {
     originalValue: 1150,
-    currentPrice: 715,
+    currentPrice: 749,
+  },
+  "premium-highlighted-books": {
+    originalValue: 1150,
+    currentPrice: 849,
   },
   // Contract Administration / Project Management (CA/PM)
   "capm-course": {
@@ -98,6 +111,10 @@ export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
     originalValue: 1799,
     currentPrice: 1599,
   },
+  "capm-highlighted-books": {
+    originalValue: 2500,
+    currentPrice: 1949,
+  },
   // Complete Exam Prep
   "complete-course": {
     originalValue: 899,
@@ -110,6 +127,10 @@ export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
   "complete-package": {
     originalValue: 2499,
     currentPrice: 2199,
+  },
+  "complete-highlighted-books": {
+    originalValue: 3000,
+    currentPrice: 2699,
   },
 } as const;
 
@@ -124,17 +145,20 @@ export interface TierDisplayInfo {
 
 export const TIER_DISPLAY: TierDisplayInfo[] = [
   // Business & Finance
-  { slug: "primary-course", label: "Primary Course", badgeColor: "bg-emerald-600" },
-  { slug: "primary-books", label: "Primary + Books", badgeColor: "bg-violet-600" },
-  { slug: "premium-books", label: "Premium + Books", badgeColor: "bg-blue-600" },
+  { slug: "primary-course", label: "Course", badgeColor: "bg-emerald-600" },
+  { slug: "primary-books", label: "Books", badgeColor: "bg-violet-600" },
+  { slug: "premium-books", label: "Course + Books", badgeColor: "bg-blue-600" },
+  { slug: "premium-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
   // CA/PM
-  { slug: "capm-course", label: "CA/PM Course", badgeColor: "bg-emerald-600" },
-  { slug: "capm-books", label: "CA/PM Books Only", badgeColor: "bg-violet-600" },
-  { slug: "capm-package", label: "CA/PM Package", badgeColor: "bg-blue-600" },
+  { slug: "capm-course", label: "Course", badgeColor: "bg-emerald-600" },
+  { slug: "capm-books", label: "Books", badgeColor: "bg-violet-600" },
+  { slug: "capm-package", label: "Course + Books", badgeColor: "bg-blue-600" },
+  { slug: "capm-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
   // Complete Exam Prep
-  { slug: "complete-course", label: "Course Bundle", badgeColor: "bg-emerald-600" },
-  { slug: "complete-books", label: "Books Bundle", badgeColor: "bg-violet-600" },
-  { slug: "complete-package", label: "Complete Package", badgeColor: "bg-blue-600" },
+  { slug: "complete-course", label: "Course", badgeColor: "bg-emerald-600" },
+  { slug: "complete-books", label: "Books", badgeColor: "bg-violet-600" },
+  { slug: "complete-package", label: "Course + Books", badgeColor: "bg-blue-600" },
+  { slug: "complete-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -142,9 +166,9 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
 // Maps each course to its available pricing tiers
 // ---------------------------------------------------------------------------
 export const COURSE_TIERS_MAP: Record<CoursePageSlug, PricingTierSlug[]> = {
-  "business-finance": ["primary-course", "primary-books", "premium-books"],
-  "contract-administration": ["capm-course", "capm-books", "capm-package"],
-  "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
+  "business-finance": ["primary-course", "primary-books", "premium-books", "premium-highlighted-books"],
+  "contract-administration": ["capm-course", "capm-books", "capm-package", "capm-highlighted-books"],
+  "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
 } as const;
 
 // ---------------------------------------------------------------------------

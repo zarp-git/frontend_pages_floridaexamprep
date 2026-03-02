@@ -35,9 +35,9 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
 
   // Define os tiers válidos para cada curso
   const courseTiersMap: Record<string, string[]> = {
-    "business-finance": ["primary-course", "primary-books", "premium-books"],
-    "contract-administration": ["capm-course", "capm-books", "capm-package"],
-    "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
+    "business-finance": ["primary-course", "primary-books", "premium-books", "premium-highlighted-books"],
+    "contract-administration": ["capm-course", "capm-books", "capm-package", "capm-highlighted-books"],
+    "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
   };
 
   const validTiers = courseTiersMap[course.slug] || [];
@@ -46,17 +46,106 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     let features: CourseFeature[];
     let highlight: string | undefined;
     
-    if (idx === 0) {
-      features = course.features;
-    } else if (idx === 1) {
-      features = course.features.map((f, i) => ({
-        ...f,
-        included: i < 10,
-      }));
-      highlight = "Most Popular";
+    // Para Complete Exam Prep, lógica específica
+    if (course.slug === "complete-exam-prep") {
+      if (idx === 0) {
+        // Coluna 1 (Course): primeiras 10 features
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 10,
+        }));
+      } else if (idx === 1) {
+        // Coluna 2 (Books): features 10, 11, 12 (índices 10, 11, 12)
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i >= 10 && i <= 12,
+        }));
+      } else if (idx === 2) {
+        // Coluna 3 (Course + Books): primeiras 10 + features 10, 11, 12
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 10 || (i >= 10 && i <= 12),
+        }));
+        highlight = "Most Popular";
+      } else {
+        // Coluna 4 (Course + Pre Highlighted): todas as features
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
+    } else if (course.slug === "contract-administration") {
+      // Para Contract Administration
+      if (idx === 0) {
+        // Coluna 1 (Course): primeiras 11 features
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 11,
+        }));
+      } else if (idx === 1) {
+        // Coluna 2 (Books): apenas feature 11 (Complete Book Set)
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i === 11,
+        }));
+      } else if (idx === 2) {
+        // Coluna 3 (Course + Books): primeiras 11 + feature 11
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 11 || i === 11,
+        }));
+        highlight = "Most Popular";
+      } else {
+        // Coluna 4 (Course + Pre Highlighted): todas as features
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
+    } else if (course.slug === "business-finance") {
+      // Para Business Finance
+      if (idx === 0) {
+        // Coluna 1 (Course): primeiras 9 features
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 9,
+        }));
+      } else if (idx === 1) {
+        // Coluna 2 (Books): apenas feature 9 (Complete Book Set)
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i === 9,
+        }));
+      } else if (idx === 2) {
+        // Coluna 3 (Course + Books): primeiras 9 + features 9 e 10
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 9 || i === 9 || i === 10,
+        }));
+        highlight = "Most Popular";
+      } else {
+        // Coluna 4 (Course + Pre Highlighted): todas as features
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
     } else {
-      features = course.features.map((f) => ({ ...f, included: true }));
-      highlight = "Best Value";
+      // Fallback genérico
+      if (idx === 0) {
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 9,
+        }));
+      } else if (idx === 1) {
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 10,
+        }));
+      } else if (idx === 2) {
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < course.features.length - 1,
+        }));
+        highlight = "Most Popular";
+      } else {
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
     }
     
     return {
@@ -99,7 +188,10 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
           {/* Comparison Table - Desktop */}
           <div className="hidden md:block w-full bg-white rounded-2xl overflow-hidden shadow-2xl">
             {/* Header Row */}
-            <div className="grid grid-cols-4 border-b border-gray-200">
+            <div className={cn(
+              "grid border-b border-gray-200",
+              pricingTiers.length === 4 ? "grid-cols-5" : "grid-cols-4"
+            )}>
               {/* Left Column - Features Label */}
               <div className="col-span-1 p-4 sm:p-6 bg-gray-50 flex items-end pb-4">
                 <h3 className="text-gray-900 text-sm sm:text-base font-bold font-rubik">
@@ -113,7 +205,8 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                   key={idx}
                   className={cn(
                     "col-span-1 p-4 sm:p-6 flex flex-col items-center gap-3",
-                    idx === 1 && "bg-blue-50"
+                    idx === 2 && pricingTiers.length === 4 && "bg-blue-50",
+                    idx === 1 && pricingTiers.length === 3 && "bg-blue-50"
                   )}
                 >
                   {/* Highlight Badge - ou espaço vazio para manter alinhamento */}
@@ -121,7 +214,9 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                     {tier.badge.highlight ? (
                       <div className={cn(
                         "px-3 py-1 rounded-full text-xs font-bold text-white",
-                        idx === 1 ? "bg-green-600" : "bg-blue-600"
+                        idx === 2 && pricingTiers.length === 4 ? "bg-green-600" : 
+                        idx === 3 && pricingTiers.length === 4 ? "bg-orange-600" :
+                        idx === 1 && pricingTiers.length === 3 ? "bg-green-600" : "bg-blue-600"
                       )}>
                         {tier.badge.highlight}
                       </div>
@@ -162,7 +257,27 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
 
                   {/* Additional Info - ou espaço vazio para manter alinhamento */}
                   <div className="h-8 text-center">
-                    {idx === 1 && (
+                    {idx === 2 && pricingTiers.length === 4 && (
+                      <>
+                        <p className="text-blue-600 text-xs font-medium">
+                          Basic Course + Required
+                        </p>
+                        <p className="text-blue-600 text-xs font-medium">
+                          Books
+                        </p>
+                      </>
+                    )}
+                    {idx === 3 && pricingTiers.length === 4 && (
+                      <>
+                        <p className="text-orange-600 text-xs font-medium">
+                          Pre-Tabbed &
+                        </p>
+                        <p className="text-orange-600 text-xs font-medium">
+                          Highlighted Books Included
+                        </p>
+                      </>
+                    )}
+                    {idx === 1 && pricingTiers.length === 3 && (
                       <>
                         <p className="text-blue-600 text-xs font-medium">
                           Pre-Tabbed &
@@ -172,7 +287,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                         </p>
                       </>
                     )}
-                    {idx === 2 && (
+                    {idx === 2 && pricingTiers.length === 3 && (
                       <>
                         <p className="text-gray-600 text-xs font-medium">
                           Basic Course + Required
@@ -192,7 +307,8 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
               <div
                 key={featureIdx}
                 className={cn(
-                  "grid grid-cols-4 border-b border-gray-100",
+                  "grid border-b border-gray-100",
+                  pricingTiers.length === 4 ? "grid-cols-5" : "grid-cols-4",
                   featureIdx % 2 === 0 ? "bg-white" : "bg-gray-50"
                 )}
               >
@@ -211,7 +327,8 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                       key={tierIdx}
                       className={cn(
                         "col-span-1 p-3 sm:p-4 flex items-center justify-center",
-                        tierIdx === 1 && "bg-blue-50/50"
+                        tierIdx === 2 && pricingTiers.length === 4 && "bg-blue-50/50",
+                        tierIdx === 1 && pricingTiers.length === 3 && "bg-blue-50/50"
                       )}
                     >
                       {isIncluded ? (
@@ -228,14 +345,18 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
             ))}
 
             {/* Bottom CTA Row */}
-            <div className="grid grid-cols-4 bg-gray-50 p-4 sm:p-6">
+            <div className={cn(
+              "grid bg-gray-50 p-4 sm:p-6",
+              pricingTiers.length === 4 ? "grid-cols-5" : "grid-cols-4"
+            )}>
               <div className="col-span-1" />
               {pricingTiers.map((tier, idx) => (
                 <div
                   key={idx}
                   className={cn(
                     "col-span-1 flex items-center justify-center",
-                    idx === 1 && "bg-blue-50"
+                    idx === 2 && pricingTiers.length === 4 && "bg-blue-50",
+                    idx === 1 && pricingTiers.length === 3 && "bg-blue-50"
                   )}
                 >
                   <Link href={TIER_CTA_URL[tier.tierSlug]} className="w-full px-2">
