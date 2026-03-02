@@ -4,33 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
-import { CTA_TEXT, SOCIAL_LINKS, CONTACT } from "@/constants";
+import {
+  CTA_TEXT,
+  SOCIAL_LINKS,
+  CONTACT,
+  FOOTER_COMPANY_LINKS,
+  FOOTER_COURSE_LINKS,
+  FOOTER_BOOK_LINKS,  
+  FOOTER_FEATURED_COURSES,
+} from "@/constants";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
-const COMPANY_LINKS = [
-  { label: "About us", href: "/about" },
-  { label: "Learning Area", href: "/learning" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
-];
-
-const COURSE_LINKS = [
-  { label: "Win Board", href: "#", isMaintenance: true },
-  { label: "Business And Finance", href: "/courses/business-finance" },
-  { label: "Contract Adminstration", href: "/courses/contract-admin" },
-  { label: "Project Management", href: "/courses/project-management" },
-  { label: "Complete Exam Prep", href: "/courses/complete-prep" },
-];
-
-const BOOK_LINKS = [
-  { label: "AIA Documents 201, 401, 701", href: "/books/aia-documents" },
-  { label: "Builder's Guide to Accounting", href: "/books/builders-guide" },
-  { label: "FL Contractor's Manual 2025", href: "/books/contractors-manual" },
-  { label: "All Books Bundle", href: "/books/bundle" },
-  { label: "Quizzes 1,000+ questions", href: "/books/quizzes" },
-  { label: "All Books + Quizzes Bundle", href: "/books/complete-bundle" },
-  { label: "Permanent Tabs For All Books", href: "/books/tabs" },
-];
+const COMPANY_LINKS = FOOTER_COMPANY_LINKS;
+const COURSE_LINKS = FOOTER_COURSE_LINKS;
+const BOOK_LINKS = FOOTER_BOOK_LINKS;
 
 function FooterSectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -99,24 +86,15 @@ export default function LandingFooter() {
                     <div className="w-10 h-0.5 bg-[#FF6200] rounded-lg" />
                   </div>
                   <div className="flex flex-col gap-0.5">
-                    <Link
-                      href="/courses/business-finance"
-                      className="text-gray-500 text-sm sm:text-base font-medium font-rubik underline leading-8 hover:text-[#0866FF] transition-colors"
-                    >
-                      Business And Finance
-                    </Link>
-                    <Link
-                      href="/courses/contract-admin"
-                      className="text-gray-500 text-sm sm:text-base font-medium font-rubik underline leading-8 hover:text-[#0866FF] transition-colors"
-                    >
-                      Contract Adminstration
-                    </Link>
-                    <Link
-                      href="/courses/complete-prep"
-                      className="text-gray-500 text-sm sm:text-base font-medium font-rubik underline leading-8 hover:text-[#0866FF] transition-colors"
-                    >
-                      Complete Exam Prep
-                    </Link>
+                    {FOOTER_FEATURED_COURSES.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-gray-500 text-sm sm:text-base font-medium font-rubik underline leading-8 hover:text-[#0866FF] transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
 

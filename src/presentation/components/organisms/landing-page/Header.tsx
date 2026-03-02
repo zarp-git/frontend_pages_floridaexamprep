@@ -5,46 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { RiMenu3Line, RiCloseLine } from "@remixicon/react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
-import { CTA_TEXT } from "@/constants";
+import { CTA_TEXT, HEADER_NAV_ITEMS } from "@/constants";
 import Navigation from "./Navigation";
 import MobileMenu from "./MobileMenu";
 import { cn } from "@/lib/utils";
-
-interface NavItem {
-  label: string;
-  href: string;
-  hasDropdown?: boolean;
-  dropdownItems?: { label: string; href: string }[];
-  isMaintenance?: boolean;
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  {
-    label: "Courses",
-    href: "/courses",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Business & Finance", href: "/courses/business-finance" },
-      { label: "Contract Administration", href: "/courses/contract-administration" },
-      { label: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
-    ],
-  },
-  {
-    label: "Books",
-    href: "/books",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "AIA Documents", href: "/books/aia-documents" },
-      { label: "Builder's Guide", href: "/books/builders-guide" },
-      { label: "FL Contractor's Manual", href: "/books/contractors-manual" },
-    ],
-  },
-  { label: "Quizzes", href: "/quizzes" },
-  { label: "Win Board", href: "#", isMaintenance: true },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
-];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -85,7 +49,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <Navigation className="hidden lg:flex" navItems={NAV_ITEMS} />
+          <Navigation className="hidden lg:flex" navItems={HEADER_NAV_ITEMS} />
 
           {/* Right: CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
@@ -121,7 +85,7 @@ export default function Header() {
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
-        navItems={NAV_ITEMS}
+        navItems={HEADER_NAV_ITEMS}
       />
     </>
   );

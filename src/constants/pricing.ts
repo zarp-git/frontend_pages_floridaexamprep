@@ -121,6 +121,16 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
 ] as const;
 
 // ---------------------------------------------------------------------------
+// Course to Tiers Mapping
+// Maps each course to its available pricing tiers
+// ---------------------------------------------------------------------------
+export const COURSE_TIERS_MAP: Record<CoursePageSlug, PricingTierSlug[]> = {
+  "business-finance": ["primary-course", "primary-books", "premium-books"],
+  "contract-administration": ["capm-course", "capm-books", "capm-package"],
+  "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
+} as const;
+
+// ---------------------------------------------------------------------------
 // Default course-level pricing (shown on course cards / hero)
 // Maps each course page to its "default" tier for display purposes
 // ---------------------------------------------------------------------------

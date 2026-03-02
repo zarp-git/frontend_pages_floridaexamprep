@@ -1,49 +1,84 @@
-import type { INavItem } from "@/types/header";
+// Navigation Constants - Single Source of Truth for all header/footer links
 
-/**
- * Navigation Items - Single Source of Truth (SSOT)
- *
- * This constant defines all navigation items used across the application.
- * Used by both desktop Navigation and MobileMenu components.
- */
-export const NAV_ITEMS: INavItem[] = [
-  { title: "Home", href: "/" },
+export interface NavLink {
+  label: string;
+  href: string;
+  isMaintenance?: boolean;
+}
+
+export interface NavItemWithDropdown extends NavLink {
+  hasDropdown?: boolean;
+  dropdownItems?: NavLink[];
+}
+
+// Type alias for components that use the navigation items
+export type NavItem = NavItemWithDropdown;
+
+// ============================================================================
+// HEADER NAVIGATION
+// ============================================================================
+
+export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
+  { label: "Home", href: "/" },
   {
-    title: "Locations",
-    href: "/locations",
+    label: "Courses",
+    href: "/courses",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Winter Haven", href: "/locations/winter-haven" },
-      { title: "Lakeland", href: "/locations/lakeland" },
-      { title: "Haines City", href: "/locations/haines-city" },
-      { title: "Davenport", href: "/locations/davenport" },
-      { title: "Auburndale", href: "/locations/auburndale" },
-      { title: "Horizon West", href: "/locations/horizon-west" },
+      { label: "Business & Finance", href: "/courses/business-finance" },
+      { label: "Contract Administration", href: "/courses/contract-administration" },
+      { label: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
     ],
   },
   {
-    title: "Services",
-    href: "/services",
+    label: "Books",
+    href: "/books",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Pavers Installation", href: "/services/pavers-installation" },
-      { title: "Pavers Repair", href: "/services/pavers-repair" },
-      { title: "Maintenance Plans", href: "/services/maintenance-plans" },
-      { title: "Patio Pavers", href: "/services/patio-pavers" },
-      { title: "Pool Deck Pavers", href: "/services/pool-deck-pavers" },
-      { title: "Driveway Pavers", href: "/services/driveway-pavers" },
-      { title: "Firepit Pavers", href: "/services/firepit-pavers" },
+      { label: "AIA Documents", href: "/books/aia-documents" },
+      { label: "Builder's Guide", href: "/books/builders-guide" },
+      { label: "FL Contractor's Manual", href: "/books/contractors-manual" },
     ],
   },
-  { title: "Gallery", href: "/gallery" },
-  { title: "Learning Center", href: "/learning-center" },
-  {
-    title: "Tools",
-    href: "/tools",
-    hasDropdown: true,
-    dropdownItems: [
-      { title: "Cost Calculator", href: "/tools/cost-calculator" },
-      { title: "Design Visualizer", href: "/tools/design-visualizer" },
-    ],
-  },
-];
+  { label: "Quizzes", href: "/quizzes" },
+  { label: "Win Board", href: "#", isMaintenance: true },
+  { label: "Blog", href: "/blog" },
+] as const;
+
+// ============================================================================
+// FOOTER NAVIGATION
+// ============================================================================
+
+export const FOOTER_COMPANY_LINKS: NavLink[] = [
+  { label: "About us", href: "/about" },
+  { label: "Learning Area", href: "/learning" },
+  { label: "Blog", href: "/blog" },
+] as const;
+
+export const FOOTER_COURSE_LINKS: NavLink[] = [
+  { label: "Win Board", href: "#", isMaintenance: true },
+  { label: "Business And Finance", href: "/courses/business-finance" },
+  { label: "Contract Administration", href: "/courses/contract-admin" },
+  { label: "Project Management", href: "/courses/project-management" },
+  { label: "Complete Exam Prep", href: "/courses/complete-prep" },
+] as const;
+
+export const FOOTER_BOOK_LINKS: NavLink[] = [
+  { label: "AIA Documents 201, 401, 701", href: "/books/aia-documents" },
+  { label: "Builder's Guide to Accounting", href: "/books/builders-guide" },
+  { label: "FL Contractor's Manual 2025", href: "/books/contractors-manual" },
+  { label: "All Books Bundle", href: "/books/bundle" },
+  { label: "Quizzes 1,000+ questions", href: "/books/quizzes" },
+  { label: "All Books + Quizzes Bundle", href: "/books/complete-bundle" },
+  { label: "Permanent Tabs For All Books", href: "/books/tabs" },
+] as const;
+
+// ============================================================================
+// FEATURED FOOTER COURSES (for quick access section)
+// ============================================================================
+
+export const FOOTER_FEATURED_COURSES: NavLink[] = [
+  { label: "Business And Finance", href: "/courses/business-finance" },
+  { label: "Contract Administration", href: "/courses/contract-admin" },
+  { label: "Complete Exam Prep", href: "/courses/complete-prep" },
+] as const;

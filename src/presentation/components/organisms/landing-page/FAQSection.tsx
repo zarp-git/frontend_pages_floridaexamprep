@@ -93,7 +93,7 @@ function FAQAccordion() {
 
 export default function FAQSection() {
   return (
-    <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gray-50">
+    <section id="faq" className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8 sm:gap-10 md:gap-12 lg:gap-16">
         {/* Left Side - Guarantee Badge */}
         <div className="w-full md:w-80 lg:w-[554px] flex flex-col items-center md:items-start gap-6 sm:gap-8 md:shrink-0">

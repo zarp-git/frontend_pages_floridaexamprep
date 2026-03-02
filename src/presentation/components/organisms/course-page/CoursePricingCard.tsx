@@ -1,7 +1,15 @@
 "use client";
 
 import { CourseData, CourseFeature } from "@/data/courses";
-import { PRICING_TIERS, TIER_DISPLAY, COURSE_RATING, CTA_TEXT, TIER_CTA_URL } from "@/constants/pricing";
+import { 
+  PRICING_TIERS, 
+  TIER_DISPLAY, 
+  COURSE_RATING, 
+  CTA_TEXT, 
+  TIER_CTA_URL,
+  COURSE_TIERS_MAP,
+  type CoursePageSlug
+} from "@/constants/pricing";
 import { Star } from "lucide-react";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import Image from "next/image";
@@ -29,14 +37,7 @@ interface PricingTier {
 }
 
 export default function CoursePricingCard({ course }: CoursePricingCardProps) {
-  // Define os tiers válidos para cada curso
-  const courseTiersMap: Record<string, string[]> = {
-    "business-finance": ["primary-course", "primary-books", "premium-books"],
-    "contract-administration": ["capm-course", "capm-books", "capm-package"],
-    "complete-exam-prep": ["complete-course", "complete-books", "complete-package"],
-  };
-
-  const validTiers = courseTiersMap[course.slug] || [];
+  const validTiers = COURSE_TIERS_MAP[course.slug as CoursePageSlug] || [];
   const pricingTiers: PricingTier[] = TIER_DISPLAY.filter((tier) => validTiers.includes(tier.slug)).map((tier, idx) => {
     const pricing = PRICING_TIERS[tier.slug];
     let features: CourseFeature[];
