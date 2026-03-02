@@ -237,35 +237,55 @@ export default function MobileMenu({
                                 animate="visible"
                                 exit="exit"
                               >
-                                {item.dropdownItems.map((subItem, subIndex) => (
-                                  <motion.div
-                                    key={subItem.label}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{
-                                      opacity: 1,
-                                      x: 0,
-                                      transition: { delay: subIndex * 0.05 },
-                                    }}
-                                  >
-                                    <Link
-                                      href={subItem.href}
-                                      onClick={(e) =>
-                                        handleLinkClick(e, {
-                                          ...subItem,
-                                          isMaintenance: false,
-                                        })
-                                      }
-                                      className={cn(
-                                        "block px-3 py-2.5 text-sm font-rubik rounded-lg transition-colors",
-                                        isActive(subItem.href)
-                                          ? "text-blue-600 bg-blue-50 font-medium"
-                                          : "text-gray-600 hover:text-blue-600 hover:bg-blue-50",
-                                      )}
+                                {item.dropdownItems.map((subItem, subIndex) => {
+                                  const isBookItem = item.label === "Books";
+                                  
+                                  return (
+                                    <motion.div
+                                      key={subItem.label}
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{
+                                        opacity: 1,
+                                        x: 0,
+                                        transition: { delay: subIndex * 0.05 },
+                                      }}
                                     >
-                                      {subItem.label}
-                                    </Link>
-                                  </motion.div>
-                                ))}
+                                      {isBookItem ? (
+                                        <button
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            onClose();
+                                            openMaintenanceModal();
+                                          }}
+                                          className={cn(
+                                            "block px-3 py-2.5 text-sm font-rubik rounded-lg transition-colors w-full text-left",
+                                            "text-gray-600 hover:text-blue-600 hover:bg-blue-50",
+                                          )}
+                                        >
+                                          {subItem.label}
+                                        </button>
+                                      ) : (
+                                        <Link
+                                          href={subItem.href}
+                                          onClick={(e) =>
+                                            handleLinkClick(e, {
+                                              ...subItem,
+                                              isMaintenance: false,
+                                            })
+                                          }
+                                          className={cn(
+                                            "block px-3 py-2.5 text-sm font-rubik rounded-lg transition-colors",
+                                            isActive(subItem.href)
+                                              ? "text-blue-600 bg-blue-50 font-medium"
+                                              : "text-gray-600 hover:text-blue-600 hover:bg-blue-50",
+                                          )}
+                                        >
+                                          {subItem.label}
+                                        </Link>
+                                      )}
+                                    </motion.div>
+                                  );
+                                })}
                               </motion.div>
                             )}
                           </AnimatePresence>

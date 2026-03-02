@@ -202,30 +202,48 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                     >
                       {item.dropdownItems.map((subItem) => {
                         const isSubActive = pathname === subItem.href;
+                        const isBookItem = item.label === "Books";
+                        
                         return (
                           <motion.div
                             key={subItem.label}
                             variants={dropdownItemVariants}
                           >
-                            <Link
-                              href={subItem.href}
-                              onClick={() => setActiveDropdown(null)}
-                              className={cn(
-                                "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors relative",
-                                isSubActive
-                                  ? "text-blue-600 bg-blue-50 font-medium"
-                                  : "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
-                              )}
-                            >
-                              {subItem.label}
-                              {/* Left border indicator for active item */}
-                              {isSubActive && (
-                                <motion.span
-                                  className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r"
-                                  layoutId="dropdown-active-indicator"
-                                />
-                              )}
-                            </Link>
+                            {isBookItem ? (
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setActiveDropdown(null);
+                                  openModal();
+                                }}
+                                className={cn(
+                                  "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors relative w-full text-left",
+                                  "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
+                                )}
+                              >
+                                {subItem.label}
+                              </button>
+                            ) : (
+                              <Link
+                                href={subItem.href}
+                                onClick={() => setActiveDropdown(null)}
+                                className={cn(
+                                  "flex items-center px-4 py-2.5 text-sm font-rubik transition-colors relative",
+                                  isSubActive
+                                    ? "text-blue-600 bg-blue-50 font-medium"
+                                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
+                                )}
+                              >
+                                {subItem.label}
+                                {/* Left border indicator for active item */}
+                                {isSubActive && (
+                                  <motion.span
+                                    className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r"
+                                    layoutId="dropdown-active-indicator"
+                                  />
+                                )}
+                              </Link>
+                            )}
                           </motion.div>
                         );
                       })}
