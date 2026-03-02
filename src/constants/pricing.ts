@@ -32,17 +32,17 @@ export type CoursePageSlug =
 // ---------------------------------------------------------------------------
 export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
   // Business & Finance
-  "primary-course": "/checkout?tier=primary-course",
-  "primary-books": "/checkout?tier=primary-books",
-  "premium-books": "/checkout?tier=premium-books",
+  "primary-course": "https://pay.floridaexamprep.com/buy",
+  "primary-books": "https://pay.floridaexamprep.com/buy",
+  "premium-books": "https://pay.floridaexamprep.com/buy",
   // CA/PM
-  "capm-course": "/checkout?tier=capm-course",
-  "capm-books": "/checkout?tier=capm-books",
-  "capm-package": "/checkout?tier=capm-package",
+  "capm-course": "https://pay.floridaexamprep.com/buy",
+  "capm-books": "https://pay.floridaexamprep.com/buy",
+  "capm-package": "https://pay.floridaexamprep.com/buy",
   // Complete Exam Prep
-  "complete-course": "/checkout?tier=complete-course",
-  "complete-books": "/checkout?tier=complete-books",
-  "complete-package": "/checkout?tier=complete-package",
+  "complete-course": "https://pay.floridaexamprep.com/buy",
+  "complete-books": "https://pay.floridaexamprep.com/buy",
+  "complete-package": "https://pay.floridaexamprep.com/buy",
 } as const;
 
 // ---------------------------------------------------------------------------
