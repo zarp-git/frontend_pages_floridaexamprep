@@ -1,22 +1,3 @@
-// ---------------------------------------------------------------------------
-// CTA Texts & URLs (SSOT)
-// ---------------------------------------------------------------------------
-export const CTA_TEXT = "Get that approval right away";
-
-export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
-  // Business & Finance
-  "primary-course": "/checkout?tier=primary-course",
-  "primary-books": "/checkout?tier=primary-books",
-  "premium-books": "/checkout?tier=premium-books",
-  // CA/PM
-  "capm-course": "/checkout?tier=capm-course",
-  "capm-books": "/checkout?tier=capm-books",
-  "capm-package": "/checkout?tier=capm-package",
-  // Complete Exam Prep
-  "complete-course": "/checkout?tier=complete-course",
-  "complete-books": "/checkout?tier=complete-books",
-  "complete-package": "/checkout?tier=complete-package",
-};
 /**
  * Pricing Constants — Single Source of Truth (SSOT)
  * ==================================================
@@ -45,6 +26,24 @@ export type CoursePageSlug =
   | "business-finance"
   | "contract-administration"
   | "complete-exam-prep";
+
+// ---------------------------------------------------------------------------
+// CTA Texts & URLs (SSOT)
+// ---------------------------------------------------------------------------
+export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
+  // Business & Finance
+  "primary-course": "/checkout?tier=primary-course",
+  "primary-books": "/checkout?tier=primary-books",
+  "premium-books": "/checkout?tier=premium-books",
+  // CA/PM
+  "capm-course": "/checkout?tier=capm-course",
+  "capm-books": "/checkout?tier=capm-books",
+  "capm-package": "/checkout?tier=capm-package",
+  // Complete Exam Prep
+  "complete-course": "/checkout?tier=complete-course",
+  "complete-books": "/checkout?tier=complete-books",
+  "complete-package": "/checkout?tier=complete-package",
+} as const;
 
 // ---------------------------------------------------------------------------
 // Per-tier pricing

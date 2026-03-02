@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 interface NavItem {
-  label: string;
+  title: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownItems?: { label: string; href: string }[];
+  dropdownItems?: { title: string; href: string }[];
   isMaintenance?: boolean;
 }
 
@@ -129,8 +129,8 @@ export default function Navigation({ navItems, className }: NavigationProps) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [activeDropdown]);
 
-  const handleToggle = (label: string) => {
-    setActiveDropdown((prev) => (prev === label ? null : label));
+  const handleToggle = (title: string) => {
+    setActiveDropdown((prev) => (prev === title ? null : title));
   };
 
   const getIsActive = (item: NavItem): boolean => {
@@ -155,21 +155,21 @@ export default function Navigation({ navItems, className }: NavigationProps) {
     <nav ref={navRef} className={cn("flex items-center gap-1", className)}>
       {navItems.map((item) => {
         const isActive = getIsActive(item);
-        const isHovered = hoveredItem === item.label;
+        const isHovered = hoveredItem === item.title;
         const showUnderline = isActive || isHovered;
 
         return (
-          <div key={item.label} className="relative">
+          <div key={item.title} className="relative">
             {item.hasDropdown && item.dropdownItems ? (
               <>
                 {/* Dropdown Trigger */}
                 <motion.button
-                  onClick={() => handleToggle(item.label)}
-                  onHoverStart={() => setHoveredItem(item.label)}
+                  onClick={() => handleToggle(item.title)}
+                  onHoverStart={() => setHoveredItem(item.title)}
                   onHoverEnd={() => setHoveredItem(null)}
                   className={cn(
                     "relative flex items-center gap-1 px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
-                    activeDropdown === item.label
+                    activeDropdown === item.title
                       ? "text-blue-600 bg-blue-50"
                       : isActive
                         ? "text-blue-600"
@@ -177,22 +177,22 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                   )}
                   whileTap={{ scale: 0.97 }}
                 >
-                  {item.label}
+                  {item.title}
                   <motion.span
                     animate={{
-                      rotate: activeDropdown === item.label ? 180 : 0,
+                      rotate: activeDropdown === item.title ? 180 : 0,
                     }}
                     transition={{ type: "spring", damping: 15, stiffness: 200 }}
                   >
                     <ChevronDown className="size-4" />
                   </motion.span>
                   {/* Animated underline: right to left */}
-                  <NavUnderline isActive={showUnderline} itemKey={item.label} />
+                  <NavUnderline isActive={showUnderline} itemKey={item.title} />
                 </motion.button>
 
                 {/* Dropdown Panel */}
                 <AnimatePresence>
-                  {activeDropdown === item.label && (
+                  {activeDropdown === item.title && (
                     <motion.div
                       className="absolute top-full left-0 mt-2 min-w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
                       variants={dropdownVariants}
@@ -202,11 +202,11 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                     >
                       {item.dropdownItems.map((subItem) => {
                         const isSubActive = pathname === subItem.href;
-                        const isBookItem = item.label === "Books";
+                        const isBookItem = item.title === "Books";
                         
                         return (
                           <motion.div
-                            key={subItem.label}
+                            key={subItem.title}
                             variants={dropdownItemVariants}
                           >
                             {isBookItem ? (
@@ -221,7 +221,7 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                                   "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
                                 )}
                               >
-                                {subItem.label}
+                                {subItem.title}
                               </button>
                             ) : (
                               <Link
@@ -234,7 +234,7 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                                     : "text-gray-700 hover:text-blue-600 hover:bg-blue-50",
                                 )}
                               >
-                                {subItem.label}
+                                {subItem.title}
                                 {/* Left border indicator for active item */}
                                 {isSubActive && (
                                   <motion.span
@@ -258,7 +258,7 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                   e.preventDefault();
                   openModal();
                 }}
-                onHoverStart={() => setHoveredItem(item.label)}
+                onHoverStart={() => setHoveredItem(item.title)}
                 onHoverEnd={() => setHoveredItem(null)}
                 className={cn(
                   "relative flex items-center px-3 py-2 rounded-lg text-base font-medium font-rubik transition-colors group",
@@ -266,12 +266,12 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                 )}
                 whileTap={{ scale: 0.97 }}
               >
-                {item.label}
-                <NavUnderline isActive={isHovered} itemKey={item.label} />
+                {item.title}
+                <NavUnderline isActive={isHovered} itemKey={item.title} />
               </motion.button>
             ) : (
               <motion.div
-                onHoverStart={() => setHoveredItem(item.label)}
+                onHoverStart={() => setHoveredItem(item.title)}
                 onHoverEnd={() => setHoveredItem(null)}
               >
                 <Link
@@ -283,9 +283,9 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50",
                   )}
                 >
-                  {item.label}
+                  {item.title}
                   {/* Animated underline: right to left */}
-                  <NavUnderline isActive={showUnderline} itemKey={item.label} />
+                  <NavUnderline isActive={showUnderline} itemKey={item.title} />
                 </Link>
               </motion.div>
             )}

@@ -1,14 +1,19 @@
 // Navigation Constants - Single Source of Truth for all header/footer links
 
+// Base interface for simple navigation links (footer, breadcrumbs, etc.)
 export interface NavLink {
   label: string;
   href: string;
   isMaintenance?: boolean;
 }
 
-export interface NavItemWithDropdown extends NavLink {
+// Extended interface for header navigation with dropdowns
+export interface NavItemWithDropdown {
+  title: string;
+  href: string;
   hasDropdown?: boolean;
-  dropdownItems?: NavLink[];
+  dropdownItems?: NavItemWithDropdown[];
+  isMaintenance?: boolean;
 }
 
 // Type alias for components that use the navigation items
@@ -19,30 +24,30 @@ export type NavItem = NavItemWithDropdown;
 // ============================================================================
 
 export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
-  { label: "Home", href: "/" },
+  { title: "Home", href: "/" },
   {
-    label: "Courses",
+    title: "Courses",
     href: "/courses",
     hasDropdown: true,
     dropdownItems: [
-      { label: "Business & Finance", href: "/courses/business-finance" },
-      { label: "Contract Administration", href: "/courses/contract-administration" },
-      { label: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
+      { title: "Business & Finance", href: "/courses/business-finance" },
+      { title: "Contract Administration", href: "/courses/contract-administration" },
+      { title: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
     ],
   },
   {
-    label: "Books",
+    title: "Books",
     href: "/books",
     hasDropdown: true,
     dropdownItems: [
-      { label: "AIA Documents", href: "/books/aia-documents" },
-      { label: "Builder's Guide", href: "/books/builders-guide" },
-      { label: "FL Contractor's Manual", href: "/books/contractors-manual" },
+      { title: "AIA Documents", href: "/books/aia-documents" },
+      { title: "Builder's Guide", href: "/books/builders-guide" },
+      { title: "FL Contractor's Manual", href: "/books/contractors-manual" },
     ],
   },
-  { label: "Quizzes", href: "/quizzes" },
-  { label: "Win Board", href: "#", isMaintenance: true },
-  { label: "Blog", href: "/blog" },
+  { title: "Quizzes", href: "/quizzes" },
+  { title: "Win Board", href: "#", isMaintenance: true },
+  { title: "Blog", href: "/blog" },
 ] as const;
 
 // ============================================================================

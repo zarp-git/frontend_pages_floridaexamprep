@@ -8,7 +8,7 @@ import Navigation from "./Navigation";
 import MobileMenu from "./MobileMenu";
 import { cn } from "@/lib/utils";
 import type { INavItem } from "@/types/header";
-import { NAV_ITEMS } from "@/constants";
+import { HEADER_NAV_ITEMS } from "@/constants/navigation";
 import { useLeadModal } from "@/hooks/use-lead-modal";
 import { useContactModal } from "@/hooks/use-contact-modal";
 
@@ -22,7 +22,7 @@ export default function Header({ navItems }: HeaderProps) {
   const { openModal } = useLeadModal();
   const { openModal: openContactModal } = useContactModal();
 
-  const items = navItems || NAV_ITEMS;
+  const items = navItems || HEADER_NAV_ITEMS;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);

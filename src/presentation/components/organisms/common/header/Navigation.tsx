@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { RiArrowDownSLine } from "@remixicon/react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { INavItem } from "@/types/header";
-import { NAV_ITEMS } from "@/constants";
+import { HEADER_NAV_ITEMS } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
@@ -68,7 +68,7 @@ function NavUnderline({
 }
 
 export default function Navigation({ className, navItems }: NavigationProps) {
-  const items = navItems || NAV_ITEMS;
+  const items = navItems || HEADER_NAV_ITEMS;
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);

@@ -1,0 +1,19 @@
+# Constants Folder Rules
+
+## SSOT Principles
+- All constants MUST use `as const` for immutability
+- No duplicate exports across files
+- Types defined before usage
+
+## Naming Conventions
+- Constants: UPPER_SNAKE_CASE (e.g., `HEADER_NAV_ITEMS`)
+- Types: PascalCase (e.g., `NavLink`, `PricingTierSlug`)
+- Files: kebab-case (e.g., `navigation.ts`, `pricing.ts`)
+
+## Type Usage
+- `NavLink` (label): Simple links for footers/breadcrumbs
+- `NavItemWithDropdown` (title): Header navigation with dropdowns
+
+## Before Committing
+- Run `pnpm build` to verify no breaking changes
+- Ensure no hardcoded values exist in components that should be constants

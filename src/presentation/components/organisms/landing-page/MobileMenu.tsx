@@ -12,10 +12,10 @@ import { CTA_TEXT } from "@/constants";
 import { useMaintenanceModal } from "@/hooks/use-maintenance-modal";
 
 interface NavItem {
-  label: string;
+  title: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownItems?: { label: string; href: string }[];
+  dropdownItems?: { title: string; href: string }[];
   isMaintenance?: boolean;
 }
 
@@ -101,10 +101,10 @@ export default function MobileMenu({
   const pathname = usePathname();
   const { openModal: openMaintenanceModal } = useMaintenanceModal();
 
-  const toggleSection = (label: string) => {
+  const toggleSection = (title: string) => {
     setOpenSections((prev) => ({
       ...prev,
-      [label]: !prev[label],
+      [title]: !prev[title],
     }));
   };
 
@@ -192,7 +192,7 @@ export default function MobileMenu({
 
                   return (
                     <motion.div
-                      key={item.label}
+                      key={item.title}
                       variants={navItemVariants}
                       custom={index}
                     >
@@ -200,22 +200,22 @@ export default function MobileMenu({
                         /* Accordion Section */
                         <div>
                           <motion.button
-                            onClick={() => toggleSection(item.label)}
+                            onClick={() => toggleSection(item.title)}
                             className={cn(
                               "flex items-center justify-between w-full px-3 py-3 rounded-lg text-left font-rubik font-medium text-base transition-colors",
-                              openSections[item.label]
+                              openSections[item.title]
                                 ? "text-blue-600 bg-blue-50"
                                 : itemIsActive
                                   ? "text-blue-600 bg-blue-50"
                                   : "text-gray-900 hover:bg-gray-50",
                             )}
-                            aria-expanded={openSections[item.label]}
+                            aria-expanded={openSections[item.title]}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <span>{item.label}</span>
+                            <span>{item.title}</span>
                             <motion.span
                               animate={{
-                                rotate: openSections[item.label] ? 180 : 0,
+                                rotate: openSections[item.title] ? 180 : 0,
                               }}
                               transition={{
                                 type: "spring",
@@ -229,7 +229,7 @@ export default function MobileMenu({
 
                           {/* Dropdown Content */}
                           <AnimatePresence>
-                            {openSections[item.label] && (
+                            {openSections[item.title] && (
                               <motion.div
                                 className="ml-3 mt-1 mb-2 pl-3 border-l-2 border-blue-600/20 space-y-0.5 overflow-hidden"
                                 variants={dropdownVariants}
@@ -238,11 +238,11 @@ export default function MobileMenu({
                                 exit="exit"
                               >
                                 {item.dropdownItems.map((subItem, subIndex) => {
-                                  const isBookItem = item.label === "Books";
+                                  const isBookItem = item.title === "Books";
                                   
                                   return (
                                     <motion.div
-                                      key={subItem.label}
+                                      key={subItem.title}
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{
                                         opacity: 1,
@@ -262,7 +262,7 @@ export default function MobileMenu({
                                             "text-gray-600 hover:text-blue-600 hover:bg-blue-50",
                                           )}
                                         >
-                                          {subItem.label}
+                                          {subItem.title}
                                         </button>
                                       ) : (
                                         <Link
@@ -280,7 +280,7 @@ export default function MobileMenu({
                                               : "text-gray-600 hover:text-blue-600 hover:bg-blue-50",
                                           )}
                                         >
-                                          {subItem.label}
+                                          {subItem.title}
                                         </Link>
                                       )}
                                     </motion.div>
@@ -301,7 +301,7 @@ export default function MobileMenu({
                           className="flex items-center w-full px-3 py-3 rounded-lg text-base font-rubik font-medium transition-colors text-gray-900 hover:text-blue-600 hover:bg-gray-50"
                           whileTap={{ scale: 0.98 }}
                         >
-                          {item.label}
+                          {item.title}
                         </motion.button>
                       ) : (
                         /* Simple Link */
@@ -315,7 +315,7 @@ export default function MobileMenu({
                               : "text-gray-900 hover:text-blue-600 hover:bg-gray-50",
                           )}
                         >
-                          {item.label}
+                          {item.title}
                         </Link>
                       )}
                     </motion.div>

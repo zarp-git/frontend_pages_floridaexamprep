@@ -14,10 +14,10 @@ import CurrentYear from "@/presentation/components/atoms/CurrentYear";
 import {
   FOOTER_COMPANY_INFO,
   FOOTER_LOCATIONS,
-  FOOTER_COMPANY_LINKS,
   FOOTER_SERVICES,
   FOOTER_LEGAL_LINKS,
 } from "@/constants/footer";
+import { FOOTER_COMPANY_LINKS } from "@/constants/navigation";
 import { SOCIAL_LINKS } from "@/constants";
 import CompanyLogo from "@/presentation/components/atoms/CompanyLogo";
 import { useLeadModal } from "@/hooks/use-lead-modal";

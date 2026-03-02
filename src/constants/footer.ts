@@ -22,13 +22,6 @@ export const FOOTER_LOCATIONS = [
   { label: "Horizon West", href: "/locations/horizon-west" },
 ] as const;
 
-export const FOOTER_COMPANY_LINKS = [
-  { label: "About us", href: "/about" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Learning Center", href: "/learning-center" },
-  { label: "Tools", href: "/tools" },
-] as const;
-
 export const FOOTER_SERVICES = [
   { label: "Exam Preparation", href: "/services/preparation" },
   { label: "Study Materials", href: "/services/materials" },
