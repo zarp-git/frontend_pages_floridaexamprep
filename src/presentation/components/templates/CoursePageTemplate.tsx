@@ -14,7 +14,7 @@ interface CoursePageTemplateProps {
 
 export default function CoursePageTemplate({ course }: CoursePageTemplateProps) {
   return (
-    <div className="w-full bg-white inline-flex flex-col justify-start items-start overflow-hidden">
+    <div className="w-full bg-white inline-flex flex-col justify-start items-start overflow-x-hidden">
       <Header />
       
       <CourseHeroSection course={course} />
