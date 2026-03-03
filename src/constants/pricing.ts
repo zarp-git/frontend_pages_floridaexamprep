@@ -56,9 +56,9 @@ export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
 // ---------------------------------------------------------------------------
 export const GHL_CHECKOUT_URLS: Record<PricingTierSlug, string> = {
   // Business & Finance
-  "primary-course": "https://pay.floridaexamprep.com/buycourseonly",
+  "primary-course": "https://pay.floridaexamprep.com/buy/primary-course",
   "primary-books": "https://pay.floridaexamprep.com/buy/primary-books",
-  "premium-books": "https://pay.floridaexamprep.com/buy/premium-books",
+  "premium-books": "https://pay.floridaexamprep.com/buy/course-and-books",
   "premium-highlighted-books": "https://pay.floridaexamprep.com/buy/premium-highlighted-books",
   // CA/PM
   "capm-course": "https://pay.floridaexamprep.com/buy/capm-course",
