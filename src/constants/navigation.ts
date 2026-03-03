@@ -46,7 +46,7 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
     ],
   },
   { title: "Quizzes", href: "/quizzes" },
-  { title: "Win Board", href: "#", isMaintenance: true },
+  { title: "Pass Board", href: "/florida-contractor-exam-pass-board" },
   { title: "Blog", href: "/blog" },
 ] as const;
 
@@ -61,7 +61,7 @@ export const FOOTER_COMPANY_LINKS: NavLink[] = [
 ] as const;
 
 export const FOOTER_COURSE_LINKS: NavLink[] = [
-  { label: "Win Board", href: "#", isMaintenance: true },
+  { label: "Pass Board", href: "/florida-contractor-exam-pass-board" },
   { label: "Business And Finance", href: "/courses/business-finance" },
   { label: "Contract Administration", href: "/courses/contract-admin" },
   { label: "Project Management", href: "/courses/project-management" },
