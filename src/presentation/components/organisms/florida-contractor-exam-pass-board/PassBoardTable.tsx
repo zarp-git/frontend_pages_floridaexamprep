@@ -13,16 +13,16 @@ export function PassBoardTable({ students }: PassBoardTableProps) {
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-gray-50 border-b border-gray-200">
-            <th className="px-6 sm:px-8 py-4 sm:py-5 text-xs font-black uppercase tracking-widest text-gray-500 w-24 font-red-hat">
+            <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 w-10 sm:w-16 md:w-24 font-red-hat">
               Rank
             </th>
-            <th className="px-6 sm:px-8 py-4 sm:py-5 text-xs font-black uppercase tracking-widest text-gray-500 font-red-hat text-center sm:text-left">
+            <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 font-red-hat">
               Student
             </th>
-            <th className="px-6 sm:px-8 py-4 sm:py-5 text-xs font-black uppercase tracking-widest text-gray-500 font-red-hat">
-              Certification Exam
+            <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 font-red-hat">
+              Exam
             </th>
-            <th className="px-6 sm:px-8 py-4 sm:py-5 text-xs font-black uppercase tracking-widest text-gray-500 text-right font-red-hat">
+            <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 text-right font-red-hat">
               Grade
             </th>
           </tr>

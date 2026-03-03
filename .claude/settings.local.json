@@ -6,7 +6,9 @@
       "Bash(npx tsc --noEmit)",
       "Bash(ls -la /c/Users/guilh/Documents/working_repos/frontend_pages_floridaexamprep/src/presentation/pages/\\\\\\(public\\\\\\)/florida-contractor-exam-pass-board/)",
       "Bash(ls /c/Users/guilh/Documents/working_repos/frontend_pages_floridaexamprep/*.*)",
-      "Bash(npx tsc --noEmit --pretty)"
+      "Bash(npx tsc --noEmit --pretty)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx)"
     ]
   }
 }
