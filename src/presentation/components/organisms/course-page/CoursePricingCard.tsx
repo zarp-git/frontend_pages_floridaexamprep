@@ -377,8 +377,10 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
           <div className="md:hidden w-full flex flex-col gap-6">
             {pricingTiers.map((tier, idx) => {
               const isExpanded = expandedCards[idx];
-              const visibleFeatures = isExpanded ? tier.features : tier.features.slice(0, 4);
-              const hasMoreFeatures = tier.features.length > 4;
+              // Filtrar apenas features incluídas
+              const includedFeatures = tier.features.filter(f => f.included);
+              const visibleFeatures = isExpanded ? includedFeatures : includedFeatures.slice(0, 4);
+              const hasMoreFeatures = includedFeatures.length > 4;
 
               return (
                 <div
@@ -445,13 +447,9 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                           key={featureIdx}
                           className="flex items-start gap-3"
                         >
-                          {feature.included ? (
-                            <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <Check className="w-4 h-4 text-white" />
-                            </div>
-                          ) : (
-                            <div className="w-6 h-6 flex-shrink-0" />
-                          )}
+                          <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Check className="w-4 h-4 text-white" />
+                          </div>
                           <p className="text-gray-700 text-sm font-rubik flex-1">
                             {feature.text}
                           </p>
@@ -468,7 +466,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                         <span>
                           {isExpanded 
                             ? "Show less" 
-                            : `+ Show all ${tier.features.length} features`
+                            : `+ Show all ${includedFeatures.length} features`
                           }
                         </span>
                         <ChevronDown 
