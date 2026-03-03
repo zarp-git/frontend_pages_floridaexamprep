@@ -12,7 +12,7 @@ export const PASS_BOARD_STUDENTS: PassBoardStudent[] = [
   { name: "Brandon Green", grade: "81.66%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_brandon-green.jpg" },
   { name: "Camila Lujan", grade: "88.33%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_camila-lujan.jpg" },
   { name: "Carl Brems", grade: "87.50%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_carl-brems.jpg" },
-  { name: "Caua Cunha", grade: "91.00%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_caua-cunha.jpeg" },
+  { name: "Caua Cunha", grade: "91.66%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_caua-cunha.jpeg" },
   { name: "Christina Taylor", grade: "80.00%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_christina-taylor.jpg" },
   { name: "Corey Outlaw", grade: "92.50%", exam: "Business and Finance", hasAvatar: false },
   { name: "Daniel Pryor", grade: "85.00%", exam: "Business and Finance", hasAvatar: true, avatarPath: "/images/pass-board_avatars/floridaexamprep_student_daniel-pryor.jpg" },
@@ -82,8 +82,8 @@ export const PASS_BOARD_EXAM_CATEGORIES = [
 ] as const;
 
 export const PASS_BOARD_CONFIG = {
-  title: "Statewide Pass Board",
-  subtitle: "Recognizing students who successfully passed their Florida state certification exams this month.",
+  title: "Florida's Pass Board",
+  subtitle: "Recognizing students who successfully passed their Florida state certification exams and shared their grades with our community.",
   lastUpdated: "Oct 24, 2023",
   itemsPerPage: 10,
 } as const;

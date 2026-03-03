@@ -5,7 +5,11 @@ import { PassBoardFilters } from "@/presentation/components/molecules/florida-co
 import { PassBoardTable } from "@/presentation/components/organisms/florida-contractor-exam-pass-board/PassBoardTable";
 import { PassBoardPagination } from "@/presentation/components/molecules/florida-contractor-exam-pass-board/PassBoardPagination";
 import { PassBoardCTA } from "@/presentation/components/organisms/florida-contractor-exam-pass-board/PassBoardCTA";
-import { PASS_BOARD_STUDENTS, PASS_BOARD_CONFIG } from "@/constants/pass-board";
+import { PASS_BOARD_STUDENTS, PASS_BOARD_CONFIG, type PassBoardStudent } from "@/constants/pass-board";
+
+export interface RankedStudent extends PassBoardStudent {
+  rank: number;
+}
 
 export function PassBoardView() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,21 +19,13 @@ export function PassBoardView() {
   const [viewMode, setViewMode] = useState<"monthly" | "all-time">("monthly");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredStudents = useMemo(() => {
+  // Step 1: Filter by category and sort to assign stable ranks
+  const rankedStudents = useMemo(() => {
     let filtered = [...PASS_BOARD_STUDENTS];
 
     if (selectedCategory !== "All Course Categories") {
       filtered = filtered.filter(
         (student) => student.exam === selectedCategory,
-      );
-    }
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (student) =>
-          student.name.toLowerCase().includes(query) ||
-          student.exam.toLowerCase().includes(query),
       );
     }
 
@@ -39,8 +35,23 @@ export function PassBoardView() {
       return gradeB - gradeA;
     });
 
-    return filtered;
-  }, [searchQuery, selectedCategory]);
+    return filtered.map((student, index) => ({
+      ...student,
+      rank: index + 1,
+    }));
+  }, [selectedCategory]);
+
+  // Step 2: Apply search filter while preserving original ranks
+  const filteredStudents = useMemo(() => {
+    if (!searchQuery.trim()) return rankedStudents;
+
+    const query = searchQuery.toLowerCase();
+    return rankedStudents.filter(
+      (student) =>
+        student.name.toLowerCase().includes(query) ||
+        student.exam.toLowerCase().includes(query),
+    );
+  }, [searchQuery, rankedStudents]);
 
   const totalPages = Math.ceil(
     filteredStudents.length / PASS_BOARD_CONFIG.itemsPerPage,
@@ -55,17 +66,17 @@ export function PassBoardView() {
   };
 
   return (
-    <main className="flex-1 flex flex-col items-center py-12 px-4">
-      <div className="w-full max-w-[80%] mb-12 text-center">
-        <h1 className="text-5xl uppercase tracking-tighter mb-4 font-red-hat font-black">
+    <main className="flex-1 flex flex-col items-center px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20">
+      <div className="w-full max-w-7xl mx-auto mb-8 sm:mb-10 md:mb-12 text-center">
+        <h1 className="text-[#002770] text-[24px] sm:text-[28px] md:text-4xl lg:text-5xl uppercase tracking-tighter mb-4 font-red-hat font-black">
           {PASS_BOARD_CONFIG.title}
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto font-rubik">
           {PASS_BOARD_CONFIG.subtitle}
         </p>
       </div>
 
-      <div className="w-full max-w-[80%] flex flex-col gap-6">
+      <div className="w-full max-w-7xl mx-auto flex flex-col gap-6">
         <PassBoardFilters
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -79,7 +90,7 @@ export function PassBoardView() {
         />
 
         <div className="flex items-center justify-end mb-1">
-          <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+          <div className="text-gray-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 font-rubik">
             <svg
               className="w-3 h-3"
               fill="none"
@@ -97,7 +108,7 @@ export function PassBoardView() {
           </div>
         </div>
 
-        <PassBoardTable students={currentStudents} startRank={startIndex + 1} />
+        <PassBoardTable students={currentStudents} />
 
         {totalPages > 1 && (
           <PassBoardPagination

@@ -1,28 +1,30 @@
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
+import { CTA_TEXT } from "@/constants";
 
 export function PassBoardCTA() {
   return (
-    <div className="w-full bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-700 p-8 md:p-12 shadow-2xl relative overflow-hidden">
+    <div className="w-full bg-white rounded-xl border border-gray-200 p-6 sm:p-8 md:p-12 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20"></div>
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full -ml-10 -mb-10"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="flex flex-col items-center text-center space-y-8">
-          <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold tracking-wide uppercase">
+        <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
+          <div className="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold tracking-wide uppercase font-rubik">
             Your Turn to Shine
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight font-red-hat">
+          <h2 className="text-[#002770] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight font-red-hat">
             Do you see those names up there? <br />
             <span className="text-primary">
               Next month, yours belongs right alongside them.
             </span>
           </h2>
 
-          <div className="space-y-6 text-lg md:text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+          <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-600 font-medium leading-relaxed font-rubik">
             <p>
               Imagine waking up, logging in, and seeing{" "}
-              <span className="italic font-bold text-slate-900 dark:text-slate-200">
+              <span className="italic font-bold text-gray-900">
                 your
               </span>{" "}
               name etched onto the Florida Exam Prep Pass Board. It&apos;s more
@@ -39,33 +41,24 @@ export function PassBoardCTA() {
               since 1995.
             </p>
 
-            <p className="text-slate-900 dark:text-slate-100 font-bold">
+            <p className="text-gray-900 font-bold">
               Your &quot;Pass Board&quot; moment is waiting. Are you ready to
               claim it?
             </p>
           </div>
 
-          <div className="pt-4 w-full md:w-auto">
-            <Link
+          <div className="pt-4 w-full sm:w-auto">
+            <PrimaryButton
+              variant="blue"
+              size="lg"
+              icon={<ArrowUpRight className="w-5 h-5" />}
+              iconPosition="right"
               href="/courses"
-              className="group relative inline-flex items-center justify-center px-10 py-5 bg-primary hover:bg-primary/90 text-white font-black text-xl rounded-2xl transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(19,127,236,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full sm:w-auto px-10 py-5 text-base sm:text-lg font-black"
             >
-              <span>Secure Your Spot Now</span>
-              <svg
-                className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-            <p className="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+              {CTA_TEXT}
+            </PrimaryButton>
+            <p className="mt-4 text-xs font-bold text-gray-400 uppercase tracking-widest font-rubik">
               Instant Access to the Florida Success Blueprint
             </p>
           </div>

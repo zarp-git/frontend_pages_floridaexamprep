@@ -44,10 +44,10 @@ export function PassBoardPagination({
   };
 
   return (
-    <div className="flex justify-center mt-6 mb-16">
+    <div className="flex justify-center mt-6 mb-12 sm:mb-16">
       <nav className="flex items-center gap-2">
         <button
-          className="flex items-center justify-center size-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center size-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-primary hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -70,24 +70,24 @@ export function PassBoardPagination({
           typeof page === "number" ? (
             <button
               key={index}
-              className={`flex items-center justify-center size-10 rounded-xl font-medium transition-colors ${
+              className={`flex items-center justify-center size-10 rounded-xl font-medium font-rubik transition-colors ${
                 currentPage === page
                   ? "bg-primary text-white font-bold"
-                  : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white"
+                  : "border border-gray-200 bg-white text-gray-600 hover:bg-primary hover:text-white"
               }`}
               onClick={() => onPageChange(page)}
             >
               {page}
             </button>
           ) : (
-            <span key={index} className="px-2 text-slate-400">
+            <span key={index} className="px-2 text-gray-400 font-rubik">
               {page}
             </span>
           ),
         )}
 
         <button
-          className="flex items-center justify-center size-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center size-10 rounded-xl border border-gray-200 bg-white text-gray-600 hover:bg-primary hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
