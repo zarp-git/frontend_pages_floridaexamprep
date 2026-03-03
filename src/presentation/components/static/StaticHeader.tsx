@@ -264,7 +264,7 @@ export default function StaticHeader() {
 
             <a href="/books" className="nav-item">Books</a>
             <a href="/quizzes" className="nav-item">Quizzes</a>
-            <a href="#" className="nav-item">Win Board</a>
+            <a href="/florida-contractor-exam-pass-board" className="nav-item">Pass Board</a>
             <a href="/blog" className="nav-item">Blog</a>
           </nav>
 
@@ -297,7 +297,7 @@ export default function StaticHeader() {
         <a href="/courses/complete-exam-prep" className="mobile-nav-item">Complete Exam Prep</a>
         <a href="/books" className="mobile-nav-item">Books</a>
         <a href="/quizzes" className="mobile-nav-item">Quizzes</a>
-        <a href="#" className="mobile-nav-item">Win Board</a>
+        <a href="/florida-contractor-exam-pass-board" className="mobile-nav-item">Pass Board</a>
         <a href="/blog" className="mobile-nav-item">Blog</a>
         <a href="https://wa.me/14436956218" target="_blank" rel="noopener noreferrer" className="mobile-cta">
           CONTACT US NOW
