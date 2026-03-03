@@ -159,7 +159,7 @@ export default function StaticFooter() {
           opacity: 0.7;
         }
         .footer-copyright {
-          width: 100%;
+          width: 100% !important;
           background-color: black;
           border-top: 1px solid #1f2937;
         }
@@ -270,16 +270,16 @@ export default function StaticFooter() {
                   <div className="footer-divider"></div>
                 </div>
                 <div className="footer-social">
-                  <a href="https://instagram.com/floridaexamprep" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/floridaexamprep/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/brands/instagram-icon.svg" alt="Instagram" style={{ width: '36px', height: '36px' }} />
                   </a>
-                  <a href="https://facebook.com/floridaexamprep" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/people/Florida-Exam-Prep/61577610429350/" target="_blank" rel="noopener noreferrer">
                     <img src="/images/brands/facebook-icon.svg" alt="Facebook" style={{ width: '36px', height: '36px' }} />
                   </a>
-                  <a href="https://youtube.com/@floridaexamprep" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.youtube.com/@Cruzvinci" target="_blank" rel="noopener noreferrer">
                     <img src="/images/svg/youtubeicon.svg" alt="YouTube" style={{ width: '36px', height: '36px' }} />
                   </a>
-                  <a href="https://wa.me/14074490000" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/14436956218" target="_blank" rel="noopener noreferrer">
                     <img src="/images/svg/whatsapp-icon.svg" alt="WhatsApp" style={{ width: '36px', height: '36px' }} />
                   </a>
                 </div>
