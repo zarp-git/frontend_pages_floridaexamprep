@@ -87,8 +87,8 @@ export default function BookSection() {
             </div>
           </div>
 
-          {/* Right Image - Ebook */}
-          <div className="relative w-80 h-96 flex-shrink-0">
+          {/* Right Image - Ebook - Hidden on mobile */}
+          <div className="hidden md:block relative w-80 h-96 flex-shrink-0">
             <Image
               src="/images/svg/ebook.svg"
               alt="Ebook"
