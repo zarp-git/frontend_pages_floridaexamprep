@@ -1,0 +1,18 @@
+# Database Migrations Folder
+
+## Rules and Conventions
+
+1. **Naming**: Use format `00X_description.sql` where X is sequential
+2. **Ordering**: Migrations execute in numerical order
+3. **Idempotency**: Use `IF NOT EXISTS` and `IF EXISTS` clauses
+4. **Rollback**: Include DROP statements in rollback migration or migrate.ts
+5. **Documentation**: Add comments explaining purpose and requirements
+
+## Migration Checklist
+
+- [ ] Sequential numbering (no gaps)
+- [ ] Descriptive filename
+- [ ] SQL syntax validated
+- [ ] Idempotent operations (safe to re-run)
+- [ ] Added to MIGRATIONS array in migrate.ts
+- [ ] Tested locally before committing
