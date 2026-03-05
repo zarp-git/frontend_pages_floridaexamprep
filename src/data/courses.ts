@@ -119,19 +119,11 @@ export const courseData: Record<string, CourseData> = {
     features: [
       {
         included: true,
-        text: "Full Course of the Trade Exams, Contract Administration, and Project Management",
-      },
-      {
-        included: true,
         text: "Full Breakdown of 14 Books Allowed into the Exam for Contract Administration and Project Management",
       },
       {
         included: true,
-        text: "Full breakdown of all 14 books allowed in the exams",
-      },
-      {
-        included: true,
-        text: "Highlighting Guide of all 14 books allowed in the exams",
+        text: "Highlighting Guide of all 14 books allowed in the exams Contract Administration and Project Management",
       },
       {
         included: true,
@@ -194,19 +186,11 @@ export const courseData: Record<string, CourseData> = {
     features: [
       {
         included: true,
-        text: "Full Course of the Trade Exams, Contract Administration, and Project Management",
-      },
-      {
-        included: true,
-        text: "Full Breakdown of 14 Books Allowed into the Exam for Contract Administration and Project Management",
-      },
-      {
-        included: true,
         text: "Full Course for the Business and Finance Exam",
       },
       {
         included: true,
-        text: "Full Course for the Trade Exams",
+        text: "Full Course for the Trade Exams Contract Administration, and Project Management",
       },
       {
         included: true,

@@ -49,16 +49,16 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     // Para Complete Exam Prep, lógica específica (3 colunas)
     if (course.slug === "complete-exam-prep") {
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 12 features
+        // Coluna 1 (Course): primeiras 10 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 12,
+          included: i < 10,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Books): primeiras 12 + features 12, 13, 14
+        // Coluna 2 (Course + Books): primeiras 10 + features 10, 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 12 || (i >= 12 && i <= 14),
+          included: i < 10 || (i >= 10 && i <= 12),
         }));
         highlight = "Most Popular";
       } else {
@@ -69,16 +69,16 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     } else if (course.slug === "contract-administration") {
       // Para Contract Administration (3 colunas)
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 13 features
+        // Coluna 1 (Course): primeiras 11 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 13,
+          included: i < 11,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Books): primeiras 13 + features 13, 14
+        // Coluna 2 (Course + Books): primeiras 11 + features 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 13 || (i >= 13 && i <= 14),
+          included: i < 11 || (i >= 11 && i <= 12),
         }));
         highlight = "Most Popular";
       } else {
