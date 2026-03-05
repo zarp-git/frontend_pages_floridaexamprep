@@ -37,7 +37,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
   const courseTiersMap: Record<string, string[]> = {
     "business-finance": ["primary-course", "premium-books", "premium-highlighted-books"],
     "contract-administration": ["capm-course", "capm-package", "capm-highlighted-books"],
-    "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
+    "complete-exam-prep": ["complete-course", "complete-package", "complete-highlighted-books"],
   };
 
   const validTiers = courseTiersMap[course.slug] || [];
@@ -46,45 +46,39 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     let features: CourseFeature[];
     let highlight: string | undefined;
     
-    // Para Complete Exam Prep, lógica específica
+    // Para Complete Exam Prep, lógica específica (3 colunas)
     if (course.slug === "complete-exam-prep") {
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 12 features
+        // Coluna 1 (Course): primeiras 10 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 12,
+          included: i < 10,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Books): features 13, 14, 15 (índices 13, 14, 15)
+        // Coluna 2 (Course + Books): primeiras 10 + features 10, 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: i >= 13 && i <= 15,
-        }));
-      } else if (idx === 2) {
-        // Coluna 3 (Course + Books): primeiras 12 + features 13, 14, 15
-        features = course.features.map((f, i) => ({
-          ...f,
-          included: i < 12 || (i >= 13 && i <= 15),
+          included: i < 10 || (i >= 10 && i <= 12),
         }));
         highlight = "Most Popular";
       } else {
-        // Coluna 4 (Course + Pre Highlighted): todas as features
+        // Coluna 3 (Course + Pre Highlighted): todas as features
         features = course.features.map((f) => ({ ...f, included: true }));
         highlight = "Best Value";
       }
     } else if (course.slug === "contract-administration") {
       // Para Contract Administration (3 colunas)
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 13 features
+        // Coluna 1 (Course): primeiras 11 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 13,
+          included: i < 11,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Books): primeiras 13 + features 13, 14, 15
+        // Coluna 2 (Course + Books): primeiras 11 + features 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 13 || (i >= 14 && i <= 15),
+          included: i < 11 || (i >= 11 && i <= 12),
         }));
         highlight = "Most Popular";
       } else {
@@ -101,10 +95,10 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
           included: i < 9,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Tabs + Books): primeiras 9 + features 9, 10, 11
+        // Coluna 2 (Course + Tabs + Books): primeiras 9 + features 9, 10
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 9 || (i >= 9 && i <= 11),
+          included: i < 9 || (i >= 9 && i <= 10),
         }));
         highlight = "Most Popular";
       } else {
@@ -171,7 +165,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                   <div className="flex-1">
                     <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
                       {course.slug === "contract-administration" 
-                        ? "This course covers Contract Administration and Project Management exams. Make sure you have the required books or choose a package that includes them."
+                        ? "The Contract Administration and Project Management course is sold as a combined course, not separately. Both exams use many of the same reference books, so a large portion of the material overlaps."
                         : "This complete package covers all Florida contractor exams. Make sure you have the required books or choose a package that includes them."
                       }
                     </p>
@@ -186,11 +180,10 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
               </span>
             </div>
             <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
-              ENROLL NOW AND GET INSTANT ACCESS TO THE PROVEN METHOD
+              FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED
             </h2>
-            <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
-              Join hundreds of successful students who started exactly where you
-              are
+            <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed uppercase">
+              STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE
             </p>
           </div>
 
@@ -263,6 +256,13 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                       Buy Now
                     </PrimaryButton>
                   </Link>
+
+                  {/* No Books Included notice for Course-only tier */}
+                  {idx === 0 && (
+                    <p className="text-gray-500 text-xs font-medium text-center">
+                      No Books Included
+                    </p>
+                  )}
 
                   {/* Additional Info - ou espaço vazio para manter alinhamento */}
                   <div className="h-8 text-center">
