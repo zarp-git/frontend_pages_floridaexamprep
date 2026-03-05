@@ -51,8 +51,7 @@ export const courseData: Record<string, CourseData> = {
     badge: getDefaultBadge("business-finance"),
     pricing: getDefaultPricing("business-finance"),
     rating: COURSE_RATING,
-    heroDescription:
-      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
+    heroDescription: "",
     features: [
       {
         included: true,
@@ -92,10 +91,6 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "No Books Included",
-      },
-      {
-        included: false,
         text: "Complete Book Set For Business and Finance Exam Brand New",
       },
       {
@@ -120,8 +115,7 @@ export const courseData: Record<string, CourseData> = {
     badge: getDefaultBadge("contract-administration"),
     pricing: getDefaultPricing("contract-administration"),
     rating: COURSE_RATING,
-    heroDescription:
-      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
+    heroDescription: "",
     features: [
       {
         included: true,
@@ -177,10 +171,6 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "No Books Included",
-      },
-      {
-        included: false,
         text: "Complete Book Set of Trade books allowed into the exam Brand New",
       },
       {
@@ -200,8 +190,7 @@ export const courseData: Record<string, CourseData> = {
     badge: getDefaultBadge("complete-exam-prep"),
     pricing: getDefaultPricing("complete-exam-prep"),
     rating: COURSE_RATING,
-    heroDescription:
-      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
+    heroDescription: "",
     features: [
       {
         included: true,
@@ -250,10 +239,6 @@ export const courseData: Record<string, CourseData> = {
       {
         included: true,
         text: "3 Hour Cram Course for Business And Finance Exam",
-      },
-      {
-        included: false,
-        text: "No Books Included",
       },
       {
         included: false,

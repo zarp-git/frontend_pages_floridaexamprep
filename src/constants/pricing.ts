@@ -161,12 +161,12 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
   // CA/PM
   { slug: "capm-course", label: "Course", badgeColor: "bg-emerald-600" },
   { slug: "capm-books", label: "Books", badgeColor: "bg-violet-600" },
-  { slug: "capm-package", label: "Course + Books", badgeColor: "bg-blue-600" },
+  { slug: "capm-package", label: "Course + Tabs + Books Included", badgeColor: "bg-blue-600" },
   { slug: "capm-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
   // Complete Exam Prep
   { slug: "complete-course", label: "Course", badgeColor: "bg-emerald-600" },
   { slug: "complete-books", label: "Books", badgeColor: "bg-violet-600" },
-  { slug: "complete-package", label: "Course + Books", badgeColor: "bg-blue-600" },
+  { slug: "complete-package", label: "Course + Tabs + Books Included", badgeColor: "bg-blue-600" },
   { slug: "complete-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
   // Quizzes
   { slug: "quizzes", label: "Quizzes", badgeColor: "bg-purple-600" },
@@ -179,7 +179,7 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
 export const COURSE_TIERS_MAP: Record<CoursePageSlug, PricingTierSlug[]> = {
   "business-finance": ["primary-course", "premium-books", "premium-highlighted-books"],
   "contract-administration": ["capm-course", "capm-package", "capm-highlighted-books"],
-  "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
+  "complete-exam-prep": ["complete-course", "complete-package", "complete-highlighted-books"],
 } as const;
 
 // ---------------------------------------------------------------------------
