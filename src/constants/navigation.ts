@@ -38,12 +38,13 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
   {
     title: "Books",
     href: "/books",
-    hasDropdown: true,
-    dropdownItems: [
-      { title: "AIA Documents", href: "/books/aia-documents" },
-      { title: "Builder's Guide", href: "/books/builders-guide" },
-      { title: "FL Contractor's Manual", href: "/books/contractors-manual" },
-    ],
+    hasDropdown: false, // Temporarily disabled dropdown
+    // hasDropdown: true,
+    // dropdownItems: [
+    //   { title: "AIA Documents", href: "/books/aia-documents" },
+    //   { title: "Builder's Guide", href: "/books/builders-guide" },
+    //   { title: "FL Contractor's Manual", href: "/books/contractors-manual" },
+    // ],
   },
   { title: "Quizzes", href: "/checkout?tier=quizzes" },
   { title: "Pass Board", href: "/florida-contractor-exam-pass-board" },
