@@ -20,7 +20,8 @@ export type PricingTierSlug =
   | "complete-course"
   | "complete-books"
   | "complete-package"
-  | "complete-highlighted-books";
+  | "complete-highlighted-books"
+  | "quizzes";
 
 // ---------------------------------------------------------------------------
 // Course Page Slugs
@@ -49,6 +50,8 @@ export const TIER_CTA_URL: Record<PricingTierSlug, string> = {
   "complete-books": "/checkout?tier=complete-books",
   "complete-package": "/checkout?tier=complete-package",
   "complete-highlighted-books": "/checkout?tier=complete-highlighted-books",
+  // Quizzes
+  "quizzes": "/checkout?tier=quizzes",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -70,6 +73,8 @@ export const GHL_CHECKOUT_URLS: Record<PricingTierSlug, string> = {
   "complete-books": "https://pay.floridaexamprep.com/buy/complete-books",
   "complete-package": "https://pay.floridaexamprep.com/buy/complete-package",
   "complete-highlighted-books": "https://pay.floridaexamprep.com/buy/complete-highlighted-books",
+  // Quizzes
+  "quizzes": "https://pay.floridaexamprep.com/buy/quizzes",
 } as const;
 
 // ---------------------------------------------------------------------------

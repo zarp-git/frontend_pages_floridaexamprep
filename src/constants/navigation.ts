@@ -45,7 +45,7 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
       { title: "FL Contractor's Manual", href: "/books/contractors-manual" },
     ],
   },
-  { title: "Quizzes", href: "/quizzes" },
+  { title: "Quizzes", href: "/checkout?tier=quizzes" },
   { title: "Pass Board", href: "/florida-contractor-exam-pass-board" },
   { title: "Blog", href: "/blog" },
 ] as const;
