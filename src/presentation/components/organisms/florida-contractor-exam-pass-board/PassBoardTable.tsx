@@ -25,6 +25,9 @@ export function PassBoardTable({ students }: PassBoardTableProps) {
             <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 text-right font-red-hat">
               Grade
             </th>
+            <th className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-gray-500 text-right font-red-hat">
+              Date
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">

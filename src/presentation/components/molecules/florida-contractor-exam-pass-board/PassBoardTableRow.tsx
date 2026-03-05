@@ -95,6 +95,11 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
           {student.grade}
         </span>
       </td>
+      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-right">
+        <span className="text-xs sm:text-sm md:text-base font-rubik text-gray-600">
+          {student.examDate}
+        </span>
+      </td>
     </tr>
   );
 }
