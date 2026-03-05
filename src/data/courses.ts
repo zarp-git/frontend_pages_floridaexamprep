@@ -52,7 +52,7 @@ export const courseData: Record<string, CourseData> = {
     pricing: getDefaultPricing("business-finance"),
     rating: COURSE_RATING,
     heroDescription:
-      "I help future contractors pass their Florida State Exams first try so you never have to worry about it again!",
+      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
     features: [
       {
         included: true,
@@ -92,15 +92,19 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
+        text: "No Books Included",
+      },
+      {
+        included: false,
         text: "Complete Book Set For Business and Finance Exam Brand New",
       },
       {
         included: false,
-        text: "3 Hour Cram Course",
+        text: "Books for All Tabs",
       },
       {
         included: false,
-        text: "Book Tabs For All Books",
+        text: "3 Hour Cram Course",
       },
       {
         included: false,
@@ -117,8 +121,16 @@ export const courseData: Record<string, CourseData> = {
     pricing: getDefaultPricing("contract-administration"),
     rating: COURSE_RATING,
     heroDescription:
-      "Master contract administration with our proven method and pass on your first attempt!",
+      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
     features: [
+      {
+        included: true,
+        text: "Full Course of the Trade Exams, Contract Administration, and Project Management",
+      },
+      {
+        included: true,
+        text: "Full Breakdown of 14 Books Allowed into the Exam for Contract Administration and Project Management",
+      },
       {
         included: true,
         text: "Full breakdown of all 14 books allowed in the exams",
@@ -165,6 +177,10 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
+        text: "No Books Included",
+      },
+      {
+        included: false,
         text: "Complete Book Set of Trade books allowed into the exam Brand New",
       },
       {
@@ -185,8 +201,16 @@ export const courseData: Record<string, CourseData> = {
     pricing: getDefaultPricing("complete-exam-prep"),
     rating: COURSE_RATING,
     heroDescription:
-      "Everything you need to pass all Florida contractor exams - complete preparation in one package!",
+      "DON'T STUDY ALONE - FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED - STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE",
     features: [
+      {
+        included: true,
+        text: "Full Course of the Trade Exams, Contract Administration, and Project Management",
+      },
+      {
+        included: true,
+        text: "Full Breakdown of 14 Books Allowed into the Exam for Contract Administration and Project Management",
+      },
       {
         included: true,
         text: "Full Course for the Business and Finance Exam",
@@ -226,6 +250,10 @@ export const courseData: Record<string, CourseData> = {
       {
         included: true,
         text: "3 Hour Cram Course for Business And Finance Exam",
+      },
+      {
+        included: false,
+        text: "No Books Included",
       },
       {
         included: false,
