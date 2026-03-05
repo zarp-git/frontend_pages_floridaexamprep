@@ -5,7 +5,7 @@ import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
-import { HERO_VIDEOS } from "@/constants/media";
+import { HERO_VIDEOS, VIDEO_POSTERS } from "@/constants/media";
 import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
 
@@ -127,9 +127,11 @@ export default function HeroSection() {
             {/* Video */}
             <FloatingVideo
               src={HERO_VIDEOS.THUMBNAIL}
+              poster={VIDEO_POSTERS.DEFAULT}
               className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2 mt-2 sm:mt-4"
               autoPlay={true}
               muted={true}
+              priority={true}
             />
 
             {/* Description */}

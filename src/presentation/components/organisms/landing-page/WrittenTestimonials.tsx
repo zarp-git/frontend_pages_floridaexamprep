@@ -11,7 +11,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
-import { TESTIMONIAL_VIDEOS } from "@/constants/media";
+import { TESTIMONIAL_VIDEOS, VIDEO_POSTERS } from "@/constants/media";
 import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
 
 interface Testimonial {
@@ -240,6 +240,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="relative flex-1">
           <PandaVideoPlayer
             src={testimonial.video!}
+            poster={VIDEO_POSTERS.DEFAULT}
             className="w-full h-full"
             controls
             muted
@@ -318,6 +319,7 @@ function MobileSlide({
       <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black">
         <PandaVideoPlayer
           src={testimonial.video!}
+          poster={VIDEO_POSTERS.DEFAULT}
           className="w-full h-full"
           controls
           muted

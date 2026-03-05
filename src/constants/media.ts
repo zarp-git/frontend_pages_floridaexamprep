@@ -2,6 +2,7 @@
  * Centralized media URL constants.
  *
  * All videos are hosted on Google Cloud Storage (public bucket).
+ * Videos are served directly from GCS with native Range Request support.
  *
  * GCS storage base: https://storage.googleapis.com/my-first-project-0/my-first-project-0
  */
@@ -22,4 +23,8 @@ export const TESTIMONIAL_VIDEOS = {
   VIDEO_4: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-4.mp4`,
   VIDEO_5: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-5.mp4`,
   VIDEO_6: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-6.mp4`,
+} as const;
+
+export const VIDEO_POSTERS = {
+  DEFAULT: "/images/default-video-thumbnail.jpg",
 } as const;

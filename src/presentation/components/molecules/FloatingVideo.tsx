@@ -6,6 +6,7 @@ import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideo
 
 interface FloatingVideoProps {
   src: string;
+  poster?: string;
   className?: string;
   autoPlay?: boolean;
   controls?: boolean;
@@ -13,10 +14,12 @@ interface FloatingVideoProps {
   muted?: boolean;
   preload?: "none" | "metadata" | "auto";
   disableInteraction?: boolean;
+  priority?: boolean;
 }
 
 export function FloatingVideo({
   src,
+  poster,
   className,
   autoPlay = false,
   controls = false,
@@ -24,6 +27,7 @@ export function FloatingVideo({
   muted = true,
   preload = "metadata",
   disableInteraction = false,
+  priority = false,
 }: FloatingVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mainVideoRef = useRef<HTMLVideoElement>(null);
@@ -110,17 +114,18 @@ export function FloatingVideo({
         <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-[24px] md:rounded-[30px]">
           <PandaVideoPlayer
             src={src}
+            poster={poster}
             className="w-full h-[200px] sm:h-[320px] md:h-[400px] lg:h-[504px] rounded-2xl sm:rounded-[24px] md:rounded-[30px]"
             controls={controls}
             muted={muted}
             autoPlay={autoPlay}
             loop={loop}
-            preload={preload}
+            preload={priority ? "auto" : preload}
             onPlay={handleVideoPlay}
             externalVideoRef={mainVideoRef}
             disableInteraction={disableInteraction}
           />
-          <FakeProgressBar videoRef={mainVideoRef} />
+          {hasInteracted && <FakeProgressBar videoRef={mainVideoRef} />}
 
           {/* Overlay to block interactions only when disableInteraction is set (course page) */}
           {disableInteraction && (
