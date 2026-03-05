@@ -240,7 +240,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="relative flex-1">
           <PandaVideoPlayer
             src={testimonial.video!}
-            poster={VIDEO_POSTERS.DEFAULT}
             className="w-full h-full"
             controls
             muted
@@ -319,7 +318,6 @@ function MobileSlide({
       <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black">
         <PandaVideoPlayer
           src={testimonial.video!}
-          poster={VIDEO_POSTERS.DEFAULT}
           className="w-full h-full"
           controls
           muted
