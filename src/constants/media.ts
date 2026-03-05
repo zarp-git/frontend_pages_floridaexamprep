@@ -1,20 +1,25 @@
 /**
  * Centralized media URL constants.
  *
- * All testimonial videos are hosted on Vercel Blob.
- * Blob storage base: https://5wwdmh3yjv6mnick.public.blob.vercel-storage.com
+ * All videos are hosted on Google Cloud Storage (public bucket).
+ *
+ * GCS storage base: https://storage.googleapis.com/my-first-project-0/my-first-project-0
  */
 
-const BLOB_BASE = "https://5wwdmh3yjv6mnick.public.blob.vercel-storage.com";
-const BLOB_VIDEOS = `${BLOB_BASE}/videos/testimonials`;
+const GCS_BASE = "https://storage.googleapis.com/my-first-project-0/my-first-project-0";
+const GCS_HERO = `${GCS_BASE}/videos/hero`;
+const GCS_TESTIMONIALS = `${GCS_BASE}/videos/testimonials`;
 
-export const TESTIMONIAL_VIDEOS = {
-  VIDEO_1: `${BLOB_VIDEOS}/videostudant.mp4`,
-  VIDEO_1B: `${BLOB_VIDEOS}/videostudanttwo.mp4`,
-  VIDEO_2: `${BLOB_VIDEOS}/floridaexamprep_testimonial_video%202.mp4`,
-  VIDEO_3: `${BLOB_VIDEOS}/floridaexamprep_testiominal_video%203.mp4`,
-  VIDEO_4: `${BLOB_VIDEOS}/floridaexamprep_testiominal_video%204.mp4`,
-  VIDEO_5: `${BLOB_VIDEOS}/floridaexamprep_testiominal_video%205.mp4`,
-  VIDEO_6: `${BLOB_VIDEOS}/floridaexamprep_testiominal_video%206.mp4`,
+export const HERO_VIDEOS = {
+  THUMBNAIL: `${GCS_HERO}/hero-video-thumbnail.mp4`,
 } as const;
 
+export const TESTIMONIAL_VIDEOS = {
+  VIDEO_0: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-0.mp4`,
+  VIDEO_1: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-1.mp4`,
+  VIDEO_2: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-2.mp4`,
+  VIDEO_3: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-3.mp4`,
+  VIDEO_4: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-4.mp4`,
+  VIDEO_5: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-5.mp4`,
+  VIDEO_6: `${GCS_TESTIMONIALS}/floridaexamprep_testimonial_video-6.mp4`,
+} as const;

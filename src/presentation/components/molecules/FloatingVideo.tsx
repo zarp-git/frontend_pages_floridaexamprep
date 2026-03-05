@@ -11,16 +11,18 @@ interface FloatingVideoProps {
   controls?: boolean;
   loop?: boolean;
   muted?: boolean;
+  preload?: "none" | "metadata" | "auto";
   disableInteraction?: boolean;
 }
 
-export function FloatingVideo({ 
-  src, 
+export function FloatingVideo({
+  src,
   className,
   autoPlay = false,
   controls = false,
   loop = false,
   muted = true,
+  preload = "metadata",
   disableInteraction = false,
 }: FloatingVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -113,14 +115,15 @@ export function FloatingVideo({
             muted={muted}
             autoPlay={autoPlay}
             loop={loop}
+            preload={preload}
             onPlay={handleVideoPlay}
             externalVideoRef={mainVideoRef}
             disableInteraction={disableInteraction}
           />
           <FakeProgressBar videoRef={mainVideoRef} />
-          
-          {/* Overlay to block interactions when controls are disabled */}
-          {!controls && (
+
+          {/* Overlay to block interactions only when disableInteraction is set (course page) */}
+          {disableInteraction && (
             <div className="absolute inset-0 z-20 cursor-default" />
           )}
         </div>

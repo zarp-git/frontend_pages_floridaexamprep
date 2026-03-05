@@ -10,6 +10,7 @@ interface PandaVideoPlayerProps {
   loop?: boolean;
   muted?: boolean;
   controls?: boolean;
+  preload?: "none" | "metadata" | "auto";
   onPlay?: () => void;
   onPause?: () => void;
   onEnded?: () => void;
@@ -25,6 +26,7 @@ const PandaVideoPlayerComponent = ({
   loop = false,
   muted = true,
   controls = true,
+  preload = "metadata",
   onPlay,
   onPause,
   onEnded,
@@ -33,9 +35,7 @@ const PandaVideoPlayerComponent = ({
 }: PandaVideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isMuted, setIsMuted] = useState(muted);
-  const [showMutedIndicator, setShowMutedIndicator] = useState(
-    muted && !autoPlay,
-  );
+  const [awaitingUnmute, setAwaitingUnmute] = useState(muted);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -49,20 +49,42 @@ const PandaVideoPlayerComponent = ({
     }
   }, [externalVideoRef]);
 
+  // Workaround: React doesn't reliably set the `muted` attribute on initial render,
+  // which causes Chrome to block muted autoplay. Manually ensure muted + play via ref.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !autoPlay) return;
+
+    // Ensure muted is set imperatively (React bug workaround)
+    video.muted = muted;
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Autoplay blocked — the overlay handles this case
+      });
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("canplay", tryPlay, { once: true });
+      return () => video.removeEventListener("canplay", tryPlay);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const handlePlay = () => {
       setIsPlaying(true);
-      setShowMutedIndicator(false);
       onPlay?.();
     };
 
     const handlePause = () => {
       setIsPlaying(false);
       onPause?.();
-      
+
       // If interaction is disabled and video is paused, restart it
       if (disableInteraction && autoPlay) {
         video.play().catch(console.warn);
@@ -87,11 +109,12 @@ const PandaVideoPlayerComponent = ({
 
   useEffect(() => {
     const handleFullscreenChange = () => {
+      const doc = document as unknown as Record<string, Element | null>;
       const isCurrentlyFullscreen = !!(
         document.fullscreenElement ||
-        (document as any).webkitFullscreenElement ||
-        (document as any).mozFullScreenElement ||
-        (document as any).msFullscreenElement
+        doc["webkitFullscreenElement"] ||
+        doc["mozFullScreenElement"] ||
+        doc["msFullscreenElement"]
       );
       setIsFullscreen(isCurrentlyFullscreen);
     };
@@ -118,50 +141,43 @@ const PandaVideoPlayerComponent = ({
     };
   }, []);
 
-  const handleVideoClick = async () => {
+  const handleVideoClick = () => {
     const video = videoRef.current;
     if (!video || isLoading || disableInteraction) return;
 
-    try {
-      setIsLoading(true);
+    if (isMuted) {
+      // Unmute and restart: must call play() synchronously within the
+      // user-gesture frame so the browser doesn't revoke the gesture token.
+      video.muted = false;
+      video.currentTime = 0;
 
-      // If the video is muted, just unmute and play
-      if (isMuted) {
-        video.muted = false;
+      const playPromise = video.play();
+      if (playPromise) {
+        setIsLoading(true);
+        playPromise
+          .then(() => {
+            setIsMuted(false);
+            setAwaitingUnmute(false);
+          })
+          .catch((err) => console.warn("Error playing video:", err))
+          .finally(() => setIsLoading(false));
+      } else {
         setIsMuted(false);
-        setShowMutedIndicator(false);
-
-        if (video.paused) {
-          await video.play();
+        setAwaitingUnmute(false);
+      }
+    } else {
+      // Not muted — just toggle play/pause
+      if (video.paused) {
+        const p = video.play();
+        if (p) {
+          setIsLoading(true);
+          p.catch((err) => console.warn("Error playing video:", err)).finally(
+            () => setIsLoading(false),
+          );
         }
       } else {
-        // If not muted, just toggle play/pause
-        if (video.paused) {
-          await video.play();
-        } else {
-          video.pause();
-        }
+        video.pause();
       }
-    } catch (error) {
-      console.warn("Error playing video:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const requestFullscreen = (element: HTMLVideoElement) => {
-    try {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if ((element as any).webkitRequestFullscreen) {
-        (element as any).webkitRequestFullscreen();
-      } else if ((element as any).mozRequestFullScreen) {
-        (element as any).mozRequestFullScreen();
-      } else if ((element as any).msRequestFullscreen) {
-        (element as any).msRequestFullscreen();
-      }
-    } catch (error) {
-      console.warn("Fullscreen not supported:", error);
     }
   };
 
@@ -178,15 +194,16 @@ const PandaVideoPlayerComponent = ({
         poster={poster}
         className={cn(
           "w-full h-full video-player",
-          disableInteraction ? "pointer-events-none" : "cursor-pointer"
+          disableInteraction ? "pointer-events-none" : "cursor-pointer",
         )}
         style={{
           objectFit: isFullscreen ? "contain" : "cover",
         }}
+        preload={preload}
         autoPlay={autoPlay}
         loop={loop}
         muted={isMuted}
-        controls={controls && !showMutedIndicator}
+        controls={controls && !awaitingUnmute}
         playsInline
         disablePictureInPicture
         onClick={handleVideoClick}
@@ -198,15 +215,18 @@ const PandaVideoPlayerComponent = ({
         </div>
       )}
 
-      {(showMutedIndicator || !isPlaying) && !isLoading && (
+      {(awaitingUnmute || !isPlaying) && !isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+          {/* Override Tailwind v4's animation-duration reset */}
+          <style>{`
+            .panda-muted-indicator-impact-wrapper {
+              animation: gentle-breathe 3s ease-in-out infinite !important;
+            }
+          `}</style>
           <button
             onClick={handleVideoClick}
             disabled={isLoading}
-            className="panda-muted-indicator-impact-wrapper panda-muted-indicator-item hover:scale-105 transition-transform duration-300 flex flex-col items-center px-6 py-4 bg-black/60 rounded-2xl backdrop-blur-sm border border-white/20 group/button disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-            style={{
-              animation: "gentle-breathe 3s ease-in-out infinite",
-            }}
+            className="panda-muted-indicator-impact-wrapper panda-muted-indicator-item hover:scale-105 transition-transform flex flex-col items-center px-6 py-4 bg-black/60 rounded-2xl backdrop-blur-sm border border-white/20 group/button disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             <span className="text-white text-sm font-medium">Click here</span>
             <div className="relative">
@@ -225,18 +245,18 @@ const PandaVideoPlayerComponent = ({
                   .bg-color { fill: rgba(0,0,0,0.8); }
                   .volume, .wave { transform: scale(1); transform-box: fill-box; transform-origin: center; }
                   .wave {
-                    animation: wave-pulse 1.5s ease-in-out infinite;
+                    animation: wave-pulse 1.5s ease-in-out infinite !important;
                     transform-origin: center;
                   }
-                  .wave:nth-child(3) { animation-delay: 0s; }
-                  .wave:nth-child(4) { animation-delay: 0.2s; }
-                  .wave:nth-child(5) { animation-delay: 0.4s; }
+                  .wave:nth-child(3) { animation-delay: 0s !important; }
+                  .wave:nth-child(4) { animation-delay: 0.2s !important; }
+                  .wave:nth-child(5) { animation-delay: 0.4s !important; }
                   @keyframes wave-pulse {
                     0%, 100% { opacity: 0.3; transform: scale(0.85); }
                     50% { opacity: 1; transform: scale(1.1); }
                   }
                   .volume {
-                    animation: volume-heartbeat 1.8s ease-in-out infinite;
+                    animation: volume-heartbeat 1.8s ease-in-out infinite !important;
                   }
                   @keyframes volume-heartbeat {
                     0%, 100% { transform: scale(1); }
@@ -246,7 +266,7 @@ const PandaVideoPlayerComponent = ({
                     60% { transform: scale(1); }
                   }
                   .line {
-                    animation: line-flash 1.5s ease-in-out infinite;
+                    animation: line-flash 1.5s ease-in-out infinite !important;
                   }
                   @keyframes line-flash {
                     0%, 100% { opacity: 0.7; }

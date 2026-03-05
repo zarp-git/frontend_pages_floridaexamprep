@@ -34,7 +34,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: TESTIMONIAL_VIDEOS.VIDEO_1,
+      video: TESTIMONIAL_VIDEOS.VIDEO_0,
       rating: 5,
     },
     {
@@ -54,7 +54,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: TESTIMONIAL_VIDEOS.VIDEO_1B,
+      video: TESTIMONIAL_VIDEOS.VIDEO_1,
       rating: 5,
     },
   ],
@@ -243,6 +243,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
             className="w-full h-full"
             controls
             muted
+            preload="metadata"
             autoPlay={false}
             loop={false}
           />
@@ -320,6 +321,7 @@ function MobileSlide({
           className="w-full h-full"
           controls
           muted
+          preload="metadata"
           autoPlay={false}
           loop={false}
           onPlay={onVideoPlay}

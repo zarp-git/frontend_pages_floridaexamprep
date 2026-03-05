@@ -8,7 +8,8 @@
       "Bash(ls /c/Users/guilh/Documents/working_repos/frontend_pages_floridaexamprep/*.*)",
       "Bash(npx tsc --noEmit --pretty)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(where npx)"
+      "Bash(where npx)",
+      "Bash(where pnpm)"
     ]
   }
 }

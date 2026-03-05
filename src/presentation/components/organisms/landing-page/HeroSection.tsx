@@ -1,11 +1,15 @@
 "use client";
 
+import ReactDOM from "react-dom";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
+import { HERO_VIDEOS } from "@/constants/media";
 import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
+
+const BLOB_ORIGIN = "https://5wwdmh3yjv6mnick.public.blob.vercel-storage.com";
 
 const EXAM_TYPES = [
   "BUSINESS & FINANCE",
@@ -14,6 +18,10 @@ const EXAM_TYPES = [
 ];
 
 export default function HeroSection() {
+  // Prioritize the Blob CDN connection
+  ReactDOM.preconnect(BLOB_ORIGIN, { crossOrigin: "anonymous" });
+  ReactDOM.prefetchDNS(BLOB_ORIGIN);
+
   return (
     <section className="w-full py-10 sm:py-12 lg:py-14 bg-white">
       <div className="px-4 md:px-28 max-w-[1440px] mx-auto flex flex-col justify-start items-center gap-3 sm:gap-4 lg:gap-5">
@@ -118,8 +126,10 @@ export default function HeroSection() {
 
             {/* Video */}
             <FloatingVideo
-              src="/images/hero/hero-video-thumbnail.mp4"
+              src={HERO_VIDEOS.THUMBNAIL}
               className="w-full max-w-5xl relative flex flex-col justify-center items-center px-2 mt-2 sm:mt-4"
+              autoPlay={true}
+              muted={true}
             />
 
             {/* Description */}
