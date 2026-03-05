@@ -11,6 +11,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT } from "@/constants";
+import { TESTIMONIAL_VIDEOS } from "@/constants/media";
 import { PandaVideoPlayer } from "@/presentation/components/molecules/PandaVideoPlayer";
 
 interface Testimonial {
@@ -33,7 +34,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/videostudant.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_1,
       rating: 5,
     },
     {
@@ -53,7 +54,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video: "/images/testimonials/videostudant/videostudanttwo.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_1B,
       rating: 5,
     },
   ],
@@ -75,8 +76,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video:
-        "/images/testimonials/videostudant/floridaexamprep_testimonial_video 2.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_2,
       rating: 5,
     },
     {
@@ -120,8 +120,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video:
-        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 3.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_3,
       rating: 5,
     },
   ],
@@ -132,8 +131,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video:
-        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 4.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_4,
       rating: 5,
     },
     {
@@ -153,8 +151,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video:
-        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 5.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_5,
       rating: 5,
     },
   ],
@@ -176,8 +173,7 @@ const TESTIMONIALS: Testimonial[][] = [
       studentName: "Student Video",
       examType: "Business & Finance Exam",
       avatar: "/images/logo/skool-logo.png",
-      video:
-        "/images/testimonials/videostudant/floridaexamprep_testiominal_video 6.mp4",
+      video: TESTIMONIAL_VIDEOS.VIDEO_6,
       rating: 5,
     },
   ],
