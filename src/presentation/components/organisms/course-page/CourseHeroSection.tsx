@@ -1,5 +1,6 @@
 "use client";
 
+import ReactDOM from "react-dom";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
@@ -8,11 +9,17 @@ import { HERO_VIDEOS, VIDEO_POSTERS } from "@/constants/media";
 import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CourseData } from "@/data/courses";
 
+const GCS_ORIGIN = "https://storage.googleapis.com";
+
 interface CourseHeroSectionProps {
   course: CourseData;
 }
 
 export default function CourseHeroSection({ course }: CourseHeroSectionProps) {
+  // Prioritize the GCS CDN connection
+  ReactDOM.preconnect(GCS_ORIGIN, { crossOrigin: "anonymous" });
+  ReactDOM.prefetchDNS(GCS_ORIGIN);
+
   return (
     <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col justify-start items-center gap-4 sm:gap-6">

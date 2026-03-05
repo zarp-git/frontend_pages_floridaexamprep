@@ -9,7 +9,7 @@ import { HERO_VIDEOS, VIDEO_POSTERS } from "@/constants/media";
 import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
 
-const BLOB_ORIGIN = "https://5wwdmh3yjv6mnick.public.blob.vercel-storage.com";
+const GCS_ORIGIN = "https://storage.googleapis.com";
 
 const EXAM_TYPES = [
   "BUSINESS & FINANCE",
@@ -18,9 +18,9 @@ const EXAM_TYPES = [
 ];
 
 export default function HeroSection() {
-  // Prioritize the Blob CDN connection
-  ReactDOM.preconnect(BLOB_ORIGIN, { crossOrigin: "anonymous" });
-  ReactDOM.prefetchDNS(BLOB_ORIGIN);
+  // Prioritize the GCS CDN connection
+  ReactDOM.preconnect(GCS_ORIGIN, { crossOrigin: "anonymous" });
+  ReactDOM.prefetchDNS(GCS_ORIGIN);
 
   return (
     <section className="w-full py-10 sm:py-12 lg:py-14 bg-white">
