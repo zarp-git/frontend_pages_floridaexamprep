@@ -121,6 +121,7 @@ export default function CourseHeroSection({ course }: CourseHeroSectionProps) {
               loop={true}
               muted={false}
               disableInteraction={true}
+              priority={true}
             />
 
             {/* Description */}
