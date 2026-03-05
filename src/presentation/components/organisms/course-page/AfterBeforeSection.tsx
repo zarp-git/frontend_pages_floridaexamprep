@@ -40,10 +40,10 @@ export default function AfterBeforeSection() {
         {/* Title */}
         <h2 className="text-center">
           <span className="text-gray-800 text-2xl sm:text-3xl font-black font-hanken uppercase leading-7 tracking-wide">
-            AFTER AND BEFORE YOU{" "}
+            Before vs. After{" "}
           </span>
-          <span className="text-[#FF6200] text-2xl sm:text-3xl font- font-hanken uppercase leading-7 tracking-wide">
-            JOIN IN
+          <span className="text-[#FF6200] text-2xl sm:text-3xl font-black font-hanken uppercase leading-7 tracking-wide">
+            Florida Exam Prep
           </span>
         </h2>
         

@@ -35,8 +35,8 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
 
   // Define os tiers válidos para cada curso
   const courseTiersMap: Record<string, string[]> = {
-    "business-finance": ["primary-course", "primary-books", "premium-books", "premium-highlighted-books"],
-    "contract-administration": ["capm-course", "capm-books", "capm-package", "capm-highlighted-books"],
+    "business-finance": ["primary-course", "premium-books", "premium-highlighted-books"],
+    "contract-administration": ["capm-course", "capm-package", "capm-highlighted-books"],
     "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
   };
 
@@ -49,22 +49,22 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     // Para Complete Exam Prep, lógica específica
     if (course.slug === "complete-exam-prep") {
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 10 features
+        // Coluna 1 (Course): primeiras 12 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 10,
+          included: i < 12,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Books): features 10, 11, 12 (índices 10, 11, 12)
+        // Coluna 2 (Books): features 13, 14, 15 (índices 13, 14, 15)
         features = course.features.map((f, i) => ({
           ...f,
-          included: i >= 10 && i <= 12,
+          included: i >= 13 && i <= 15,
         }));
       } else if (idx === 2) {
-        // Coluna 3 (Course + Books): primeiras 10 + features 10, 11, 12
+        // Coluna 3 (Course + Books): primeiras 12 + features 13, 14, 15
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 10 || (i >= 10 && i <= 12),
+          included: i < 12 || (i >= 13 && i <= 15),
         }));
         highlight = "Most Popular";
       } else {
@@ -73,33 +73,27 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         highlight = "Best Value";
       }
     } else if (course.slug === "contract-administration") {
-      // Para Contract Administration
+      // Para Contract Administration (3 colunas)
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 11 features
+        // Coluna 1 (Course): primeiras 13 features
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 11,
+          included: i < 13,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Books): apenas feature 11 (Complete Book Set)
+        // Coluna 2 (Course + Books): primeiras 13 + features 13, 14, 15
         features = course.features.map((f, i) => ({
           ...f,
-          included: i === 11,
-        }));
-      } else if (idx === 2) {
-        // Coluna 3 (Course + Books): primeiras 11 + feature 11
-        features = course.features.map((f, i) => ({
-          ...f,
-          included: i < 11 || i === 11,
+          included: i < 13 || (i >= 14 && i <= 15),
         }));
         highlight = "Most Popular";
       } else {
-        // Coluna 4 (Course + Pre Highlighted): todas as features
+        // Coluna 3 (Course + Pre Highlighted): todas as features
         features = course.features.map((f) => ({ ...f, included: true }));
         highlight = "Best Value";
       }
     } else if (course.slug === "business-finance") {
-      // Para Business Finance
+      // Para Business Finance (3 colunas)
       if (idx === 0) {
         // Coluna 1 (Course): primeiras 9 features
         features = course.features.map((f, i) => ({
@@ -107,20 +101,14 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
           included: i < 9,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Books): apenas feature 9 (Complete Book Set)
+        // Coluna 2 (Course + Tabs + Books): primeiras 9 + features 9, 10, 11
         features = course.features.map((f, i) => ({
           ...f,
-          included: i === 9,
-        }));
-      } else if (idx === 2) {
-        // Coluna 3 (Course + Books): primeiras 9 + features 9 e 10
-        features = course.features.map((f, i) => ({
-          ...f,
-          included: i < 9 || i === 9 || i === 10,
+          included: i < 9 || (i >= 9 && i <= 11),
         }));
         highlight = "Most Popular";
       } else {
-        // Coluna 4 (Course + Pre Highlighted): todas as features
+        // Coluna 3 (Course + Pre Highlighted): todas as features
         features = course.features.map((f) => ({ ...f, included: true }));
         highlight = "Best Value";
       }
@@ -171,6 +159,27 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
         <div className="w-full mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
+            {/* FYI Notice for Contract Administration and Complete Exam Prep */}
+            {(course.slug === "contract-administration" || course.slug === "complete-exam-prep") && (
+              <div className="w-full max-w-3xl px-4 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold text-sm">
+                      FYI
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
+                      {course.slug === "contract-administration" 
+                        ? "This course covers Contract Administration and Project Management exams. Make sure you have the required books or choose a package that includes them."
+                        : "This complete package covers all Florida contractor exams. Make sure you have the required books or choose a package that includes them."
+                      }
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
             <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
               <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed uppercase">
                 You don&apos;t have to do this alone

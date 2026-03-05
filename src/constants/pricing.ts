@@ -137,6 +137,11 @@ export const PRICING_TIERS: Record<PricingTierSlug, TierPricing> = {
     originalValue: 3000,
     currentPrice: 2699,
   },
+  // Quizzes
+  "quizzes": {
+    originalValue: 199,
+    currentPrice: 149,
+  },
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -151,9 +156,8 @@ export interface TierDisplayInfo {
 export const TIER_DISPLAY: TierDisplayInfo[] = [
   // Business & Finance
   { slug: "primary-course", label: "Course", badgeColor: "bg-emerald-600" },
-  { slug: "primary-books", label: "Books", badgeColor: "bg-violet-600" },
-  { slug: "premium-books", label: "Course + Books", badgeColor: "bg-blue-600" },
-  { slug: "premium-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
+  { slug: "premium-books", label: "Course + Tabs + Books Included", badgeColor: "bg-blue-600" },
+  { slug: "premium-highlighted-books", label: "Course + Pre-Highlighted Tabs + Books Included", badgeColor: "bg-orange-600" },
   // CA/PM
   { slug: "capm-course", label: "Course", badgeColor: "bg-emerald-600" },
   { slug: "capm-books", label: "Books", badgeColor: "bg-violet-600" },
@@ -164,6 +168,8 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
   { slug: "complete-books", label: "Books", badgeColor: "bg-violet-600" },
   { slug: "complete-package", label: "Course + Books", badgeColor: "bg-blue-600" },
   { slug: "complete-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
+  // Quizzes
+  { slug: "quizzes", label: "Quizzes", badgeColor: "bg-purple-600" },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -171,8 +177,8 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
 // Maps each course to its available pricing tiers
 // ---------------------------------------------------------------------------
 export const COURSE_TIERS_MAP: Record<CoursePageSlug, PricingTierSlug[]> = {
-  "business-finance": ["primary-course", "primary-books", "premium-books", "premium-highlighted-books"],
-  "contract-administration": ["capm-course", "capm-books", "capm-package", "capm-highlighted-books"],
+  "business-finance": ["primary-course", "premium-books", "premium-highlighted-books"],
+  "contract-administration": ["capm-course", "capm-package", "capm-highlighted-books"],
   "complete-exam-prep": ["complete-course", "complete-books", "complete-package", "complete-highlighted-books"],
 } as const;
 
