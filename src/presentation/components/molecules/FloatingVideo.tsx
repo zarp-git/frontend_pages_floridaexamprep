@@ -25,7 +25,7 @@ export function FloatingVideo({
   controls = false,
   loop = false,
   muted = true,
-  preload = "metadata",
+  preload = "none",
   disableInteraction = false,
   priority = false,
 }: FloatingVideoProps) {
