@@ -172,5 +172,5 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 export const GALLERY_SEO = {
   metaTitle: "Project Gallery | AllBrick Pavers — Central Florida Paver Work",
   metaDescription:
-    "Browse our gallery of completed paver projects across Central Florida. Patios, driveways, pool decks, fire pits, and walkways — see the AllBrick Pavers difference.",
+    "Browse our gallery of completed paver project across Central Florida. Patios, driveways, pool decks, fire pits, and walkways — see the AllBrick Paver difference.",
 } as const;
