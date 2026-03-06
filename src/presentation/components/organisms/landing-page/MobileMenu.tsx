@@ -15,7 +15,7 @@ interface NavItem {
   title: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownItems?: { title: string; href: string }[];
+  dropdownItems?: { title: string; href: string; isMaintenance?: boolean }[];
   isMaintenance?: boolean;
 }
 
@@ -238,8 +238,6 @@ export default function MobileMenu({
                                 exit="exit"
                               >
                                 {item.dropdownItems.map((subItem, subIndex) => {
-                                  const isBookItem = item.title === "Books";
-                                  
                                   return (
                                     <motion.div
                                       key={subItem.title}
@@ -250,7 +248,7 @@ export default function MobileMenu({
                                         transition: { delay: subIndex * 0.05 },
                                       }}
                                     >
-                                      {isBookItem ? (
+                                      {subItem.isMaintenance ? (
                                         <button
                                           onClick={(e) => {
                                             e.preventDefault();
@@ -267,12 +265,7 @@ export default function MobileMenu({
                                       ) : (
                                         <Link
                                           href={subItem.href}
-                                          onClick={(e) =>
-                                            handleLinkClick(e, {
-                                              ...subItem,
-                                              isMaintenance: false,
-                                            })
-                                          }
+                                          onClick={onClose}
                                           className={cn(
                                             "block px-3 py-2.5 text-sm font-rubik rounded-lg transition-colors",
                                             isActive(subItem.href)

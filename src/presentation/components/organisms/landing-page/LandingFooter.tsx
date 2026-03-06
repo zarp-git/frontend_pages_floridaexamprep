@@ -197,15 +197,28 @@ export default function LandingFooter() {
             <div className="flex flex-col gap-3">
               <FooterSectionTitle>BOOKS</FooterSectionTitle>
               <div className="flex flex-col gap-2">
-                {BOOK_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-gray-700 text-sm sm:text-base font-normal font-rubik hover:text-gray-900 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {BOOK_LINKS.map((link) =>
+                  link.isMaintenance ? (
+                    <button
+                      key={link.label}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal();
+                      }}
+                      className="text-gray-700 text-sm sm:text-base font-normal font-rubik hover:text-gray-900 text-left transition-colors"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-gray-700 text-sm sm:text-base font-normal font-rubik hover:text-gray-900 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ),
+                )}
               </div>
             </div>
 

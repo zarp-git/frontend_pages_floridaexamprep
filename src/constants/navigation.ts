@@ -26,29 +26,53 @@ export type NavItem = NavItemWithDropdown;
 export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
   { title: "Home", href: "/" },
   {
-    title: "Courses",
-    href: "/courses",
+    title: "Programs",
+    href: "/programs",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Business & Finance", href: "/courses/business-finance" },
-      { title: "Contract Administration", href: "/courses/contract-administration" },
-      { title: "Complete Exam Prep", href: "/courses/complete-exam-prep" },
+      { title: "Business And Finance", href: "/courses/business-finance" },
+      { title: "General Contractor", href: "/programs/general-contractor", isMaintenance: true },
+      { title: "Building Contractor", href: "/programs/building-contractor", isMaintenance: true },
+      { title: "Residential Contractor", href: "/programs/residential-contractor", isMaintenance: true },
+      { title: "Contract Administration/Project Management", href: "/courses/contract-administration" },
     ],
   },
   {
-    title: "Books",
-    href: "/books",
-    hasDropdown: false, // Temporarily disabled dropdown
-    // hasDropdown: true,
-    // dropdownItems: [
-    //   { title: "AIA Documents", href: "/books/aia-documents" },
-    //   { title: "Builder's Guide", href: "/books/builders-guide" },
-    //   { title: "FL Contractor's Manual", href: "/books/contractors-manual" },
-    // ],
+    title: "BookStore",
+    href: "/bookstore",
+    hasDropdown: true,
+    dropdownItems: [
+      { title: "Book Packages", href: "/bookstore/packages", isMaintenance: true },
+      { title: "Books", href: "/bookstore/books", isMaintenance: true },
+      { title: "Tabs", href: "/bookstore/tabs", isMaintenance: true },
+      { title: "Calculators", href: "/bookstore/calculators", isMaintenance: true },
+    ],
   },
-  { title: "Quizzes", href: "/checkout?tier=quizzes" },
+  {
+    title: "Quizzes",
+    href: "/quizzes",
+    hasDropdown: true,
+    dropdownItems: [
+      { title: "Business and Finance", href: "/quizzes/business-finance", isMaintenance: true },
+      { title: "Contract Administration", href: "/quizzes/contract-administration", isMaintenance: true },
+      { title: "Project Management", href: "/quizzes/project-management", isMaintenance: true },
+      { title: "Bundle", href: "/quizzes/bundle", isMaintenance: true },
+    ],
+  },
   { title: "Pass Board", href: "/florida-contractor-exam-pass-board" },
-  { title: "Blog", href: "/blog" },
+  {
+    title: "Freebies",
+    href: "/freebies",
+    hasDropdown: true,
+    dropdownItems: [
+      { title: "Business and Finance Quiz", href: "/freebies/business-finance-quiz", isMaintenance: true },
+      { title: "Contract Administration Quiz", href: "/freebies/contract-administration-quiz", isMaintenance: true },
+      { title: "Project Management Quiz", href: "/freebies/project-management-quiz", isMaintenance: true },
+      { title: "Business and Finance WhatsApp Group", href: "/freebies/business-finance-whatsapp", isMaintenance: true },
+      { title: "CA/PM WhatsApp Group", href: "/freebies/capm-whatsapp", isMaintenance: true },
+    ],
+  },
+  { title: "FAQ", href: "/faq" },
 ] as const;
 
 // ============================================================================
@@ -64,19 +88,17 @@ export const FOOTER_COMPANY_LINKS: NavLink[] = [
 export const FOOTER_COURSE_LINKS: NavLink[] = [
   { label: "Pass Board", href: "/florida-contractor-exam-pass-board" },
   { label: "Business And Finance", href: "/courses/business-finance" },
-  { label: "Contract Administration", href: "/courses/contract-admin" },
-  { label: "Project Management", href: "/courses/project-management" },
-  { label: "Complete Exam Prep", href: "/courses/complete-prep" },
+  { label: "General Contractor", href: "/programs/general-contractor", isMaintenance: true },
+  { label: "Building Contractor", href: "/programs/building-contractor", isMaintenance: true },
+  { label: "Residential Contractor", href: "/programs/residential-contractor", isMaintenance: true },
+  { label: "Contract Administration/Project Management", href: "/courses/contract-administration" },
 ] as const;
 
 export const FOOTER_BOOK_LINKS: NavLink[] = [
-  { label: "AIA Documents 201, 401, 701", href: "/books/aia-documents" },
-  { label: "Builder's Guide to Accounting", href: "/books/builders-guide" },
-  { label: "FL Contractor's Manual 2025", href: "/books/contractors-manual" },
-  { label: "All Books Bundle", href: "/books/bundle" },
-  { label: "Quizzes 1,000+ questions", href: "/books/quizzes" },
-  { label: "All Books + Quizzes Bundle", href: "/books/complete-bundle" },
-  { label: "Permanent Tabs For All Books", href: "/books/tabs" },
+  { label: "Book Packages", href: "/bookstore/packages", isMaintenance: true },
+  { label: "Books", href: "/bookstore/books", isMaintenance: true },
+  { label: "Tabs", href: "/bookstore/tabs", isMaintenance: true },
+  { label: "Calculators", href: "/bookstore/calculators", isMaintenance: true },
 ] as const;
 
 // ============================================================================

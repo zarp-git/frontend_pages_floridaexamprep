@@ -12,7 +12,7 @@ interface NavItem {
   title: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownItems?: { title: string; href: string }[];
+  dropdownItems?: { title: string; href: string; isMaintenance?: boolean }[];
   isMaintenance?: boolean;
 }
 
@@ -202,14 +202,13 @@ export default function Navigation({ navItems, className }: NavigationProps) {
                     >
                       {item.dropdownItems.map((subItem) => {
                         const isSubActive = pathname === subItem.href;
-                        const isBookItem = item.title === "Books";
                         
                         return (
                           <motion.div
                             key={subItem.title}
                             variants={dropdownItemVariants}
                           >
-                            {isBookItem ? (
+                            {subItem.isMaintenance ? (
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();
