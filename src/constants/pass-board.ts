@@ -83,7 +83,7 @@ export const PASS_BOARD_EXAM_CATEGORIES = [
 ] as const;
 
 export const PASS_BOARD_CONFIG = {
-  title: "Florida's Pass Board",
+  title: "Florida Exam Prep's Pass Board",
   subtitle: "FloridaExamPrep Passport recognizes students who use FloridaExamPrep to successfully pass their Florida State Exam.",
   lastUpdated: "Mar 5, 2026",
   itemsPerPage: 10,

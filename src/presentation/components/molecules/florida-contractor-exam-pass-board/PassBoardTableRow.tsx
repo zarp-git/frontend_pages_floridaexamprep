@@ -57,11 +57,11 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
 
   return (
     <tr className="hover:bg-primary/5 transition-colors">
-      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5">{getRankBadge(rank)}</td>
-      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5">
-        <div className="flex items-center gap-2 sm:gap-4">
+      <td className="px-1 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4">{getRankBadge(rank)}</td>
+      <td className="px-1 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <div
-            className={`size-8 sm:size-10 md:size-14 rounded-full border-2 ${getBorderColor(rank)} overflow-hidden bg-gray-200 shrink-0 relative`}
+            className={`size-7 sm:size-10 md:size-12 rounded-full border-2 ${getBorderColor(rank)} overflow-hidden bg-gray-200 shrink-0 relative`}
           >
             {student.hasAvatar && student.avatarPath ? (
               <Image
@@ -71,32 +71,32 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gray-300 text-gray-600 font-bold text-xs sm:text-base md:text-xl font-rubik">
+              <div className="w-full h-full flex items-center justify-center bg-gray-300 text-gray-600 font-bold text-[10px] sm:text-base md:text-lg font-rubik">
                 {student.name.charAt(0)}
               </div>
             )}
           </div>
-          <div>
-            <p className="font-bold text-xs sm:text-sm md:text-lg text-gray-900 leading-tight font-rubik">
+          <div className="min-w-0">
+            <p className="font-bold text-[10px] sm:text-sm md:text-base text-gray-900 leading-tight font-rubik truncate">
               {student.name}
             </p>
           </div>
         </div>
       </td>
-      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5">
-        <span className="inline-flex items-center px-1.5 py-1 sm:px-4 sm:py-2 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold bg-primary/10 text-primary border border-primary/20 font-rubik">
+      <td className="px-1 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4">
+        <span className="inline-flex items-center px-1 py-0.5 sm:px-3 sm:py-1.5 rounded sm:rounded-lg text-[8px] sm:text-xs font-bold bg-primary/10 text-primary border border-primary/20 font-rubik leading-tight">
           {student.exam}
         </span>
       </td>
-      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-right">
+      <td className="px-1 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 text-right">
         <span
-          className={`text-sm sm:text-xl md:text-3xl font-red-hat font-black ${getGradeColor(rank)}`}
+          className={`text-xs sm:text-lg md:text-2xl font-red-hat font-black ${getGradeColor(rank)}`}
         >
           {student.grade}
         </span>
       </td>
-      <td className="px-2 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5 text-right">
-        <span className="text-xs sm:text-sm md:text-base font-rubik text-gray-600">
+      <td className="px-1 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 text-right">
+        <span className="text-[9px] sm:text-sm md:text-base font-rubik text-gray-600 whitespace-nowrap">
           {student.examDate}
         </span>
       </td>

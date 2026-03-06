@@ -16,7 +16,7 @@ export function PassBoardView() {
   const [selectedCategory, setSelectedCategory] = useState(
     "All Course Categories",
   );
-  const [viewMode, setViewMode] = useState<"monthly" | "all-time">("monthly");
+  const [viewMode, setViewMode] = useState<"monthly" | "all-time">("all-time");
   const [dateSort, setDateSort] = useState<"newest" | "oldest" | "none">("none");
   const [currentPage, setCurrentPage] = useState(1);
 
