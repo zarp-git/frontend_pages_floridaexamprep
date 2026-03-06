@@ -1,8 +1,8 @@
 "use client";
 
-import StaticHeader from "./StaticHeader";
+// import StaticHeader from "./StaticHeader";
 import StaticFAQ from "./StaticFAQ";
-import StaticFooter from "./StaticFooter";
+// import StaticFooter from "./StaticFooter";
 
 /**
  * StaticCheckout Component
@@ -11,9 +11,9 @@ import StaticFooter from "./StaticFooter";
  * Acesse: http://localhost:3000/static
  * 
  * Contém:
- * - Header (Navbar) - versão estática com inline CSS
+ * - Header (Navbar) - versão estática com inline CSS (REMOVED)
  * - FAQ Section - versão estática com inline CSS
- * - Footer - versão estático com inline CSS
+ * - Footer - versão estático com inline CSS (REMOVED)
  * 
  * Todos os componentes usam inline styles e vanilla JavaScript
  * para funcionar após exportação HTML.
@@ -38,9 +38,9 @@ export default function StaticCheckout() {
         }
       `}} />
       
-      <StaticHeader />
+      {/* <StaticHeader /> */}
       <StaticFAQ />
-      <StaticFooter />
+      {/* <StaticFooter /> */}
     </>
   );
 }

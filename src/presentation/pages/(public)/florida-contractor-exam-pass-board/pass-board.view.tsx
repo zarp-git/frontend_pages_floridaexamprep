@@ -17,29 +17,58 @@ export function PassBoardView() {
     "All Course Categories",
   );
   const [viewMode, setViewMode] = useState<"monthly" | "all-time">("monthly");
+  const [dateSort, setDateSort] = useState<"newest" | "oldest" | "none">("none");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Step 1: Filter by category and sort to assign stable ranks
+  // Step 1: Filter by category, view mode (monthly/all-time), and sort
   const rankedStudents = useMemo(() => {
     let filtered = [...PASS_BOARD_STUDENTS];
 
+    // Filter by category
     if (selectedCategory !== "All Course Categories") {
       filtered = filtered.filter(
         (student) => student.exam === selectedCategory,
       );
     }
 
-    filtered.sort((a, b) => {
-      const gradeA = parseFloat(a.grade.replace("%", ""));
-      const gradeB = parseFloat(b.grade.replace("%", ""));
-      return gradeB - gradeA;
-    });
+    // Filter by view mode (monthly/all-time)
+    if (viewMode === "monthly") {
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
+      
+      filtered = filtered.filter((student) => {
+        const examDate = new Date(student.examDate);
+        return (
+          examDate.getMonth() === currentMonth &&
+          examDate.getFullYear() === currentYear
+        );
+      });
+    }
+
+    // Apply date sorting if selected
+    if (dateSort !== "none") {
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.examDate);
+        const dateB = new Date(b.examDate);
+        return dateSort === "newest" 
+          ? dateB.getTime() - dateA.getTime() 
+          : dateA.getTime() - dateB.getTime();
+      });
+    } else {
+      // Default sort by grade
+      filtered.sort((a, b) => {
+        const gradeA = parseFloat(a.grade.replace("%", ""));
+        const gradeB = parseFloat(b.grade.replace("%", ""));
+        return gradeB - gradeA;
+      });
+    }
 
     return filtered.map((student, index) => ({
       ...student,
       rank: index + 1,
     }));
-  }, [selectedCategory]);
+  }, [selectedCategory, viewMode, dateSort]);
 
   // Step 2: Apply search filter while preserving original ranks
   const filteredStudents = useMemo(() => {
@@ -86,7 +115,15 @@ export function PassBoardView() {
             setCurrentPage(1);
           }}
           viewMode={viewMode}
-          onViewModeChange={setViewMode}
+          onViewModeChange={(mode) => {
+            setViewMode(mode);
+            setCurrentPage(1);
+          }}
+          dateSort={dateSort}
+          onDateSortChange={(sort) => {
+            setDateSort(sort);
+            setCurrentPage(1);
+          }}
         />
 
         <div className="flex items-center justify-end mb-1">

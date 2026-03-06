@@ -9,6 +9,8 @@ interface PassBoardFiltersProps {
   onCategoryChange: (value: string) => void;
   viewMode: "monthly" | "all-time";
   onViewModeChange: (mode: "monthly" | "all-time") => void;
+  dateSort: "newest" | "oldest" | "none";
+  onDateSortChange: (sort: "newest" | "oldest" | "none") => void;
 }
 
 export function PassBoardFilters({
@@ -18,10 +20,12 @@ export function PassBoardFilters({
   onCategoryChange,
   viewMode,
   onViewModeChange,
+  dateSort,
+  onDateSortChange,
 }: PassBoardFiltersProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end mb-2">
-      <div className="md:col-span-5">
+      <div className="md:col-span-4">
         <label className="block text-xs font-bold text-gray-500 uppercase mb-2 ml-1 font-rubik">
           Search Database
         </label>
@@ -49,7 +53,7 @@ export function PassBoardFilters({
         </div>
       </div>
 
-      <div className="md:col-span-4">
+      <div className="md:col-span-3">
         <label className="block text-xs font-bold text-gray-500 uppercase mb-2 ml-1 font-rubik">
           Course Categories
         </label>
@@ -63,6 +67,21 @@ export function PassBoardFilters({
               {category}
             </option>
           ))}
+        </select>
+      </div>
+
+      <div className="md:col-span-2">
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-2 ml-1 font-rubik">
+          Sort by Date
+        </label>
+        <select
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white focus:ring-primary focus:border-primary text-sm font-rubik appearance-none"
+          value={dateSort}
+          onChange={(e) => onDateSortChange(e.target.value as "newest" | "oldest" | "none")}
+        >
+          <option value="none">Default</option>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
         </select>
       </div>
 
