@@ -10,8 +10,8 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
   const getRankBadge = (rank: number) => {
     if (rank === 1) {
       return (
-        <div className="flex items-center justify-center size-8 sm:size-12 rounded-full bg-yellow-100 text-yellow-600">
-          <svg className="w-5 h-5 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-center size-6 sm:size-12 rounded-full bg-yellow-100 text-yellow-600">
+          <svg className="w-3 h-3 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
         </div>
@@ -19,8 +19,8 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
     }
     if (rank === 2) {
       return (
-        <div className="flex items-center justify-center size-8 sm:size-12 rounded-full bg-gray-200 text-gray-600">
-          <svg className="w-5 h-5 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-center size-6 sm:size-12 rounded-full bg-gray-200 text-gray-600">
+          <svg className="w-3 h-3 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
         </div>
@@ -28,15 +28,15 @@ export function PassBoardTableRow({ student, rank }: PassBoardTableRowProps) {
     }
     if (rank === 3) {
       return (
-        <div className="flex items-center justify-center size-8 sm:size-12 rounded-full bg-orange-100 text-orange-600">
-          <svg className="w-5 h-5 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-center size-6 sm:size-12 rounded-full bg-orange-100 text-orange-600">
+          <svg className="w-3 h-3 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
         </div>
       );
     }
     return (
-      <div className="flex items-center justify-center size-8 sm:size-12 text-gray-400 font-black text-base sm:text-2xl font-red-hat">
+      <div className="flex items-center justify-center size-6 sm:size-12 text-gray-400 font-black text-xs sm:text-2xl font-red-hat">
         {rank}
       </div>
     );
