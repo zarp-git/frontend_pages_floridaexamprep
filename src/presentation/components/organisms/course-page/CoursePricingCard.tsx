@@ -10,6 +10,10 @@ import { useState } from "react";
 
 interface CoursePricingCardProps {
   course: CourseData;
+  sectionTitle?: string;
+  sectionSubtitle?: string;
+  customTiers?: string[];
+  hideDefaultText?: boolean;
 }
 
 interface PricingTier {
@@ -26,7 +30,7 @@ interface PricingTier {
   tierSlug: PricingTierSlug;
 }
 
-export default function CoursePricingCard({ course }: CoursePricingCardProps) {
+export default function CoursePricingCard({ course, sectionTitle, sectionSubtitle, customTiers, hideDefaultText }: CoursePricingCardProps) {
   const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
 
   const toggleExpanded = (idx: number) => {
@@ -38,9 +42,12 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     "business-finance": ["primary-course", "premium-books", "premium-highlighted-books"],
     "contract-administration": ["capm-course", "capm-package", "capm-highlighted-books"],
     "complete-exam-prep": ["complete-course", "complete-package", "complete-highlighted-books"],
+    "general-contractor": ["trade-course", "trade-books", "trade-highlighted-books"],
+    "building-contractor": ["trade-course", "trade-books", "trade-highlighted-books"],
+    "residential-contractor": ["trade-course", "trade-books", "trade-highlighted-books"],
   };
 
-  const validTiers = courseTiersMap[course.slug] || [];
+  const validTiers = customTiers || courseTiersMap[course.slug] || [];
   const pricingTiers: PricingTier[] = TIER_DISPLAY.filter((tier) => validTiers.includes(tier.slug)).map((tier, idx) => {
     const pricing = PRICING_TIERS[tier.slug];
     let features: CourseFeature[];
@@ -49,16 +56,16 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     // Para Complete Exam Prep, lógica específica (3 colunas)
     if (course.slug === "complete-exam-prep") {
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 10 features
+        // Coluna 1 (Course): primeiras 9 features (exclui "3 Hour Cram Course")
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 10,
+          included: i < 9,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Books): primeiras 10 + features 10, 11, 12
+        // Coluna 2 (Course + Books): primeiras 9 + features 10, 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 10 || (i >= 10 && i <= 12),
+          included: i < 9 || (i >= 10 && i <= 12),
         }));
         highlight = "Most Popular";
       } else {
@@ -89,16 +96,56 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
     } else if (course.slug === "business-finance") {
       // Para Business Finance (3 colunas)
       if (idx === 0) {
-        // Coluna 1 (Course): primeiras 9 features
+        // Coluna 1 (Course): primeiras 9 features + feature 11 (3 Hour Cram Course)
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 9,
+          included: i < 9 || i === 11,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Tabs + Books): primeiras 9 + features 9, 10
+        // Coluna 2 (Course + Tabs + Books): primeiras 9 + features 9, 10, 11
         features = course.features.map((f, i) => ({
           ...f,
-          included: i < 9 || (i >= 9 && i <= 10),
+          included: i < 9 || (i >= 9 && i <= 11),
+        }));
+        highlight = "Most Popular";
+      } else {
+        // Coluna 3 (Course + Pre Highlighted): todas as features
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
+    } else if (course.slug === "general-contractor" || course.slug === "building-contractor" || course.slug === "residential-contractor") {
+      // Para Trade Programs (3 colunas) - mesma lógica do contract-administration
+      if (idx === 0) {
+        // Coluna 1 (Course): primeiras 11 features
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 11,
+        }));
+      } else if (idx === 1) {
+        // Coluna 2 (Course + Books): primeiras 11 + features 11, 12
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: i < 11 || (i >= 11 && i <= 12),
+        }));
+        highlight = "Most Popular";
+      } else {
+        // Coluna 3 (Course + Pre Highlighted): todas as features
+        features = course.features.map((f) => ({ ...f, included: true }));
+        highlight = "Best Value";
+      }
+    } else if (customTiers && customTiers.includes("complete-contractor-course")) {
+      // Para Complete Contractor Package (3 colunas)
+      if (idx === 0) {
+        // Coluna 1 (Course): todas as features EXCETO índices 9 e 10
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: f.included && i !== 9 && i !== 10,
+        }));
+      } else if (idx === 1) {
+        // Coluna 2 (Course + Books): adiciona features 11, 12 (Complete Book Set for Business and Finance + Book Tabs)
+        features = course.features.map((f, i) => ({
+          ...f,
+          included: (f.included && i !== 9 && i !== 10) || i === 11 || i === 12,
         }));
         highlight = "Most Popular";
       } else {
@@ -154,7 +201,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
             {/* FYI Notice for Contract Administration and Complete Exam Prep */}
-            {(course.slug === "contract-administration" || course.slug === "complete-exam-prep") && (
+            {!sectionTitle && (course.slug === "contract-administration" || course.slug === "complete-exam-prep") && (
               <div className="w-full max-w-3xl px-4 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0">
@@ -164,7 +211,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                   </div>
                   <div className="flex-1">
                     <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
-                      {course.slug === "contract-administration" 
+                      {course.slug === "contract-administration"
                         ? "The Contract Administration and Project Management course is sold as a combined course, not separately. Both exams use many of the same reference books, so a large portion of the material overlaps."
                         : "This complete package covers all Florida contractor exams. Make sure you have the required books or choose a package that includes them."
                       }
@@ -174,17 +221,35 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
               </div>
             )}
             
-            <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
-              <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed uppercase">
-                You don&apos;t have to do this alone
-              </span>
-            </div>
-            <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
-              FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED
-            </h2>
-            <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed uppercase">
-              STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE
-            </p>
+            {!hideDefaultText && (
+              <>
+                <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
+                  <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed uppercase">
+                    You don&apos;t have to do this alone
+                  </span>
+                </div>
+                <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
+                  FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED
+                </h2>
+                <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed uppercase">
+                  STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE
+                </p>
+              </>
+            )}
+
+            {/* Section Title (if provided) */}
+            {sectionTitle && (
+              <div className="w-full max-w-4xl text-center mt-4">
+                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold font-red-hat uppercase leading-tight mb-2">
+                  {sectionTitle}
+                </h2>
+                {sectionSubtitle && (
+                  <p className="text-white/80 text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
+                    {sectionSubtitle}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Comparison Table - Desktop */}
@@ -279,18 +344,12 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                     {idx === 3 && pricingTiers.length === 4 && (
                       <>
                         <p className="text-orange-600 text-xs font-medium">
-                          Pre-Tabbed &
-                        </p>
-                        <p className="text-orange-600 text-xs font-medium">
                           Highlighted Books Included
                         </p>
                       </>
                     )}
                     {idx === 1 && pricingTiers.length === 3 && (
                       <>
-                        <p className="text-blue-600 text-xs font-medium">
-                          Pre-Tabbed &
-                        </p>
                         <p className="text-blue-600 text-xs font-medium">
                           Highlighted Books Included
                         </p>
@@ -417,7 +476,7 @@ export default function CoursePricingCard({ course }: CoursePricingCardProps) {
                     {idx === 1 && (
                       <div className="text-center">
                         <p className="text-blue-600 text-sm font-medium">
-                          Pre-Tabbed & Highlighted Books ($2,199 value!)
+                          Highlighted Books ($2,199 value!)
                         </p>
                       </div>
                     )}

@@ -30,11 +30,11 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
     href: "/programs",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Business And Finance", href: "/courses/business-finance" },
-      { title: "General Contractor", href: "/programs/general-contractor", isMaintenance: true },
-      { title: "Building Contractor", href: "/programs/building-contractor", isMaintenance: true },
-      { title: "Residential Contractor", href: "/programs/residential-contractor", isMaintenance: true },
-      { title: "Contract Administration/Project Management", href: "/courses/contract-administration" },
+      { title: "Business And Finance", href: "/programs/business-finance" },
+      { title: "General Contractor", href: "/programs/general-contractor" },
+      { title: "Building Contractor", href: "/programs/building-contractor" },
+      { title: "Residential Contractor", href: "/programs/residential-contractor" },
+      { title: "Contract Administration/Project Management", href: "/programs/contract-administration" },
     ],
   },
   {
@@ -87,11 +87,11 @@ export const FOOTER_COMPANY_LINKS: NavLink[] = [
 
 export const FOOTER_COURSE_LINKS: NavLink[] = [
   { label: "Pass Board", href: "/florida-contractor-exam-pass-board" },
-  { label: "Business And Finance", href: "/courses/business-finance" },
-  { label: "General Contractor", href: "/programs/general-contractor", isMaintenance: true },
-  { label: "Building Contractor", href: "/programs/building-contractor", isMaintenance: true },
-  { label: "Residential Contractor", href: "/programs/residential-contractor", isMaintenance: true },
-  { label: "Contract Administration/Project Management", href: "/courses/contract-administration" },
+  { label: "Business And Finance", href: "/programs/business-finance" },
+  { label: "General Contractor", href: "/programs/general-contractor" },
+  { label: "Building Contractor", href: "/programs/building-contractor" },
+  { label: "Residential Contractor", href: "/programs/residential-contractor" },
+  { label: "Contract Administration/Project Management", href: "/programs/contract-administration" },
 ] as const;
 
 export const FOOTER_BOOK_LINKS: NavLink[] = [
