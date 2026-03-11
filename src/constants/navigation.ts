@@ -38,14 +38,14 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
     ],
   },
   {
-    title: "BookStore",
+    title: "Book Store",
     href: "/bookstore",
     hasDropdown: true,
     dropdownItems: [
-      { title: "Book Packages", href: "/bookstore/packages", isMaintenance: true },
-      { title: "Books", href: "/bookstore/books", isMaintenance: true },
-      { title: "Tabs", href: "/bookstore/tabs", isMaintenance: true },
-      { title: "Calculators", href: "/bookstore/calculators", isMaintenance: true },
+      { title: "Book Packages", href: "/bookstore/packages" },
+      { title: "Books", href: "/bookstore/books" },
+      { title: "Tabs", href: "/bookstore/tabs" },
+      { title: "Calculators", href: "/bookstore/calculators" },
     ],
   },
   {
@@ -95,10 +95,10 @@ export const FOOTER_COURSE_LINKS: NavLink[] = [
 ] as const;
 
 export const FOOTER_BOOK_LINKS: NavLink[] = [
-  { label: "Book Packages", href: "/bookstore/packages", isMaintenance: true },
-  { label: "Books", href: "/bookstore/books", isMaintenance: true },
-  { label: "Tabs", href: "/bookstore/tabs", isMaintenance: true },
-  { label: "Calculators", href: "/bookstore/calculators", isMaintenance: true },
+  { label: "Book Packages", href: "/bookstore/packages" },
+  { label: "Books", href: "/bookstore/books" },
+  { label: "Tabs", href: "/bookstore/tabs" },
+  { label: "Calculators", href: "/bookstore/calculators" },
 ] as const;
 
 // ============================================================================

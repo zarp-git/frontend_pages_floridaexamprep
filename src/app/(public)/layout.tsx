@@ -5,6 +5,8 @@ import { LeadCollectModal } from "@/presentation/components/organisms/common/lea
 import { ContactModal } from "@/presentation/components/organisms/common/contact-modal/ContactModal";
 import { MaintenanceModal } from "@/presentation/components/organisms/common/MaintenanceModal";
 import { SmoothScrollProvider } from "@/presentation/components/providers/SmoothScrollProvider";
+import { CartProvider } from "@/presentation/components/providers/CartProvider";
+import FloatingCartButton from "@/presentation/components/molecules/FloatingCartButton";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -34,12 +36,15 @@ export default function RootLayout({
       <body
         className={`${rubik.variable} ${redHatDisplay.variable} antialiased`}
       >
-        <SmoothScrollProvider>
-          {children}
-          <LeadCollectModal />
-          <ContactModal />
-          <MaintenanceModal />
-        </SmoothScrollProvider>
+        <CartProvider>
+          <SmoothScrollProvider>
+            {children}
+            <FloatingCartButton />
+            <LeadCollectModal />
+            <ContactModal />
+            <MaintenanceModal />
+          </SmoothScrollProvider>
+        </CartProvider>
       </body>
     </html>
   );

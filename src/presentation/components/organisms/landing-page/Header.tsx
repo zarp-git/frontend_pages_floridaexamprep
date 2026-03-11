@@ -8,6 +8,7 @@ import { PrimaryButton } from "@/presentation/components/atoms/PrimaryButton";
 import { CTA_TEXT, HEADER_NAV_ITEMS } from "@/constants";
 import Navigation from "./Navigation";
 import MobileMenu from "./MobileMenu";
+import CartButton from "@/presentation/components/molecules/CartButton";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -51,8 +52,11 @@ export default function Header() {
           {/* Desktop Navigation */}
           <Navigation className="hidden lg:flex" navItems={HEADER_NAV_ITEMS} />
 
-          {/* Right: CTA + Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          {/* Right: Cart + CTA + Mobile Toggle */}
+          <div className="flex items-center gap-10">
+            {/* Cart Button */}
+            <CartButton />
+
             {/* Desktop CTA */}
             <PrimaryButton
               variant="blue-solid"
