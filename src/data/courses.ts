@@ -101,7 +101,7 @@ const TRADE_FEATURES: CourseFeature[] = [
     text: "Complete Book Set of Trade books allowed into the exam Brand New",
   },
   {
-    included: false,
+    included: true,
     text: "Book Tabs For All Books",
   },
   {
@@ -221,7 +221,7 @@ export const courseData: Record<string, CourseData> = {
       },
       {
         included: false,
-        text: "Books for All Tabs",
+        text: "Book Tabs For All Books",
       },
       {
         included: false,

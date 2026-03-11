@@ -31,10 +31,8 @@ export const HEADER_NAV_ITEMS: NavItemWithDropdown[] = [
     hasDropdown: true,
     dropdownItems: [
       { title: "Business And Finance", href: "/programs/business-finance" },
-      { title: "General Contractor", href: "/programs/general-contractor" },
-      { title: "Building Contractor", href: "/programs/building-contractor" },
-      { title: "Residential Contractor", href: "/programs/residential-contractor" },
       { title: "Contract Administration/Project Management", href: "/programs/contract-administration" },
+      { title: "Complete Exam Prep", href: "/programs/complete-exam-prep" },
     ],
   },
   {

@@ -12,6 +12,7 @@ export async function generateStaticParams() {
   return [
     { slug: "business-finance" },
     { slug: "contract-administration" },
+    { slug: "complete-exam-prep" },
     { slug: "general-contractor" },
     { slug: "building-contractor" },
     { slug: "residential-contractor" },

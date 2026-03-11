@@ -12,9 +12,15 @@ export default function MultiplePricingSections({ course }: MultiplePricingSecti
     return <CoursePricingCard course={course} />;
   }
 
+  // Para a página Complete Exam Prep, mostrar apenas a segunda seção
+  const isCompleteExamPrep = course.slug === "complete-exam-prep";
+  const sectionsToShow = isCompleteExamPrep 
+    ? [course.pricingSections[1]] // Apenas a seção "Complete Exam Prep Package"
+    : course.pricingSections;
+
   return (
     <div className="w-full flex flex-col">
-      {course.pricingSections.map((section, index) => {
+      {sectionsToShow.map((section, index) => {
         const sectionCourse = {
           ...course,
           features: section.features,
@@ -27,10 +33,10 @@ export default function MultiplePricingSections({ course }: MultiplePricingSecti
               sectionTitle={section.title}
               sectionSubtitle={section.subtitle}
               customTiers={section.tiers}
-              hideDefaultText={index === 1 && section.title.includes("Complete Exam Prep Package")}
+              hideDefaultText={!isCompleteExamPrep && index === 1 && section.title.includes("Complete Exam Prep Package")}
             />
             
-            {index < course.pricingSections!.length - 1 && (
+            {index < sectionsToShow.length - 1 && (
               <div className="bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px w-full" />
             )}
           </div>

@@ -136,16 +136,16 @@ export default function CoursePricingCard({ course, sectionTitle, sectionSubtitl
     } else if (customTiers && customTiers.includes("complete-contractor-course")) {
       // Para Complete Contractor Package (3 colunas)
       if (idx === 0) {
-        // Coluna 1 (Course): todas as features EXCETO índices 9 e 10
+        // Coluna 1 (Course): todas as features EXCETO índices 9, 10, 11, 12
         features = course.features.map((f, i) => ({
           ...f,
-          included: f.included && i !== 9 && i !== 10,
+          included: f.included && i < 9,
         }));
       } else if (idx === 1) {
-        // Coluna 2 (Course + Books): adiciona features 11, 12 (Complete Book Set for Business and Finance + Book Tabs)
+        // Coluna 2 (Course + Books): todas as features EXCETO a última (índice 12 - Pre Highlighted)
         features = course.features.map((f, i) => ({
           ...f,
-          included: (f.included && i !== 9 && i !== 10) || i === 11 || i === 12,
+          included: i !== 12,
         }));
         highlight = "Most Popular";
       } else {
@@ -200,46 +200,9 @@ export default function CoursePricingCard({ course, sectionTitle, sectionSubtitl
         <div className="w-full mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8">
           {/* Heading */}
           <div className="flex flex-col justify-center items-center gap-3 sm:gap-5 px-2">
-            {/* FYI Notice for Contract Administration and Complete Exam Prep */}
-            {!sectionTitle && (course.slug === "contract-administration" || course.slug === "complete-exam-prep") && (
-              <div className="w-full max-w-3xl px-4 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold text-sm">
-                      FYI
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
-                      {course.slug === "contract-administration"
-                        ? "The Contract Administration and Project Management course is sold as a combined course, not separately. Both exams use many of the same reference books, so a large portion of the material overlaps."
-                        : "This complete package covers all Florida contractor exams. Make sure you have the required books or choose a package that includes them."
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {!hideDefaultText && (
-              <>
-                <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
-                  <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed uppercase">
-                    You don&apos;t have to do this alone
-                  </span>
-                </div>
-                <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
-                  FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED
-                </h2>
-                <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed uppercase">
-                  STEP-BY-STEP LESSONS, PRACTICE EXAMS, AND A CLEAR STUDY PLAN DESIGNED TO HELP YOU PASS WITH CONFIDENCE
-                </p>
-              </>
-            )}
-
-            {/* Section Title (if provided) */}
+            {/* Section Title and Subtitle (if provided) */}
             {sectionTitle && (
-              <div className="w-full max-w-4xl text-center mt-4">
+              <div className="w-full max-w-4xl text-center">
                 <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold font-red-hat uppercase leading-tight mb-2">
                   {sectionTitle}
                 </h2>
@@ -248,6 +211,43 @@ export default function CoursePricingCard({ course, sectionTitle, sectionSubtitl
                     {sectionSubtitle}
                   </p>
                 )}
+              </div>
+            )}
+            
+            {!hideDefaultText && (
+              <>
+                <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
+                  <span className="text-white text-sm sm:text-base font-medium font-rubik leading-relaxed uppercase">
+                    DON&apos;T STUDY ALONE
+                  </span>
+                </div>
+                <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold font-red-hat uppercase leading-tight">
+                  FOLLOW THE PROVEN SYSTEM CONTRACTORS USE TO GET LICENSED
+                </h2>
+                <p className="text-center text-white text-base sm:text-lg md:text-xl font-normal font-rubik leading-relaxed">
+                  Step-by-step lessons, practice exams, and a clear study plan designed to help you pass with confidence.
+                </p>
+              </>
+            )}
+
+            {/* FYI Notice for Contract Administration and Complete Exam Prep - AFTER default text */}
+            {course.slug === "contract-administration" && (
+              <div className="w-full max-w-3xl px-4 py-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white font-bold text-sm">
+                      FYI
+                    </span>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
+                      The Contract Administration and Project Management course is sold as a combined course, not separately. Both exams use many of the same reference books, so a large portion of the material overlaps.
+                    </p>
+                    <p className="text-blue-900 text-sm sm:text-base font-medium font-rubik leading-relaxed">
+                      Inside the course, I&apos;ll guide you on which sections of each book apply to Contract Administration and which apply to Project Management, so you know exactly what to focus on for each exam.
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -344,14 +344,14 @@ export default function CoursePricingCard({ course, sectionTitle, sectionSubtitl
                     {idx === 3 && pricingTiers.length === 4 && (
                       <>
                         <p className="text-orange-600 text-xs font-medium">
-                          Highlighted Books Included
+                          (Course+Tabs+Books Included)
                         </p>
                       </>
                     )}
                     {idx === 1 && pricingTiers.length === 3 && (
                       <>
                         <p className="text-blue-600 text-xs font-medium">
-                          Highlighted Books Included
+                          (Course+Tabs+Books Included)
                         </p>
                       </>
                     )}

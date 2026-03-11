@@ -224,7 +224,7 @@ export const TIER_DISPLAY: TierDisplayInfo[] = [
   // Complete Exam Prep
   { slug: "complete-course", label: "Course", badgeColor: "bg-emerald-600" },
   { slug: "complete-books", label: "Books", badgeColor: "bg-violet-600" },
-  { slug: "complete-package", label: "Course + Tabs + Books Included", badgeColor: "bg-blue-600" },
+  { slug: "complete-package", label: "Course + Books", badgeColor: "bg-blue-600" },
   { slug: "complete-highlighted-books", label: "Course + Pre Highlighted and Tabbed Books", badgeColor: "bg-orange-600" },
   // Trade Programs
   { slug: "trade-course", label: "Course", badgeColor: "bg-emerald-600" },

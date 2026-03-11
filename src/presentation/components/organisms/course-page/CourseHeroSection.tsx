@@ -8,8 +8,15 @@ import { CTA_TEXT } from "@/constants";
 import { HERO_VIDEOS, VIDEO_POSTERS } from "@/constants/media";
 import { FloatingVideo } from "@/presentation/components/molecules/FloatingVideo";
 import { CourseData } from "@/data/courses";
+import { CyclingText } from "@/presentation/components/molecules/common/CyclingText";
 
 const GCS_ORIGIN = "https://storage.googleapis.com";
+
+const CONTRACTOR_TYPES = [
+  "GENERAL CONTRACTOR",
+  "BUILDING CONTRACTOR",
+  "RESIDENTIAL CONTRACTOR",
+];
 
 interface CourseHeroSectionProps {
   course: CourseData;
@@ -20,6 +27,8 @@ export default function CourseHeroSection({ course }: CourseHeroSectionProps) {
   ReactDOM.preconnect(GCS_ORIGIN, { crossOrigin: "anonymous" });
   ReactDOM.prefetchDNS(GCS_ORIGIN);
 
+  const isCompleteExamPrep = course.slug === "complete-exam-prep";
+
   return (
     <section className="w-full px-4 sm:px-6 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col justify-start items-center gap-4 sm:gap-6">
@@ -29,13 +38,21 @@ export default function CourseHeroSection({ course }: CourseHeroSectionProps) {
           <div className="flex flex-col justify-center items-center gap-4 sm:gap-6 w-full">
             {/* Title */}
             <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 w-full px-2">
-              {/* Line 1: You Pass BUSINESS & FINANCE */}
+              {/* Line 1: You Pass [CYCLING TITLE or COURSE TITLE] */}
               <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 text-center">
                 <span className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-red-hat leading-tight tracking-wide">
                   You Pass
                 </span>
                 <span className="text-[#FF6200] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black font-red-hat leading-tight tracking-wide uppercase">
-                  {course.title}
+                  {isCompleteExamPrep ? (
+                    <CyclingText
+                      items={CONTRACTOR_TYPES}
+                      interval={3000}
+                      direction="up"
+                    />
+                  ) : (
+                    course.title
+                  )}
                 </span>
               </div>
 
